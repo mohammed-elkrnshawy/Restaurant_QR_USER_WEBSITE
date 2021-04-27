@@ -1,0 +1,151 @@
+.contactusContainer {
+  display: flex;
+  min-height: 80vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.contactusContent {
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contactusContent > form {
+  width: 50vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.contactusContent > form > input[type='text'],
+input[type='text']:focus {
+  width: 23vw;
+  padding: 12px 20px;
+  margin: 8px 1vw;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.contactusContent > form > textarea {
+  width: 50vw;
+  padding: 12px 20px;
+  margin: 8px 1vw;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.contactusContent > form > input[type='submit'] {
+  width: 50%;
+  background-color: #15b2a2;
+  color: white;
+  padding: 14px 20px;
+  margin: 0px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 10px #15b2a285;
+  -moz-box-shadow: 0 0 10px #15b2a285;
+  box-shadow: 0 0 10px #15b2a285;
+}
+
+.contactusContent > form > input[type='submit']:hover {
+  background-color: #15b2a2;
+  box-shadow: 50px #15b2a285;
+}
+
+.contactusContent > form > p {
+  width: 60vw;
+  height: 24px;
+  font-size: 12px;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 0.5;
+  font-weight: 800;
+  padding: 2px 12px;
+  margin: 0 0 0 0px;
+}
+
+.contactusContent > form > h3 {
+  width: 60vw;
+  height: 24px;
+  padding: 2px 12px;
+
+  letter-spacing: 0px;
+  color: #000000;
+  font-weight: 800;
+  opacity: 0.7;
+
+  margin: 0 0 0 0px;
+}
+
+@media screen and (max-width: 1270px) {
+  .contactusContent {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .contactusContent > form {
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .contactusContent > form > input[type='text'],
+  input[type='password'],
+  input[type='text']:focus,
+  input[type='password']:focus,
+  textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .contactusContent > form > input[type='submit'] {
+    width: 100%;
+    background-color: #15b2a2;
+    color: white;
+    padding: 14px 20px;
+    margin: 0px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    -webkit-box-shadow: 0 0 10px #15b2a285;
+    -moz-box-shadow: 0 0 10px #15b2a285;
+    box-shadow: 0 0 10px #15b2a285;
+  }
+
+  .contactusContent > form > input[type='submit']:hover {
+    background-color: #15b2a2;
+    box-shadow: 50px #15b2a285;
+  }
+
+  .contactusContent > form > p {
+    width: 60vw;
+    height: 24px;
+    font-size: 12px;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 0.5;
+    font-weight: 800;
+
+    margin: 0 0 0 0px;
+  }
+}
