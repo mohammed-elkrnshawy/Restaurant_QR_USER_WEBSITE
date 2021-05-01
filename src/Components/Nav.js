@@ -3,7 +3,11 @@ import { useHistory } from 'react-router-dom';
 
 import './style.css';
 
-export const Nav = ({ changeComponent, currentComponent }) => {
+export const Nav = ({
+  changeComponent,
+  currentComponent,
+  changeMainComponent,
+}) => {
   const history = useHistory();
   useEffect(() => {
     console.log(currentComponent);
@@ -59,14 +63,16 @@ export const Nav = ({ changeComponent, currentComponent }) => {
       <ul class="main-nav">
         <li
           onClick={() => {
-            history.push('/login');
+            localStorage.removeItem('token');
+
+            changeMainComponent('login');
           }}
         >
           <i
             class="logout fas fa-sign-out-alt"
             onClick={() => {
               localStorage.removeItem('token');
-              history.push('/login');
+              changeMainComponent('login');
             }}
           ></i>
 

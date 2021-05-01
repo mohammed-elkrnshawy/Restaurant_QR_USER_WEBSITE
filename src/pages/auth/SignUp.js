@@ -4,7 +4,7 @@ import axios from 'axios';
 import cogoToast from 'cogo-toast';
 import { useHistory } from 'react-router-dom';
 
-export const SignUp = () => {
+export const SignUp = ({ changeMainComponent }) => {
   const history = useHistory();
 
   const handleSubmit = (e) => {
@@ -36,7 +36,7 @@ export const SignUp = () => {
             localStorage.setItem('token', response.data.data.token);
             localStorage.setItem('name', response.data.data.name);
 
-            history.push('/home');
+            changeMainComponent('home');
           } else {
             console.log(response);
             cogoToast.warn('something went wrong');
@@ -84,7 +84,15 @@ export const SignUp = () => {
           <input type="submit" value="Sign Up" />
 
           <p className="signup">
-            Already have an account? <a href="/login">Login</a>
+            Already have an account?{' '}
+            <a
+              href="#"
+              onClick={() => {
+                changeMainComponent('login');
+              }}
+            >
+              Login
+            </a>
           </p>
         </form>
       </div>

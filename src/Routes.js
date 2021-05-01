@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Pages from './pages';
 
 const Routes = () => {
+  const [currentComponent, setCurrentComponent] = useState(
+    localStorage.getItem('token') && localStorage.getItem('token').length > 9
+      ? 'home'
+      : 'login'
+  );
+  const [id, setId] = useState(0);
+
+  const theComponent = () => {
+    switch (currentComponent) {
+      case 'home':
+        return <Pages.Home changeMainComponent={setCurrentComponent} />;
+      case 'login':
+        return <Pages.Login changeMainComponent={setCurrentComponent} />;
+
+      case 'signup':
+        return <Pages.SignUp changeMainComponent={setCurrentComponent} />;
+    }
+  };
+  return <>{theComponent()}</>;
   return (
     <>
       {localStorage.getItem('token') &&

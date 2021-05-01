@@ -1,21 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import thunk from 'redux-thunk';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
 
-import rootReducer from './store/reducers/rootReducer.js';
 import './index.css';
 import App from './App';
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
-
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-);
+ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

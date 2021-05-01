@@ -10,25 +10,10 @@ import ContactUs from './ContactUs';
 import EditProfile from './EditProfile';
 import { Nav } from '../../Components/Nav';
 
-const Index = () => {
+const Index = ({ changeMainComponent }) => {
   const [currentComponent, setCurrentComponent] = useState('home');
   const [id, setId] = useState(0);
 
-  // return (
-  //   <div>
-  //     <Nav />
-  //     <Switch>
-  //       <Route path="/home/my-reservations" exact component={MyReservations} />
-  //       <Route path="/home/edit-profile" exact component={EditProfile} />
-  //       <Route path="/home/contact-us" exact component={ContactUs} />
-  //       <Route path="/home/search" exact component={Search} />
-  //       <Route path="/home" exact component={Home} />
-  //       <Route path="/home/details" exact component={Details} />
-  //       <Route path="/home/meals" exact component={Meals} />
-  //       <Redirect to="/home" />
-  //     </Switch>
-  //   </div>
-  // );
   const theComponent = () => {
     switch (currentComponent) {
       case 'home':
@@ -52,6 +37,7 @@ const Index = () => {
   return (
     <>
       <Nav
+        changeMainComponent={changeMainComponent}
         changeComponent={setCurrentComponent}
         currentComponent={currentComponent}
       />

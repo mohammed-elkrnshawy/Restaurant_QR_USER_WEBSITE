@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import './style.css';
 import axios from 'axios';
 import cogoToast from 'cogo-toast';
-const Login = () => {
+const Login = ({ changeMainComponent }) => {
   const history = useHistory();
 
   const handleSubmit = (e) => {
@@ -28,8 +28,7 @@ const Login = () => {
             localStorage.setItem('name', response.data.data.name);
             localStorage.setItem('email', response.data.data.email);
             localStorage.setItem('phone', response.data.data.phone);
-
-            history.push('/home');
+            changeMainComponent('home');
           } else {
             console.log(response);
             cogoToast.warn('Phone Or Password Is Wrong');
@@ -59,7 +58,15 @@ const Login = () => {
           <input type="submit" value="Login" />
 
           <p className="signup">
-            Don't have an account? <a href="/signup">Sign up</a>
+            Don't have an account?{' '}
+            <a
+              href="#"
+              onClick={() => {
+                changeMainComponent('signup');
+              }}
+            >
+              SignUp
+            </a>
           </p>
         </form>
       </div>

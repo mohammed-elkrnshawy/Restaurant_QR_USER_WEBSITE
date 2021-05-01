@@ -5,11 +5,7 @@ import { Nav } from './Components/Nav';
 import Routes from './Routes';
 
 const App = () => {
-  return (
-    <Router>
-      <Routes />
-    </Router>
-  );
+  return <Routes />;
 };
 
 export default App;
