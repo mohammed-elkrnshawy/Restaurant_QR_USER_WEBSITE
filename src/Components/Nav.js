@@ -3,10 +3,10 @@ import { useHistory } from 'react-router-dom';
 
 import './style.css';
 
-export const Nav = (props) => {
+export const Nav = ({ changeComponent, currentComponent }) => {
   const history = useHistory();
   useEffect(() => {
-    console.log(history.location.pathname);
+    console.log(currentComponent);
   }, []);
 
   return (
@@ -15,69 +15,62 @@ export const Nav = (props) => {
         <img src="/assets/logo.svg"></img>
       </h1>
       <ul class="main-nav">
-        <li className={history.location.pathname == '/home' ? 'active' : ''}>
+        <li className={currentComponent == 'home' ? 'active' : ''}>
           <a
-            href="/home"
-            className={history.location.pathname == '/home' ? 'active' : ''}
+            onClick={() => {
+              changeComponent('home');
+            }}
+            className={currentComponent == 'home' ? 'active' : ''}
           >
             Home
           </a>
         </li>
-        <li
-          className={
-            history.location.pathname == '/home/my-reservations' ? 'active' : ''
-          }
-        >
+        <li className={currentComponent == 'myReservation' ? 'active' : ''}>
           <a
-            href="/home/my-reservations"
-            className={
-              history.location.pathname == '/home/my-reservations'
-                ? 'active'
-                : ''
-            }
+            onClick={() => {
+              changeComponent('myReservation');
+            }}
+            className={currentComponent == 'myReservation' ? 'active' : ''}
           >
             My Reservation
           </a>
         </li>
-        <li
-          className={
-            history.location.pathname == '/home/edit-profile' ? 'active' : ''
-          }
-        >
+        <li className={currentComponent == 'editProfile' ? 'active' : ''}>
           <a
-            href="/home/edit-profile"
-            className={
-              history.location.pathname == '/home/edit-profile' ? 'active' : ''
-            }
+            onClick={() => {
+              changeComponent('editProfile');
+            }}
+            className={currentComponent == 'editProfile' ? 'active' : ''}
           >
             Edit Profile
           </a>
         </li>
-        <li
-          className={
-            history.location.pathname == '/home/contact-us' ? 'active' : ''
-          }
-        >
+        <li className={currentComponent == 'contact' ? 'active' : ''}>
           <a
-            href="/home/contact-us"
-            className={
-              history.location.pathname == '/home/contact-us' ? 'active' : ''
-            }
+            onClick={() => {
+              changeComponent('contact');
+            }}
+            className={currentComponent == 'contact' ? 'active' : ''}
           >
             Contact Us
           </a>
         </li>
       </ul>
       <ul class="main-nav">
-        <li>
+        <li
+          onClick={() => {
+            history.push('/login');
+          }}
+        >
           <i
             class="logout fas fa-sign-out-alt"
             onClick={() => {
+              localStorage.removeItem('token');
               history.push('/login');
             }}
           ></i>
 
-          <p className="userName"> User Name</p>
+          <p className="userName"> {localStorage.getItem('name')}</p>
         </li>
       </ul>
     </header>

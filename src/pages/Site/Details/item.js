@@ -19,20 +19,16 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MediaCard({ onClick }) {
+export default function MediaCard({ onClick, name, image }) {
   const classes = useStyles();
 
   return (
     <Card className={classes.root} onClick={onClick}>
       <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image="/assets/dish.jpg"
-          title="Contemplative Reptile"
-        />
+        <CardMedia className={classes.media} image={image} title="" />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Category
+            {name}
           </Typography>
         </CardContent>
       </CardActionArea>

@@ -1,7 +1,10 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
-import Item from './item';
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
+import axios from 'axios';
+import cogoToast from 'cogo-toast';
+import Category from './category';
+import SubCategory from './subcategory';
+import Meals from './meals';
 
 import './style.css';
 
@@ -16,22 +19,111 @@ const customStyles = {
   },
 };
 
-const Details = () => {
-  const history = useHistory();
-  var subtitle;
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+const Details = (props) => {
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const [subCategory, setSubCategory] = useState([]);
+  const [meals, setMeals] = useState([]);
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+
+  const [currentComponent, setCurrentComponent] = useState('category');
+  const [id, setId] = useState(-1);
+
   function openModal() {
     setIsOpen(true);
   }
-
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = '#f00';
-  }
-
   function closeModal() {
     setIsOpen(false);
   }
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = () => {
+    axios
+      .get(`https://restaurant.se01.tech/api/restaurants/${props.id}`)
+      .then((response) => {
+        if (response.data.status == 'true') {
+          console.log(response.data.data.items);
+
+          setCategories(response.data.data.categories);
+          setName(response.data.data.name);
+          setPhone(response.data.data.phone);
+          setEmail(response.data.data.email);
+        } else {
+          console.log(response);
+          cogoToast.warn('Something Went Wrong');
+        }
+      });
+  };
+
+  const getSubCategory = (id) => {
+    axios
+      .get(`https://restaurant.se01.tech/api/categories/${id}`)
+      .then((response) => {
+        if (response.data.status == 'true') {
+          console.log(response.data.data.items);
+
+          setSubCategory(response.data.data.items);
+        } else {
+          console.log(response);
+          cogoToast.warn('Something Went Wrong');
+        }
+      });
+  };
+
+  const getMeals = (id) => {
+    axios
+      .get(`https://restaurant.se01.tech/api/products/${id}`)
+      .then((response) => {
+        if (response.data.status == 'true') {
+          console.log(response.data.data);
+
+          setMeals(response.data.data.items);
+        } else {
+          console.log(response);
+          cogoToast.warn('Something Went Wrong');
+        }
+      });
+  };
+
+  const theComponent = () => {
+    switch (currentComponent) {
+      case 'category':
+        return (
+          <Category
+            changeComponent={setCurrentComponent}
+            categories={categories}
+            setId={setId}
+            getSubCategory={getSubCategory}
+          />
+        );
+      case 'subCategory':
+        return (
+          <SubCategory
+            changeComponent={setCurrentComponent}
+            subCategory={subCategory}
+            getMeals={getMeals}
+          />
+        );
+      case 'meals':
+        return <Meals meals={meals} />;
+
+      default:
+        return (
+          <Category
+            changeComponent={setCurrentComponent}
+            categories={categories}
+            setId={setId}
+            getSubCategory={getSubCategory}
+          />
+        );
+    }
+  };
+
   return (
     <div className="details-container">
       <div className="details-panar" style={{}}>
@@ -43,7 +135,7 @@ const Details = () => {
             }}
           ></div>
         </div>
-        <h3>Mc Donald's</h3>
+        <h3>{name}</h3>
         <p className="hometype">fast food</p>
         <div className="homestatus"></div>
 
@@ -58,7 +150,7 @@ const Details = () => {
           }}
         >
           {' '}
-          0100303030
+          {phone}
         </p>
       </div>
       <div className="details-content">
@@ -79,59 +171,8 @@ const Details = () => {
             type="button"
           />
         </div>
-        <div className="discrip">
-          loremlorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem{' '}
-          lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem{' '}
-          lorem lorem lorem lorem lorem{' '}
-        </div>
-        <div className="categories">
-          <h4>categories</h4>
-          <Item
-            onClick={() => {
-              history.push('/home/meals');
-            }}
-          />
-          <Item
-            onClick={() => {
-              history.push('/home/meals');
-            }}
-          />
-          <Item
-            onClick={() => {
-              history.push('/home/meals');
-            }}
-          />
-          <Item
-            onClick={() => {
-              history.push('/home/meals');
-            }}
-          />
-          <Item
-            onClick={() => {
-              history.push('/home/meals');
-            }}
-          />
-          <Item
-            onClick={() => {
-              history.push('/home/meals');
-            }}
-          />
-          <Item
-            onClick={() => {
-              history.push('/home/meals');
-            }}
-          />
-          <Item
-            onClick={() => {
-              history.push('/home/meals');
-            }}
-          />
-          <Item
-            onClick={() => {
-              history.push('/home/meals');
-            }}
-          />
-        </div>
+        <div className="discrip">{email}</div>
+        {theComponent()}
       </div>
       <Modal
         isOpen={modalIsOpen}

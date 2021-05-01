@@ -8,6 +8,8 @@
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
+    "axios": "^0.21.1",
+    "cogo-toast": "^4.2.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-modal": "^3.13.1",
@@ -25,7 +27,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
- "eslintConfig": {
+  "eslintConfig": {
     "extends": "react-app"
   },
   "browserslist": {
@@ -44,4 +46,3 @@
     "prettier-eslint": "^12.0.0"
   }
 }
-

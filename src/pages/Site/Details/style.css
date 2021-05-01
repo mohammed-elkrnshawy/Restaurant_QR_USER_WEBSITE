@@ -60,6 +60,11 @@
   max-height: 60vh;
   overflow: scroll;
   overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.categories::-webkit-scrollbar {
+  display: none;
 }
 .categories > h4 {
   width: 100%;

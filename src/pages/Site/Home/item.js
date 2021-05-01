@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import './style.css';
 
-const Item = ({ onClick }) => {
+const Item = ({ onClick, name }) => {
   const history = useHistory();
 
   return (
@@ -17,7 +17,7 @@ const Item = ({ onClick }) => {
           ></div>
         </div>
         <div className="homeheaderData">
-          <h5>Mc Donald's</h5>
+          <h5>{name}</h5>
           <p className="hometype">fast food</p>
 
           <p className="rate">

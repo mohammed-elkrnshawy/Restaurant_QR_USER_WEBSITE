@@ -5,12 +5,23 @@ import Pages from './pages';
 
 const Routes = () => {
   return (
-    <Switch>
-      <Route path="/signup" exact component={Pages.SignUp} />
-      <Route path="/login" exact component={Pages.Login} />
-      <Route path="/home" exact component={Pages.Home} />
-      <Redirect to="/login" />
-    </Switch>
+    <>
+      {localStorage.getItem('token') &&
+      localStorage.getItem('token').length > 9 ? (
+        <Switch>
+          <Route path="/" exact component={Pages.Home} />
+          <Route path="/login" exact component={Pages.Login} />
+
+          <Redirect to="/" />
+        </Switch>
+      ) : (
+        <Switch>
+          <Route path="/signup" exact component={Pages.SignUp} />
+          <Route path="/login" exact component={Pages.Login} />
+          <Redirect to="/login" />
+        </Switch>
+      )}
+    </>
   );
 };
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import './style.css';
+import './style_.css';
 
-const Item = ({ onClick }) => {
+const Item = ({ onClick, name, image, price, description }) => {
   const history = useHistory();
 
   return (
@@ -12,16 +12,13 @@ const Item = ({ onClick }) => {
           <div
             className="homeimg"
             style={{
-              backgroundImage: `url("/assets/mac.png")`,
+              backgroundImage: `url('${image}')`,
             }}
           ></div>
         </div>
         <div className="homeheaderData">
-          <h5>Lorem Ipsum</h5>
-          <p className="hometype">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been{' '}
-          </p>
+          <h5>{name}</h5>
+          <p className="hometype">{description}</p>
         </div>
         <div className="mealstatus">
           <p
@@ -32,7 +29,7 @@ const Item = ({ onClick }) => {
               color: '#15B2A2',
             }}
           >
-            $25
+            ${price}
           </p>
         </div>
       </div>
