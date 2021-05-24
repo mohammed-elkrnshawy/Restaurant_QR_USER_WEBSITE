@@ -1,4 +1,4 @@
-.details-container {
+/* .details-container {
   display: flex;
   min-height: 100vh;
 }
@@ -46,11 +46,9 @@
 
 .details-content {
   padding-right: 10px;
-  padding-left: 300px;
 
   width: 100vw;
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
 }
 .categories {
@@ -94,7 +92,6 @@
     clear: both;
     float: left;
     margin: 10px auto 5px 20px;
-    width: 28%;
     display: none;
   }
   .details-content {
@@ -127,4 +124,4 @@
   background-color: lightgray;
   margin-top: 5px;
   margin-bottom: 20px;
-}
+} */

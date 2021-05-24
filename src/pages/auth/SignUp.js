@@ -27,7 +27,10 @@ export const SignUp = ({ changeMainComponent }) => {
       };
 
       axios
-        .post('https://restaurant.se01.tech/api/auth/register', values)
+        .post(
+          'https://restaurant-dashboard.se01.tech/api/auth/register',
+          values
+        )
         .then(function (response) {
           if (response.data.status == 'true') {
             cogoToast.success('regestered successfuly');

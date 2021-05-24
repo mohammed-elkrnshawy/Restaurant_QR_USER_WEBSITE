@@ -5,6 +5,7 @@
   padding-left: 9vw;
   padding-right: 18vw;
   padding-top: 3vw;
+  align-content: flex-start;
 }
 
 .itemContainer {

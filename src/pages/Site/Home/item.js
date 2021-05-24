@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import './style.css';
 
-const Item = ({ onClick, name }) => {
+const Item = ({ onClick, name, image }) => {
   const history = useHistory();
 
   return (
@@ -12,7 +12,7 @@ const Item = ({ onClick, name }) => {
           <div
             className="homeimg"
             style={{
-              backgroundImage: `url("/assets/mac.png")`,
+              backgroundImage: `url("${image}")`,
             }}
           ></div>
         </div>
@@ -20,14 +20,14 @@ const Item = ({ onClick, name }) => {
           <h5>{name}</h5>
           <p className="hometype">fast food</p>
 
-          <p className="rate">
+          {/* <p className="rate">
             {' '}
             <i class="star fas fa-star"></i>5.0
-          </p>
+          </p> */}
         </div>
-        <div className="homestatus">
+        {/* <div className="homestatus">
           <p className="homedata">new</p>
-        </div>
+        </div> */}
       </div>
       <div className="homebody">
         <hr />

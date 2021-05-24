@@ -16,10 +16,13 @@ const Login = ({ changeMainComponent }) => {
         phone: e.target[0].value,
         password: e.target[1].value,
         token: '33',
+        device: 'android',
       };
 
+      console.log(values);
+
       axios
-        .post('https://restaurant.se01.tech/api/auth/login', values)
+        .post('https://restaurant-dashboard.se01.tech/api/auth/login', values)
         .then(function (response) {
           if (response.data.status == 'true') {
             console.log(response);
@@ -44,6 +47,7 @@ const Login = ({ changeMainComponent }) => {
           backgroundImage: `url("/assets/bg.png")`,
         }}
       ></div>
+
       <div className="content">
         <form onSubmit={handleSubmit}>
           <h3>Welcome To Our Resturent</h3>

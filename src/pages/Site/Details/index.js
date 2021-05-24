@@ -26,7 +26,8 @@ const Details = (props) => {
   const [meals, setMeals] = useState([]);
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
+  const [description, setDescription] = useState('');
+  const [image, setImage] = useState('');
 
   const [currentComponent, setCurrentComponent] = useState('category');
   const [id, setId] = useState(-1);
@@ -44,15 +45,16 @@ const Details = (props) => {
 
   const getData = () => {
     axios
-      .get(`https://restaurant.se01.tech/api/restaurants/${props.id}`)
+      .get(`https://restaurant-dashboard.se01.tech/api/restaurants/${props.id}`)
       .then((response) => {
         if (response.data.status == 'true') {
-          console.log(response.data.data.items);
+          console.log(response.data.data);
 
           setCategories(response.data.data.categories);
           setName(response.data.data.name);
           setPhone(response.data.data.phone);
-          setEmail(response.data.data.email);
+          setDescription(response.data.data.description);
+          setImage(response.data.data.image);
         } else {
           console.log(response);
           cogoToast.warn('Something Went Wrong');
@@ -62,7 +64,7 @@ const Details = (props) => {
 
   const getSubCategory = (id) => {
     axios
-      .get(`https://restaurant.se01.tech/api/categories/${id}`)
+      .get(`https://restaurant-dashboard.se01.tech/api/categories/${id}`)
       .then((response) => {
         if (response.data.status == 'true') {
           console.log(response.data.data.items);
@@ -77,7 +79,7 @@ const Details = (props) => {
 
   const getMeals = (id) => {
     axios
-      .get(`https://restaurant.se01.tech/api/products/${id}`)
+      .get(`https://restaurant-dashboard.se01.tech/api/products/${id}`)
       .then((response) => {
         if (response.data.status == 'true') {
           console.log(response.data.data);
@@ -131,7 +133,7 @@ const Details = (props) => {
           <div
             className="homeimg"
             style={{
-              backgroundImage: `url("/assets/mac.png")`,
+              backgroundImage: `url("${image}")`,
             }}
           ></div>
         </div>
@@ -144,9 +146,11 @@ const Details = (props) => {
           style={{
             fontSize: 15,
             backgroundColor: 'white',
-            borderRadius: 10,
-            padding: 2,
+            borderRadius: 20,
+            padding: 5,
             margin: 5,
+            paddingLeft: 15,
+            paddingRight: 15,
           }}
         >
           {' '}
@@ -159,7 +163,7 @@ const Details = (props) => {
             <p>About</p>
           </div>
           <input
-            className="changePass "
+            className="newResButton "
             style={{
               display: 'inline',
               backgroundColor: 'white',
@@ -171,7 +175,7 @@ const Details = (props) => {
             type="button"
           />
         </div>
-        <div className="discrip">{email}</div>
+        <div className="discrip">{description}</div>
         {theComponent()}
       </div>
       <Modal
@@ -179,23 +183,16 @@ const Details = (props) => {
         onRequestClose={closeModal}
         style={customStyles}
       >
-        <h3>Waiting List</h3>
-        <p className="p_">There's</p>
-        <h4 className="h_">13</h4>
-        <p className="p_">Guest Waiting</p>
-        <div className="divider"></div>
-        <h6 className="h_">You Next?</h6>
         <input
-          className="changePass "
+          className="joinwaitingbtn "
           style={{
-            backgroundColor: 'white',
             width: 300,
             margin: 0,
             marginTop: 20,
           }}
-          value="+ Join Waiting List"
+          value="Submit Request"
           onClick={(e) => {
-            openModal();
+            setIsOpen(false);
           }}
           type="button"
         />

@@ -14,12 +14,15 @@ const Index = ({ changeComponent, setId }) => {
 
   const getData = () => {
     axios
-      .get('https://restaurant.se01.tech/api/restaurants')
+      .get('https://restaurant-dashboard.se01.tech/api/restaurants')
       .then((response) => {
         if (response.data.status == 'true') {
           console.log(response.data.data.items);
 
-          setResturant(response.data.data.items);
+          setResturant([
+            ...response.data.data.items,
+            ...response.data.data.items,
+          ]);
         } else {
           console.log(response);
           cogoToast.warn('Something Went Wrong');
@@ -28,10 +31,11 @@ const Index = ({ changeComponent, setId }) => {
   };
 
   return (
-    <div className="myResContainer">
+    <div className="homeContainer">
       {Resturant.map((i) => (
         <Item
           name={i.name}
+          image={i.image}
           onClick={() => {
             changeComponent('details');
             setId(i.id);
