@@ -98,3 +98,28 @@
   opacity: 0.3;
   height: 1px;
 }
+
+@media screen and (max-width: 900px) {
+  .myResContainer {
+    display: flex;
+    min-height: 80vh;
+
+    padding-top: 3vw;
+    align-content: flex-start;
+    flex-direction: column;
+  }
+  .itemContainer {
+    display: flex;
+    height: max-content;
+    width: 70vw;
+
+    flex-direction: column;
+    box-shadow: black;
+
+    margin-left: 1.5%;
+    margin-right: 1.5%;
+    margin-bottom: 26px;
+    transition: 0.3s;
+    padding: 10px;
+  }
+}

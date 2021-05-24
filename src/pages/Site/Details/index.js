@@ -10,12 +10,13 @@ import './style.css';
 
 const customStyles = {
   content: {
-    top: '20%',
-    left: '40%',
+    alignSelf: 'center',
+    justifySelf: 'center',
     right: 'auto',
     bottom: 'auto',
     padding: 20,
     boxBorder: 'gray',
+    inset: '20% auto auto 30%',
   },
 };
 
@@ -42,6 +43,52 @@ const Details = (props) => {
   useEffect(() => {
     getData();
   }, []);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (
+      !e.target[0].value ||
+      !e.target[1].value ||
+      !e.target[2].value ||
+      !e.target[4].value ||
+      !e.target[5].value ||
+      !e.target[6].value
+    ) {
+      cogoToast.warn('Please Fill All Info');
+    } else {
+      let values = {
+        restaurant_id: props.id,
+        name: e.target[0].value,
+        phone: e.target[1].value,
+        count: e.target[2].value,
+        date: e.target[4].value,
+        time: e.target[5].value,
+        notes: e.target[6].value,
+      };
+
+      console.log(values);
+
+      axios
+        .post(
+          'https://restaurant-dashboard.se01.tech/api/reservation',
+          values,
+          {
+            headers: {
+              authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+          }
+        )
+        .then(function (response) {
+          if (response.data.status == 'true') {
+            console.log(response);
+            setIsOpen(false);
+            cogoToast.success('request submitted');
+          } else {
+            console.log(response);
+            cogoToast.warn('someting went wrong');
+          }
+        });
+    }
+  };
 
   const getData = () => {
     axios
@@ -183,19 +230,55 @@ const Details = (props) => {
         onRequestClose={closeModal}
         style={customStyles}
       >
-        <input
-          className="joinwaitingbtn "
-          style={{
-            width: 300,
-            margin: 0,
-            marginTop: 20,
-          }}
-          value="Submit Request"
-          onClick={(e) => {
-            setIsOpen(false);
-          }}
-          type="button"
-        />
+        <div className="reqformContent">
+          <h5>Make A New Reservation</h5>
+          <p>Please fill in the information to complete your request</p>
+          <form onSubmit={handleSubmit}>
+            <input type="text" name="name" placeholder="Name" />
+            <input type="text" name="mobileNum" placeholder="Mobile Number" />
+            <input type="text" name="people" placeholder="People" />
+            <input
+              type="text"
+              hidden
+              disabled
+              style={{
+                border: '#eee',
+
+                visibility: 'hidden',
+              }}
+            />
+
+            <input
+              type="date"
+              name="date"
+              placeholder="Date"
+              className="date"
+            />
+            <input
+              type="time"
+              name="time"
+              placeholder="Time"
+              className="date"
+            />
+            <input
+              type="text"
+              name="note"
+              placeholder="Note"
+              className="note"
+            />
+
+            <input
+              className="joinwaitingbtn "
+              style={{
+                width: 300,
+                margin: 0,
+                marginTop: 20,
+              }}
+              value="Submit Request"
+              type="submit"
+            />
+          </form>
+        </div>
       </Modal>
     </div>
   );

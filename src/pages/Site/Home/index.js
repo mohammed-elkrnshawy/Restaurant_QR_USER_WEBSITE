@@ -19,10 +19,7 @@ const Index = ({ changeComponent, setId }) => {
         if (response.data.status == 'true') {
           console.log(response.data.data.items);
 
-          setResturant([
-            ...response.data.data.items,
-            ...response.data.data.items,
-          ]);
+          setResturant([...response.data.data.items]);
         } else {
           console.log(response);
           cogoToast.warn('Something Went Wrong');

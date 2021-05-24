@@ -176,6 +176,132 @@
     justify-content: center;
     width: 30vw;
     height: max-content;
+
     border-bottom: 2px solid #15b2a2;
   }
+}
+
+.reqformContent {
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+}
+.reqformContent > h5 {
+  height: 24px;
+  letter-spacing: 0px;
+  color: #000000;
+  font-weight: 900;
+  margin-top: 0px;
+  margin-bottom: 0px !important;
+}
+.reqformContent > p {
+  height: 24px;
+  font-size: 12px;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 0.5;
+  font-weight: 800;
+
+  margin: 0 0 0 0px;
+}
+
+.reqformContent > form {
+  width: 40vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.reqformContent > form > input[type='text'],
+input[type='text']:focus,
+input[type='date'],
+input[type='date']:focus,
+input[type='time'],
+input[type='time']:focus {
+  width: 45%;
+  padding: 12px 20px;
+  margin: 8px 1vw;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.note {
+  width: 100% !important;
+}
+
+.reqformContent > form > input[type='submit']:hover {
+  background-color: #15b2a2;
+  box-shadow: 50px #15b2a285;
+}
+
+@media screen and (max-width: 900px) {
+  .reqformContent {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .reqformContent > form {
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .reqformContent > form > input[type='text'],
+  input[type='password'],
+  input[type='text']:focus,
+  input[type='password']:focus,
+  textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .reqformContent > form > input[type='submit'] {
+    width: 100%;
+    background-color: #15b2a2;
+    color: white;
+    padding: 14px 20px;
+    margin: 0px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    -webkit-box-shadow: 0 0 10px #15b2a285;
+    -moz-box-shadow: 0 0 10px #15b2a285;
+    box-shadow: 0 0 10px #15b2a285;
+  }
+
+  .reqformContent > form > input[type='submit']:hover {
+    background-color: #15b2a2;
+    box-shadow: 50px #15b2a285;
+  }
+
+  .reqformContent > form > p {
+    width: 60vw;
+    height: 24px;
+    font-size: 12px;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 0.5;
+    font-weight: 800;
+
+    margin: 0 0 0 0px;
+  }
+}
+.line {
+  width: 100%;
+  height: 8px;
+  margin-top: 36px;
+  margin-bottom: 36px;
+
+  background-color: #ebebeb;
 }
