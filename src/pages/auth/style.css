@@ -25,13 +25,11 @@
   flex-wrap: wrap;
 }
 
-.content > form > input[type='text'],
-input[type='password'],
-input[type='text']:focus,
-input[type='password']:focus {
-  width: 100%;
+.content > form > .loginPass,
+.loginPass:focus {
+  width: 100% !important;
   padding: 12px 20px;
-  margin: 8px 0;
+  margin: 8px 0 !important;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;

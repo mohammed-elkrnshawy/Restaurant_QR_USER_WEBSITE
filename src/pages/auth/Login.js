@@ -19,21 +19,16 @@ const Login = ({ changeMainComponent }) => {
         device: 'android',
       };
 
-      console.log(values);
-
       axios
         .post('https://restaurant-dashboard.se01.tech/api/auth/login', values)
         .then(function (response) {
           if (response.data.status == 'true') {
-            console.log(response);
-
             localStorage.setItem('token', response.data.data.token);
             localStorage.setItem('name', response.data.data.name);
             localStorage.setItem('email', response.data.data.email);
             localStorage.setItem('phone', response.data.data.phone);
             changeMainComponent('home');
           } else {
-            console.log(response);
             cogoToast.warn('Phone Or Password Is Wrong');
           }
         });
@@ -52,11 +47,22 @@ const Login = ({ changeMainComponent }) => {
         <form onSubmit={handleSubmit}>
           <h3>Welcome To Our Resturent</h3>
           <h5>Log In</h5>
+          <br />
           <p>Please fill in the information to login</p>
 
-          <input type="text" name="mobileNum" placeholder="Mobile Number" />
+          <input
+            type="text"
+            name="mobileNum"
+            className="loginPass"
+            placeholder="Mobile Number"
+          />
 
-          <input type="password" name="password" placeholder="Password" />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            className="loginPass"
+          />
           <a>Forget Password?</a>
 
           <input type="submit" value="Login" />

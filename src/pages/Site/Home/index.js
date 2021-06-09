@@ -7,7 +7,8 @@ import cogoToast from 'cogo-toast';
 
 const Index = ({ changeComponent, setId }) => {
   const [Resturant, setResturant] = useState([]);
-  const history = useHistory();
+  const [isLoading, setLoading] = useState(true);
+
   useEffect(() => {
     getData();
   }, []);
@@ -17,30 +18,41 @@ const Index = ({ changeComponent, setId }) => {
       .get('https://restaurant-dashboard.se01.tech/api/restaurants')
       .then((response) => {
         if (response.data.status == 'true') {
-          console.log(response.data.data.items);
-
           setResturant([...response.data.data.items]);
+          setLoading(false);
         } else {
-          console.log(response);
           cogoToast.warn('Something Went Wrong');
         }
       });
   };
 
-  return (
-    <div className="homeContainer">
-      {Resturant.map((i) => (
-        <Item
-          name={i.name}
-          image={i.image}
-          onClick={() => {
-            changeComponent('details');
-            setId(i.id);
-          }}
-        />
-      ))}
-    </div>
-  );
+  const content = () => {
+    return (
+      <div className="homeContainer">
+        {Resturant.map((i) => (
+          <Item
+            name={i.name}
+            image={i.image}
+            rating={i.rates}
+            onClick={() => {
+              changeComponent('details');
+              setId(i.id);
+            }}
+          />
+        ))}
+      </div>
+    );
+  };
+
+  const loading = () => {
+    return (
+      <div className="homeContainerLoading">
+        <div class="hungry-3"></div>
+      </div>
+    );
+  };
+
+  return isLoading ? loading() : content();
 };
 
 export default Index;

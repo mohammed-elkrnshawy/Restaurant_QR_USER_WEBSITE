@@ -34,14 +34,12 @@ export const SignUp = ({ changeMainComponent }) => {
         .then(function (response) {
           if (response.data.status == 'true') {
             cogoToast.success('regestered successfuly');
-            console.log(response);
 
             localStorage.setItem('token', response.data.data.token);
             localStorage.setItem('name', response.data.data.name);
 
             changeMainComponent('home');
           } else {
-            console.log(response);
             cogoToast.warn('something went wrong');
           }
         });
@@ -61,13 +59,26 @@ export const SignUp = ({ changeMainComponent }) => {
           <h3>Welcome To Our Resturent</h3>
           <h5>Sign Up</h5>
           <p>Please fill in the information to sign up</p>
-          <input type="text" name="name" placeholder="Name" required />
-          <input type="text" name="email" placeholder="E-mail" required />
+          <input
+            type="text"
+            name="name"
+            className="loginPass"
+            placeholder="Name"
+            required
+          />
+          <input
+            type="text"
+            name="email"
+            className="loginPass"
+            placeholder="E-mail"
+            required
+          />
 
           <input
             type="text"
             name="mobileNum"
             placeholder="Mobile Number"
+            className="loginPass"
             required
           />
 
@@ -75,11 +86,13 @@ export const SignUp = ({ changeMainComponent }) => {
             type="password"
             name="password"
             placeholder="Password"
+            className="loginPass"
             required
           />
           <input
             type="password"
             name="rpassword"
+            className="loginPass"
             placeholder="Password"
             required
           />

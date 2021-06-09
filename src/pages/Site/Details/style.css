@@ -1,6 +1,6 @@
 .details-container {
   display: flex;
-  min-height: 100vh;
+  min-height: 80vh;
   flex-direction: row;
 }
 
@@ -91,6 +91,7 @@
   align-items: center;
   justify-content: center;
   width: 10vw;
+  margin: 0px 2px;
   height: max-content;
   border-bottom: 2px solid #15b2a2;
 }
@@ -100,9 +101,17 @@
   flex-direction: row;
 }
 
-.sub-nav > p {
+.sub-nav > .notSelected {
+  color: #000000;
+}
+
+.sub-nav > .selected {
   color: #15b2a2;
 }
+.sub-nav-space > .whiteSpace {
+  color: #ffffff;
+}
+
 .discrip {
   margin: 25px;
   width: 70%;
@@ -304,4 +313,25 @@ input[type='time']:focus {
   margin-bottom: 36px;
 
   background-color: #ebebeb;
+}
+
+.sticky {
+  background-color: #15b2a2; /* Green */
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 5px;
+  height: fit-content;
+}
+
+.ratesHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 98%;
 }

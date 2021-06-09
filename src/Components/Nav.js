@@ -84,6 +84,16 @@ export const Nav = ({
               Contact Us
             </a>
           </li>
+          <li class="nav-item">
+            <a
+              href="https://restaurant-dashboard.se01.tech/restaurants/create"
+              className={
+                currentComponent == ' contact' ? 'nav-link active' : 'nav-link'
+              }
+            >
+              Join Us
+            </a>
+          </li>
           <li
             onClick={() => {
               localStorage.removeItem('token');

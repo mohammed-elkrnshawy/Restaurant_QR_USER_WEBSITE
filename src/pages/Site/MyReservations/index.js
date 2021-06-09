@@ -8,6 +8,8 @@ import './style.css';
 
 const Index = () => {
   const [data, setData] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+
   useEffect(() => {
     getData();
   }, []);
@@ -20,26 +22,36 @@ const Index = () => {
       })
       .then((response) => {
         if (response.data.status == 'true') {
-          console.log('-----', response.data.data);
+          setLoading(false);
           return response.data.data;
         } else {
-          console.log(response);
           cogoToast.warn('Something Went Wrong');
         }
       })
       .then((res) => {
-        console.log(res);
         setData(res);
       });
   };
 
-  return (
-    <div className="myResContainer">
-      {data && data.length
-        ? data.map((i) => <Item data={i} />)
-        : 'No reservations'}
-    </div>
-  );
+  const content = () => {
+    return data.length > 0
+      ? data.map((i) => (
+          <div className="myResContainer">
+            <Item data={i} />
+          </div>
+        ))
+      : 'No reservations';
+  };
+
+  const loading = () => {
+    return (
+      <div className="homeContainerLoading">
+        <div class="hungry-3"></div>
+      </div>
+    );
+  };
+
+  return isLoading ? loading() : content();
 };
 
 export default Index;

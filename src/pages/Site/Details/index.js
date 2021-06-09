@@ -3,10 +3,13 @@ import Modal from 'react-modal';
 import axios from 'axios';
 import cogoToast from 'cogo-toast';
 import Category from './category';
+import About from './about';
+
 import SubCategory from './subcategory';
 import Meals from './meals';
 
 import './style.css';
+import Rates from './rates';
 
 const customStyles = {
   content: {
@@ -22,15 +25,21 @@ const customStyles = {
 
 const Details = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalIsOpenContactUs, setIsOpenContactUs] = useState(false);
+
   const [categories, setCategories] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
   const [meals, setMeals] = useState([]);
+  const [rate, setRate] = useState(0);
+
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState('');
+  const [location, setLocation] = useState({ lat: '', lng: '' });
 
   const [currentComponent, setCurrentComponent] = useState('category');
+  const [selected, setSelected] = useState(1);
   const [id, setId] = useState(-1);
 
   function openModal() {
@@ -65,8 +74,6 @@ const Details = (props) => {
         notes: e.target[6].value,
       };
 
-      console.log(values);
-
       axios
         .post(
           'https://restaurant-dashboard.se01.tech/api/reservation',
@@ -79,15 +86,39 @@ const Details = (props) => {
         )
         .then(function (response) {
           if (response.data.status == 'true') {
-            console.log(response);
             setIsOpen(false);
             cogoToast.success('request submitted');
           } else {
-            console.log(response);
             cogoToast.warn('someting went wrong');
           }
         });
     }
+  };
+
+  const handleSubmitContact = (e) => {
+    e.preventDefault();
+
+    let values = {
+      restaurant_id: props.id,
+      name: e.target[0].value,
+      phone: e.target[1].value,
+      message: e.target[2].value,
+    };
+
+    axios
+      .post('https://restaurant-dashboard.se01.tech/api/contact', values, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
+      .then(function (response) {
+        if (response.data.status == 'true') {
+          cogoToast.success('request submitted');
+          setIsOpenContactUs(false);
+        } else {
+          cogoToast.warn('someting went wrong');
+        }
+      });
   };
 
   const getData = () => {
@@ -95,15 +126,18 @@ const Details = (props) => {
       .get(`https://restaurant-dashboard.se01.tech/api/restaurants/${props.id}`)
       .then((response) => {
         if (response.data.status == 'true') {
-          console.log(response.data.data);
-
           setCategories(response.data.data.categories);
           setName(response.data.data.name);
           setPhone(response.data.data.phone);
           setDescription(response.data.data.description);
           setImage(response.data.data.image);
+          setRate(response.data.data.rates);
+
+          setLocation({
+            lat: response.data.data.lat,
+            lng: response.data.data.lng,
+          });
         } else {
-          console.log(response);
           cogoToast.warn('Something Went Wrong');
         }
       });
@@ -114,11 +148,8 @@ const Details = (props) => {
       .get(`https://restaurant-dashboard.se01.tech/api/categories/${id}`)
       .then((response) => {
         if (response.data.status == 'true') {
-          console.log(response.data.data.items);
-
           setSubCategory(response.data.data.items);
         } else {
-          console.log(response);
           cogoToast.warn('Something Went Wrong');
         }
       });
@@ -129,11 +160,8 @@ const Details = (props) => {
       .get(`https://restaurant-dashboard.se01.tech/api/products/${id}`)
       .then((response) => {
         if (response.data.status == 'true') {
-          console.log(response.data.data);
-
           setMeals(response.data.data.items);
         } else {
-          console.log(response);
           cogoToast.warn('Something Went Wrong');
         }
       });
@@ -150,6 +178,21 @@ const Details = (props) => {
             getSubCategory={getSubCategory}
           />
         );
+
+      case 'about':
+        return (
+          <About
+            changeComponent={setCurrentComponent}
+            description={description}
+            categories={categories}
+            location={location}
+            setId={setId}
+            getSubCategory={getSubCategory}
+          />
+        );
+      case 'rates':
+        return <Rates id={props.id} overallRate={rate} />;
+
       case 'subCategory':
         return (
           <SubCategory
@@ -207,8 +250,56 @@ const Details = (props) => {
       <div className="details-content">
         <div className="details-header">
           <div className="sub-nav">
-            <p>About</p>
+            <p
+              className={selected == 1 ? 'selected' : 'notSelected'}
+              onClick={(e) => {
+                setCurrentComponent('category');
+                setSelected(1);
+              }}
+            >
+              Categories
+            </p>
           </div>
+          <div className="sub-nav">
+            <p
+              className={selected == 2 ? 'selected' : 'notSelected'}
+              onClick={(e) => {
+                setCurrentComponent('about');
+                setSelected(2);
+              }}
+            >
+              About
+            </p>
+          </div>
+          <div className="sub-nav">
+            <p
+              className={selected == 3 ? 'selected' : 'notSelected'}
+              onClick={(e) => {
+                setCurrentComponent('rates');
+                setSelected(3);
+              }}
+            >
+              Rates
+            </p>
+          </div>
+
+          <div className="sub-nav-space">
+            <p className="whiteSpace">__</p>
+          </div>
+
+          <input
+            className="newResButton "
+            style={{
+              display: 'inline',
+              backgroundColor: 'white',
+              width: '10vw',
+            }}
+            value="Contact Us"
+            onClick={(e) => {
+              setIsOpenContactUs(true);
+            }}
+            type="button"
+          />
           <input
             className="newResButton "
             style={{
@@ -222,7 +313,6 @@ const Details = (props) => {
             type="button"
           />
         </div>
-        <div className="discrip">{description}</div>
         {theComponent()}
       </div>
       <Modal
@@ -277,6 +367,30 @@ const Details = (props) => {
               value="Submit Request"
               type="submit"
             />
+          </form>
+        </div>
+      </Modal>
+      <Modal
+        isOpen={modalIsOpenContactUs}
+        onRequestClose={() => setIsOpenContactUs(false)}
+        style={customStyles}
+      >
+        <div className="contactusContent">
+          <form onSubmit={handleSubmitContact}>
+            <h3>Leave Us A Message</h3>
+            <p>Please fill in the information to complete request</p>
+
+            <input type="text" required name="name" placeholder="Name" />
+            <input
+              type="text"
+              required
+              name="mobileNum"
+              placeholder="Mobile Number"
+            />
+
+            <textarea name="mesage" required placeholder="Message"></textarea>
+
+            <input type="submit" value="Send" />
           </form>
         </div>
       </Modal>

@@ -1,8 +1,10 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import StarRatingComponent from 'react-star-rating-component';
+
 import './style.css';
 
-const Item = ({ onClick, name, image }) => {
+const Item = ({ onClick, name, image, rating }) => {
   const history = useHistory();
 
   return (
@@ -18,7 +20,9 @@ const Item = ({ onClick, name, image }) => {
         </div>
         <div className="homeheaderData">
           <h5>{name}</h5>
-          <p className="hometype">fast food</p>
+          <p className="hometype">
+            <StarRatingComponent name="rate1" starCount={5} value={rating} />
+          </p>
 
           {/* <p className="rate">
             {' '}
