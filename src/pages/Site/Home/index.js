@@ -4,21 +4,32 @@ import Item from './item';
 import './style.css';
 import axios from 'axios';
 import cogoToast from 'cogo-toast';
+import { useTranslation } from 'react-i18next';
 
 const Index = ({ changeComponent, setId }) => {
   const [Resturant, setResturant] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
+    setId(-1);
     getData();
   }, []);
 
+  useEffect(() => {
+    setId(-1);
+    setLoading(true);
+    getData();
+  }, [localStorage.getItem('lang')]);
+
   const getData = () => {
     axios
-      .get('https://restaurant-dashboard.se01.tech/api/restaurants')
+      .get('https://restaurant-dashboard.se01.tech/api/restaurants', {
+        headers: { 'Content-Language': localStorage.getItem('lang') },
+      })
       .then((response) => {
         if (response.data.status == 'true') {
           setResturant([...response.data.data.items]);
+          console.log(Resturant);
           setLoading(false);
         } else {
           cogoToast.warn('Something Went Wrong');
@@ -35,8 +46,8 @@ const Index = ({ changeComponent, setId }) => {
             image={i.image}
             rating={i.rates}
             onClick={() => {
-              changeComponent('details');
               setId(i.id);
+              changeComponent('details');
             }}
           />
         ))}

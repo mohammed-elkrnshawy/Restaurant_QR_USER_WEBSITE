@@ -3,8 +3,10 @@ import React from 'react';
 import axios from 'axios';
 import cogoToast from 'cogo-toast';
 import { useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export const SignUp = ({ changeMainComponent }) => {
+  const { t } = useTranslation();
   const history = useHistory();
 
   const handleSubmit = (e) => {
@@ -56,28 +58,29 @@ export const SignUp = ({ changeMainComponent }) => {
       ></div>
       <div className="content">
         <form onSubmit={handleSubmit}>
-          <h3>Welcome To Our Resturent</h3>
-          <h5>Sign Up</h5>
-          <p>Please fill in the information to sign up</p>
+          <h3>{t('Welcome To Our Resturent')}</h3>
+          <h5>{t('Sign Up')}</h5>
+          <br />
+          <p>{t('Please fill in the information to login')}</p>
           <input
             type="text"
             name="name"
             className="loginPass"
-            placeholder="Name"
+            placeholder={t('Name')}
             required
           />
           <input
             type="text"
             name="email"
             className="loginPass"
-            placeholder="E-mail"
+            placeholder={t('E-mail')}
             required
           />
 
           <input
             type="text"
             name="mobileNum"
-            placeholder="Mobile Number"
+            placeholder={t('Mobile Number')}
             className="loginPass"
             required
           />
@@ -85,7 +88,7 @@ export const SignUp = ({ changeMainComponent }) => {
           <input
             type="password"
             name="password"
-            placeholder="Password"
+            placeholder={t('Password')}
             className="loginPass"
             required
           />
@@ -93,21 +96,21 @@ export const SignUp = ({ changeMainComponent }) => {
             type="password"
             name="rpassword"
             className="loginPass"
-            placeholder="Password"
+            placeholder={t('Password')}
             required
           />
 
-          <input type="submit" value="Sign Up" />
+          <input type="submit" value={t('Sign Up')} />
 
           <p className="signup">
-            Already have an account?{' '}
+            {t('Already have an account?')}{' '}
             <a
               href="#"
               onClick={() => {
                 changeMainComponent('login');
               }}
             >
-              Login
+              {t('Log In')}
             </a>
           </p>
         </form>

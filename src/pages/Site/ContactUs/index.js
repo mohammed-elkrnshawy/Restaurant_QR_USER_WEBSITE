@@ -3,9 +3,11 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import cogoToast from 'cogo-toast';
 import './style.css';
+import { useTranslation } from 'react-i18next';
 
 const Index = () => {
   const history = useHistory();
+  const { t } = useTranslation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,20 +37,20 @@ const Index = () => {
     <div className="contactusContainer">
       <div className="contactusContent">
         <form onSubmit={handleSubmit}>
-          <h3>Leave Us A Message</h3>
-          <p>Please fill in the information to complete request</p>
+          <h3>{t('Leave Us A Message')}</h3>
+          <p>{t('Please fill in the information to complete request')}</p>
 
-          <input type="text" required name="name" placeholder="Name" />
+          <input type="text" required name="name" placeholder={t('Name')} />
           <input
             type="text"
             required
             name="mobileNum"
-            placeholder="Mobile Number"
+            placeholder={t('Mobile Number')}
           />
 
           <textarea name="mesage" required placeholder="Message"></textarea>
 
-          <input type="submit" value="Send" />
+          <input type="submit" value={t('send')} />
         </form>
       </div>
     </div>

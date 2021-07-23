@@ -9,9 +9,24 @@ const Index = () => {
     <div className="editContainer">
       <div className="editContent">
         <form>
-          <input type="text" name="name" placeholder="Name" />
-          <input type="text" name="mobileNum" placeholder="Mobile Number" />
-          <input type="text" name="email" placeholder="Email" />
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            defaultValue={localStorage.getItem('name')}
+          />
+          <input
+            type="text"
+            name="mobileNum"
+            placeholder="Mobile Number"
+            defaultValue={localStorage.getItem('phone')}
+          />
+          <input
+            type="text"
+            name="email"
+            placeholder="Email"
+            defaultValue={localStorage.getItem('email')}
+          />
 
           <input
             type="submit"

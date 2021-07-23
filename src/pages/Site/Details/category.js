@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import Item from './item';
+import { useTranslation } from 'react-i18next';
 
-export default function category({
+export default function Category({
   changeComponent,
   categories,
   setId,
   getSubCategory,
 }) {
+  const { t } = useTranslation();
+
   return (
     <div className="categories">
-      <h4>categories</h4>
+      <h4>{t('Categories')}</h4>
       {categories.map((i) => (
         <Item
           name={i.name}

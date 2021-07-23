@@ -1,9 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Item from './item';
+import { useTranslation } from 'react-i18next';
 
 export default function About({ description, location }) {
   const [address, setAddress] = useState('');
+  const { t } = useTranslation();
+
   useEffect(() => {
     axios
       .get(
@@ -16,10 +19,10 @@ export default function About({ description, location }) {
   return (
     <div className="categories">
       <div className="discrip">
-        <h4>Location</h4>
+        <h4>{t('Location')}</h4>
         {address || 'No Location For This Resturant'}
 
-        <h4>Description</h4>
+        <h4>{t('Description')}</h4>
         {description}
       </div>
     </div>

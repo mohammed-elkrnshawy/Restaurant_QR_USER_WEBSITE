@@ -34,13 +34,13 @@ const Index = () => {
   };
 
   const content = () => {
-    return data.length > 0
-      ? data.map((i) => (
-          <div className="myResContainer">
-            <Item data={i} />
-          </div>
-        ))
-      : 'No reservations';
+    return (
+      <div className="myResContainer">
+        {data.length > 0
+          ? data.map((i) => <Item data={i} />)
+          : 'No reservations'}
+      </div>
+    );
   };
 
   const loading = () => {
