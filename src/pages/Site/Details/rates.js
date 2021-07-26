@@ -3,13 +3,17 @@ import Modal from 'react-modal';
 import axios from 'axios';
 import cogoToast from 'cogo-toast';
 import Item from './item';
-import StarRatingComponent from 'react-star-rating-component';
+import { Rate } from 'antd';
 import { useTranslation } from 'react-i18next';
+import { Skeleton, Switch, Card, Avatar } from 'antd';
+import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+const { Meta } = Card;
 
 export default function Rates({ id, overallRate, changeComponent }) {
 	const [rates, setRates] = useState([]);
 	const [stars, setStars] = useState(0);
 	const [comment, setComment] = useState('');
+	const [loading,setLoading]=useState(true)
 	const { t } = useTranslation();
 
 	const [modalIsOpen, setIsOpen] = useState(false);
@@ -26,13 +30,12 @@ export default function Rates({ id, overallRate, changeComponent }) {
 				},
 			})
 			.then((result) => {
+				setLoading(false)
 				setRates([...result.data.data]);
 			});
 	};
 
-	const onStarClick = (nextValue, prevValue, name) => {
-		setStars(nextValue);
-	};
+	
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -66,94 +69,36 @@ export default function Rates({ id, overallRate, changeComponent }) {
 		<div
 			className="categories"
 			style={{
-				height: '80vh',
+				height: '100vh',
 			}}
 		>
 			<div className="ratesCountaner">
-				<div className="ratesHeader">
-					<p className="">
-						{t('Overall')}:{' '}
-						<StarRatingComponent
-							name="rate1"
-							starCount={5}
-							value={overallRate}
-						/>
-					</p>
-					<a
-						className="sticky"
-						onClick={() => {
-							localStorage.getItem('token') &&
-							localStorage.getItem('token').length > 9
-								? setIsOpen(true)
-								: changeComponent('login');
-						}}
-					>
-						{t('Add Rate')}
-					</a>
-				</div>
+				
 
-				<div style={{ overflowY: 'scroll', height: '50vh', width: '75vw' }}>
-					{rates.length > 0
-						? rates.map((rate) => (
-								<div
-									className="itemContainer"
-									style={{
-										width: '90%',
-										marginBottom: 0,
-									}}
-								>
-									<div className="headerContainer">
-										<div className="headerData">
-											<h5>{rate.user}</h5>
-											<p className="number">
-												<StarRatingComponent
-													name="rate1"
-													starCount={5}
-													value={rate.rate}
-												/>
-											</p>
-										</div>
-										<div className="headerDate"></div>
-									</div>
-									<div className="body">
-										<p>{rate.comment}</p>
-										<hr />
-									</div>
-								</div>
-						  ))
-						: 'no rates for this resturant'}
-				</div>
-			</div>
-			<Modal
-				isOpen={modalIsOpen}
-				onRequestClose={() => {
-					setIsOpen(false);
-				}}
-				style={customStyles}
-			>
-				<div className="reqformContent">
-					<h5>{t('Add your Rate')}</h5>
-					<form onSubmit={handleSubmit}>
-						<p
+				<div style={{ overflowY: 'scroll', height: '100vh', width: '75vw' }}>
+					<div className="reqformContent">
+					<h2>{t('Comments & Rates')}</h2>
+					<form onSubmit={handleSubmit} style={{
+						justifyContent:'inherit'
+					}}>
+						<h4
 							style={{
 								width: '95%',
 							}}
 						>
-							{t('your rate')}
+							{t('Please fill in the information to complete the rate')}
 							<br />{' '}
-							<StarRatingComponent
-								onStarClick={onStarClick}
-								name="rate1"
-								starCount={5}
-								value={stars}
-							/>
-						</p>
+							<Rate onChange={(e)=>setStars(e)}/>
+						</h4>
 						<input
 							type="text"
 							name="comment"
 							placeholder={t('Comment')}
 							onChange={(e) => {
 								setComment(e.target.value);
+							}}
+							style={{
+								marginLeft:0,marginRight:0
 							}}
 							className="note"
 						/>
@@ -170,19 +115,33 @@ export default function Rates({ id, overallRate, changeComponent }) {
 						/>
 					</form>
 				</div>
-			</Modal>
+					{loading?( <Card style={{ width: 300, marginTop: 16 }} loading={loading}>
+                                        <Meta
+                                         avatar={
+                                           <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                                         }
+                                       
+                                       />
+                                     </Card>): rates.length>0 
+						? rates.map((rate) => (
+							
+
+									 <Card style={{ width: 400, margin: 16, display:'inline-block' }} title={rate.user} extra={<Rate disabled  value={rate.rate} />} loading={loading}>
+                                        <Meta
+                                        
+                                         
+                                         description={rate.comment}
+						
+                                       />
+                                     </Card>
+								
+								
+						  ))
+						: 'no rates for this resturant'}
+				</div>
+			</div>
+			
 		</div>
 	);
 }
 
-const customStyles = {
-	content: {
-		alignSelf: 'center',
-		justifySelf: 'center',
-		right: 'auto',
-		bottom: 'auto',
-		padding: 20,
-		boxBorder: 'gray',
-		inset: '20% auto auto 30%',
-	},
-};

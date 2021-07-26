@@ -142,7 +142,7 @@ const Details = (props) => {
 			.get(
 				`https://restaurant-dashboard.se01.tech/api/restaurants/${props.id}`,
 				{
-					headers: { 'Content-Language': localStorage.getItem('lang') },
+					// headers: { 'Content-Language': localStorage.getItem('lang') },
 				}
 			)
 			.then((response) => {
@@ -231,7 +231,11 @@ const Details = (props) => {
 					/>
 				);
 			case 'meals':
-				return <Meals meals={meals} />;
+				return <Meals meals={meals} 
+				
+						changeComponent={setCurrentComponent}
+				
+				/>;
 
 			default:
 				return (

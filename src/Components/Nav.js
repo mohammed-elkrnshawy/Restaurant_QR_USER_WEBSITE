@@ -148,6 +148,23 @@ export const Nav = ({
 							{t('Join Us')}
 						</a>
 					</li>
+
+					<li class="nav-item">
+						<a
+							style={{
+								padding: 15,
+							}}
+							onClick={() => {
+								changeComponent('contact');
+							}}
+							className={
+								currentComponent == ' contact' ? 'nav-link active' : 'nav-link'
+							}
+						>
+							<i class="fas fa-search"></i>
+						</a>
+					</li>
+					
 					<li class="nav-item">
 						<a
 							href="#"
@@ -159,11 +176,11 @@ export const Nav = ({
 							}
 							onClick={() => {
 								i18n.changeLanguage(
-									localStorage.getItem('lang').includes('ar') ? 'en' : 'ar'
+								localStorage.getItem('lang') &&	localStorage.getItem('lang').includes('ar') ? 'en' : 'ar'
 								);
 								localStorage.setItem(
 									'lang',
-									localStorage.getItem('lang').includes('ar') ? 'en' : 'ar'
+									localStorage.getItem('lang') && localStorage.getItem('lang').includes('ar') ? 'en' : 'ar'
 								);
 								document.body.dir = i18n.dir();
 
@@ -171,7 +188,7 @@ export const Nav = ({
 								const element = document.getElementById('body');
 							}}
 						>
-							{localStorage.getItem('lang').includes('en') ? 'العربية' : 'EN'}
+							{localStorage.getItem('lang') && localStorage.getItem('lang').includes('en') ? 'العربية' : 'EN'}
 						</a>
 					</li>
 					<li onClick={() => {}} className="nav-item">

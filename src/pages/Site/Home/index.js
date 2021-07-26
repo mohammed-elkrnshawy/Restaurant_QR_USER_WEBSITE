@@ -24,7 +24,7 @@ const Index = ({ changeComponent, setId }) => {
   const getData = () => {
     axios
       .get('https://restaurant-dashboard.se01.tech/api/restaurants', {
-        headers: { 'Content-Language': localStorage.getItem('lang') },
+        // headers: { 'Content-Language': localStorage.getItem('lang') },
       })
       .then((response) => {
         if (response.data.status == 'true') {
