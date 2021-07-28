@@ -319,89 +319,7 @@ const Details = (props) => {
           type="button"
         />
       </div>
-      {props.lang == 'en' ? (
-        <div className="details-content-en">
-          <div className="details-header">
-            <div
-              className="sub-nav"
-              style={
-                selected == 1
-                  ? {
-                      borderBottom: '2px solid #15b2a2',
-                    }
-                  : {}
-              }
-            >
-              <p
-                className={selected == 1 ? 'selected' : 'notSelected'}
-                onClick={(e) => {
-                  setCurrentComponent('category');
-                  setSelected(1);
-                }}
-              >
-                Categories
-              </p>
-            </div>
-            <div
-              className="sub-nav"
-              style={
-                selected == 2
-                  ? {
-                      borderBottom: '2px solid #15b2a2',
-                    }
-                  : {}
-              }
-            >
-              <p
-                className={selected == 2 ? 'selected' : 'notSelected'}
-                onClick={(e) => {
-                  setCurrentComponent('about');
-                  setSelected(2);
-                }}
-              >
-                About
-              </p>
-            </div>
-            <div
-              className="sub-nav"
-              style={
-                selected == 3
-                  ? {
-                      borderBottom: '2px solid #15b2a2',
-                    }
-                  : {}
-              }
-            >
-              <p
-                className={selected == 3 ? 'selected' : 'notSelected'}
-                onClick={(e) => {
-                  setCurrentComponent('rates');
-                  setSelected(3);
-                }}
-              >
-                Rates
-              </p>
-            </div>
-
-            <div className="sub-nav-space">
-              <p className="whiteSpace">__</p>
-            </div>
-
-            <input
-              className="newResButton "
-              style={{
-                display: 'inline',
-                backgroundColor: 'white',
-                width: '30vw',
-                border: 0,
-              }}
-              value=""
-              type="button"
-            />
-          </div>
-          {theComponent()}
-        </div>
-      ) : (
+      {props.lang == 'ar' ? (
         <div className="details-content-ar">
           <div className="details-header">
             <div
@@ -462,6 +380,88 @@ const Details = (props) => {
                 }}
               >
                 التقيمات
+              </p>
+            </div>
+
+            <div className="sub-nav-space">
+              <p className="whiteSpace">__</p>
+            </div>
+
+            <input
+              className="newResButton "
+              style={{
+                display: 'inline',
+                backgroundColor: 'white',
+                width: '30vw',
+                border: 0,
+              }}
+              value=""
+              type="button"
+            />
+          </div>
+          {theComponent()}
+        </div>
+      ) : (
+        <div className="details-content-en">
+          <div className="details-header">
+            <div
+              className="sub-nav"
+              style={
+                selected == 1
+                  ? {
+                      borderBottom: '2px solid #15b2a2',
+                    }
+                  : {}
+              }
+            >
+              <p
+                className={selected == 1 ? 'selected' : 'notSelected'}
+                onClick={(e) => {
+                  setCurrentComponent('category');
+                  setSelected(1);
+                }}
+              >
+                Categories
+              </p>
+            </div>
+            <div
+              className="sub-nav"
+              style={
+                selected == 2
+                  ? {
+                      borderBottom: '2px solid #15b2a2',
+                    }
+                  : {}
+              }
+            >
+              <p
+                className={selected == 2 ? 'selected' : 'notSelected'}
+                onClick={(e) => {
+                  setCurrentComponent('about');
+                  setSelected(2);
+                }}
+              >
+                About
+              </p>
+            </div>
+            <div
+              className="sub-nav"
+              style={
+                selected == 3
+                  ? {
+                      borderBottom: '2px solid #15b2a2',
+                    }
+                  : {}
+              }
+            >
+              <p
+                className={selected == 3 ? 'selected' : 'notSelected'}
+                onClick={(e) => {
+                  setCurrentComponent('rates');
+                  setSelected(3);
+                }}
+              >
+                Rates
               </p>
             </div>
 
