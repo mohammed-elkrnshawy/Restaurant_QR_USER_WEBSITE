@@ -22,7 +22,9 @@ const Index = ({ changeMainComponent }) => {
   const theComponent = () => {
     switch (currentComponent) {
       case 'home':
-        return <Home changeComponent={setCurrentComponent} setId={setId} />;
+        return (
+          <Home changeComponent={setCurrentComponent} setId={setId} id={id} />
+        );
       case 'details':
         return (
           <Details changeComponent={setCurrentComponent} id={id} lang={lang} />

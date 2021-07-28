@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -8,214 +9,226 @@ import { DownOutlined } from '@ant-design/icons';
 import './style.css';
 
 export const Nav = ({
-	changeComponent,
-	currentComponent,
-	changeMainComponent,
-	setLang,
+  changeComponent,
+  currentComponent,
+  changeMainComponent,
+  setLang,
 }) => {
-	const { t } = useTranslation();
+  const { t } = useTranslation();
 
-	const menu = (
-		<Menu>
-			<Menu.Item>
-				<a
-					onClick={() => {
-						localStorage.getItem('token')
-							? changeComponent('home')
-							: changeComponent('login');
-					}}
-					style={{
-						padding: 10,
-					}}
-					className={
-						currentComponent == 'editProfile' ? 'nav-link active' : 'nav-link'
-					}
-				>
-					{t('Edit Profile')}
-				</a>
-			</Menu.Item>
-			<Menu.Item>
-				<a
-					onClick={() => {
-						localStorage.getItem('token')
-							? changeComponent('myReservation')
-							: changeComponent('login');
-					}}
-					style={{
-						padding: 10,
-					}}
-					className={
-						currentComponent == 'myReservation' ? 'nav-link active' : 'nav-link'
-					}
-				>
-					{t('My Reservation')}
-				</a>
-			</Menu.Item>
+  const menu = (
+    <Menu>
+      <Menu.Item>
+        <a
+          onClick={() => {
+            changeComponent('editProfile');
+          }}
+          style={{
+            padding: 10,
+          }}
+          className={
+            currentComponent == 'editProfile' ? 'nav-link active' : 'nav-link'
+          }
+        >
+          {t('Edit Profile')}
+        </a>
+      </Menu.Item>
+      <Menu.Item>
+        <a
+          onClick={() => {
+            changeComponent('myReservation');
+          }}
+          style={{
+            padding: 10,
+          }}
+          className={
+            currentComponent == 'myReservation' ? 'nav-link active' : 'nav-link'
+          }
+        >
+          {t('My Reservation')}
+        </a>
+      </Menu.Item>
 
-			{localStorage.getItem('token') ? (
-				<Menu.Item
-					danger
-					onClick={() => {
-						localStorage.removeItem('token');
-						changeMainComponent('login');
-					}}
-					style={{
-						padding: 10,
-					}}
-				>
-					Log Out
-				</Menu.Item>
-			) : (
-				<Menu.Item
-					onClick={() => {
-						localStorage.removeItem('token');
-						changeMainComponent('login');
-					}}
-					style={{
-						padding: 10,
-					}}
-				>
-					Sign In
-				</Menu.Item>
-			)}
-		</Menu>
-	);
+      <Menu.Item
+        danger
+        onClick={() => {
+          localStorage.removeItem('token');
+          window.location.reload();
+          changeMainComponent('home');
+        }}
+        style={{
+          padding: 10,
+        }}
+      >
+        Log Out
+      </Menu.Item>
+    </Menu>
+  );
 
-	const history = useHistory();
-	useEffect(() => {
-		console.log(currentComponent);
-		const hamburger = document.querySelector('.hamburger');
-		const navMenu = document.querySelector('.nav-menu');
+  const history = useHistory();
+  useEffect(() => {
+    console.log(currentComponent);
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
 
-		hamburger.addEventListener('click', mobileMenu);
+    hamburger.addEventListener('click', mobileMenu);
 
-		function mobileMenu() {
-			hamburger.classList.toggle('active');
-			navMenu.classList.toggle('active');
-		}
-	}, []);
+    function mobileMenu() {
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    }
+  }, []);
 
-	const jsfunc = () => {};
+  const jsfunc = () => {};
 
-	return (
-		<header class="header">
-			<nav class="navbar">
-				<a href="#" class="nav-logo">
-					<img src="/assets/logo.svg"></img>
-				</a>
-				<ul class="nav-menu">
-					<li class="nav-item">
-						<a
-							href="#"
-							onClick={() => {
-								changeComponent('home');
-							}}
-							style={{
-								padding: 5,
-							}}
-							className={
-								currentComponent == 'home' ? 'nav-link active' : 'nav-link'
-							}
-						>
-							{t('Home')}
-						</a>
-					</li>
+  return (
+    <header class="header">
+      <nav class="navbar">
+        <a href="#" class="nav-logo">
+          <img src="/assets/logo.svg"></img>
+        </a>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a
+              href="#"
+              onClick={() => {
+                changeComponent('home');
+              }}
+              style={{
+                padding: 5,
+              }}
+              className={
+                currentComponent == 'home' ? 'nav-link active' : 'nav-link'
+              }
+            >
+              {t('Home')}
+            </a>
+          </li>
 
-					<li class="nav-item">
-						<a
-							style={{
-								padding: 15,
-							}}
-							onClick={() => {
-								changeComponent('contact');
-							}}
-							className={
-								currentComponent == ' contact' ? 'nav-link active' : 'nav-link'
-							}
-						>
-							{t('Contact Us')}
-						</a>
-					</li>
+          <li class="nav-item">
+            <a
+              style={{
+                padding: 15,
+              }}
+              onClick={() => {
+                changeComponent('contact');
+              }}
+              className={
+                currentComponent == ' contact' ? 'nav-link active' : 'nav-link'
+              }
+            >
+              {t('Contact Us')}
+            </a>
+          </li>
 
-					<li class="nav-item">
-						<a
-							href="https://restaurant-dashboard.se01.tech/restaurants/create"
-							target="_blank"
-							className={
-								currentComponent == ' contact' ? 'nav-link active' : 'nav-link'
-							}
-						>
-							{t('Join Us')}
-						</a>
-					</li>
+          <li class="nav-item">
+            <a
+              href="https://restaurant-dashboard.se01.tech/restaurants/create"
+              target="_blank"
+              className={
+                currentComponent == ' contact' ? 'nav-link active' : 'nav-link'
+              }
+            >
+              {t('Join Us')}
+            </a>
+          </li>
 
-					<li class="nav-item">
-						<a
-							style={{
-								padding: 15,
-							}}
-							onClick={() => {
-								changeComponent('contact');
-							}}
-							className={
-								currentComponent == ' contact' ? 'nav-link active' : 'nav-link'
-							}
-						>
-							<i class="fas fa-search"></i>
-						</a>
-					</li>
-					
-					<li class="nav-item">
-						<a
-							href="#"
-							style={{
-								padding: 5,
-							}}
-							className={
-								currentComponent == ' contact' ? 'nav-link active' : 'nav-link'
-							}
-							onClick={() => {
-								i18n.changeLanguage(
-								localStorage.getItem('lang') &&	localStorage.getItem('lang').includes('ar') ? 'en' : 'ar'
-								);
-								localStorage.setItem(
-									'lang',
-									localStorage.getItem('lang') && localStorage.getItem('lang').includes('ar') ? 'en' : 'ar'
-								);
-								document.body.dir = i18n.dir();
+          <li class="nav-item">
+            <a
+              style={{
+                padding: 15,
+              }}
+              onClick={() => {
+                changeComponent('search');
+              }}
+              className={
+                currentComponent == ' contact' ? 'nav-link active' : 'nav-link'
+              }
+            >
+              <i class="fas fa-search"></i>
+            </a>
+          </li>
 
-								setLang(localStorage.getItem('i18nextLng'));
-								const element = document.getElementById('body');
-							}}
-						>
-							{localStorage.getItem('lang') && localStorage.getItem('lang').includes('en') ? 'العربية' : 'EN'}
-						</a>
-					</li>
-					<li onClick={() => {}} className="nav-item">
-						<Dropdown overlay={menu}>
-							<a
-								className="ant-dropdown-link"
-								onClick={(e) => e.preventDefault()}
-							>
-								{localStorage.getItem('name') || 'Unregestered user'}
+          <li class="nav-item">
+            <a
+              href="#"
+              style={{
+                padding: 5,
+              }}
+              className={
+                currentComponent == ' contact' ? 'nav-link active' : 'nav-link'
+              }
+              onClick={() => {
+                i18n.changeLanguage(
+                  localStorage.getItem('lang') &&
+                    localStorage.getItem('lang').includes('ar')
+                    ? 'en'
+                    : 'ar'
+                );
+                localStorage.setItem(
+                  'lang',
+                  localStorage.getItem('lang') &&
+                    localStorage.getItem('lang').includes('ar')
+                    ? 'en'
+                    : 'ar'
+                );
+                document.body.dir = i18n.dir();
 
-								<DownOutlined />
-							</a>
-						</Dropdown>
-					</li>
-				</ul>
-				<ul class="nav-menu"></ul>
-				<div
-					class="hamburger"
-					onClick={() => {
-						jsfunc();
-					}}
-				>
-					<span class="bar"></span>
-					<span class="bar"></span>
-					<span class="bar"></span>
-				</div>
-			</nav>
-		</header>
-	);
+                setLang(localStorage.getItem('i18nextLng'));
+                const element = document.getElementById('body');
+              }}
+            >
+              {localStorage.getItem('lang') &&
+              localStorage.getItem('lang').includes('en')
+                ? 'العربية'
+                : 'EN'}
+            </a>
+          </li>
+          <li onClick={() => {}} className="nav-item">
+            {localStorage.getItem('token') ? (
+              <Dropdown overlay={menu}>
+                <a
+                  className="ant-dropdown-link"
+                  onClick={(e) => e.preventDefault()}
+                >
+                  {localStorage.getItem('name') || 'Unregestered user'}
+
+                  <DownOutlined />
+                </a>
+              </Dropdown>
+            ) : (
+              <li class="nav-item">
+                <a
+                  style={{
+                    padding: 15,
+                  }}
+                  onClick={() => {
+                    changeMainComponent('login');
+                  }}
+                  className={
+                    currentComponent == ' contact'
+                      ? 'nav-link active'
+                      : 'nav-link'
+                  }
+                >
+                  <i class="fas fa-sign-in-alt"></i> {t('login')}
+                </a>
+              </li>
+            )}
+          </li>
+        </ul>
+        <ul class="nav-menu"></ul>
+        <div
+          class="hamburger"
+          onClick={() => {
+            jsfunc();
+          }}
+        >
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </header>
+  );
 };

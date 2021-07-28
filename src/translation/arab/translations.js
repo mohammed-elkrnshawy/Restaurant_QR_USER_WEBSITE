@@ -42,4 +42,9 @@ export const TRANSLATIONS_AR = {
     'املأ البيانات لاستكمال الطلب',
   Note: 'الملاحظات',
   'Submit Request': 'ارسال الطلب',
+  'Please fill in the information to complete the rate':
+    'يرجى ملء المعلومات لإكمال ',
+  'Comments & Rates': 'التعليقات و التقيم',
+  'Contact Us': 'تواصل معنا',
+  'Make New Reservation': 'حجز جديد',
 };
