@@ -139,7 +139,7 @@ export const Nav = ({
                 padding: 15,
               }}
               onClick={() => {
-                changeComponent('search');
+                changeComponent('xx');
               }}
               className={
                 currentComponent == ' contact' ? 'nav-link active' : 'nav-link'
