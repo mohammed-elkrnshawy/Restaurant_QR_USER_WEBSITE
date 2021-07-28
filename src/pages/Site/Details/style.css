@@ -5,7 +5,7 @@
 }
 
 .details-panar {
-  width: 20vw;
+  width: 22vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,7 +16,7 @@
   z-index: 1;
 
   background-size: contain;
-  
+
   background-color: #dafffb;
 }
 
@@ -108,6 +108,7 @@
   margin: 0px 2px;
   height: max-content;
   border-bottom: 2px solid #97a3a2;
+  cursor: pointer;
 }
 .details-header {
   display: flex;
@@ -117,6 +118,7 @@
 
 .sub-nav > .notSelected {
   color: #000000;
+  cursor: pointer;
 }
 
 .sub-nav > .selected {
@@ -139,6 +141,7 @@
   width: 10vw;
   height: max-content;
   border-bottom: 2px solid #97a3a2;
+  cursor: pointer;
 }
 
 .joinwaitingbtn {
@@ -201,6 +204,7 @@
     justify-content: center;
     width: 30vw;
     height: max-content;
+    cursor: pointer;
 
     border-bottom: 2px solid #97a3a2;
   }

@@ -19,7 +19,7 @@ export default function Category({
         style={{ display: 'inline', width: '100%', marginBottom: 20 }}
       >
         <Breadcrumb.Item>
-          <a onClick={() => changeComponent('category')}>{t('Category')}</a>
+          <a onClick={() => changeComponent('category')}>{t('Categories')}</a>
         </Breadcrumb.Item>
         <Breadcrumb.Item>{t('Sub-Category')}</Breadcrumb.Item>
       </Breadcrumb>

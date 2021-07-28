@@ -21,12 +21,31 @@ export default function MediaCard({ onClick, name, image }) {
 
   return (
     <Card
-      hoverable
-      style={{ width: 240, margin: 10 }}
+      style={{ width: 151, height: 188, margin: 6 }}
       onClick={onClick}
-      cover={<img alt="example" src={image} />}
+      cover={
+        <img
+          alt="example"
+          src={image}
+          style={{
+            width: '100%',
+            height: 157,
+            alignContent: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+          }}
+        />
+      }
     >
-      <Meta title={name} />
+      <Meta
+        title={name}
+        style={{
+          paddingTop: 9,
+          paddingBottom: 9,
+          alignContent: 'center',
+          font: 'normal normal medium 13px/16px Montserrat',
+        }}
+      />
     </Card>
   );
 }

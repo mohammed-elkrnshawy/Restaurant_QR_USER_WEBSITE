@@ -5,7 +5,7 @@ import './style.css';
 import axios from 'axios';
 import cogoToast from 'cogo-toast';
 import { useTranslation } from 'react-i18next';
-import { Card, Avatar } from 'antd';
+import { Card, Avatar, Rate } from 'antd';
 
 const { Meta } = Card;
 
@@ -48,8 +48,12 @@ const Index = ({ changeComponent, setId, id }) => {
       <div className="homeContainer">
         {Resturant.map((i) => (
           <Card
-            hoverable
-            style={{ width: 190, margin: 26, border: 0 }}
+            style={{
+              width: 128,
+              margin: 26,
+              padding: 0,
+              cursor: 'pointer',
+            }}
             onClick={() => {
               setId(i.id);
             }}
@@ -57,19 +61,17 @@ const Index = ({ changeComponent, setId, id }) => {
               <img
                 alt="example"
                 src={i.image}
-                style={{ width: '100%', height: '100px', objectFit: 'contain' }}
+                style={{ width: '100%', height: '128px', objectFit: 'fill' }}
               />
             }
           >
             <Meta
+              style={{ padding: 0, margin: 0 }}
               title={i.name}
               description={
                 <>
-                  <StarRatingComponent
-                    name="rate1"
-                    starCount={5}
-                    value={i.rates}
-                  />
+                  <Rate defaultValue={1} disabled count={1} />
+                  <span className="ant-rate-text">{Math.floor(i.rates)}</span>
                 </>
               }
             />

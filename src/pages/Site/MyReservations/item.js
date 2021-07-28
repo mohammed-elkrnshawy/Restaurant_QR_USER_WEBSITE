@@ -17,7 +17,10 @@ const Item = ({ data }) => {
           ></div>
         </div>
         <div className="headerData">
-          <h5>{data.name}</h5>
+          <h5>
+            {data.name.substring(0, 10)}
+            {data.name.length > 10 ? '...' : ''}
+          </h5>
           <p className="number">#{data.id}</p>
         </div>
         <div className="headerDate">

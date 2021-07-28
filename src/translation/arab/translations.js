@@ -47,4 +47,5 @@ export const TRANSLATIONS_AR = {
   'Comments & Rates': 'التعليقات و التقيم',
   'Contact Us': 'تواصل معنا',
   'Make New Reservation': 'حجز جديد',
+  login: 'تسجيل دخول',
 };

@@ -42,7 +42,7 @@ export const SignUp = ({ changeMainComponent }) => {
 
             changeMainComponent('home');
           } else {
-            cogoToast.warn('something went wrong');
+            cogoToast.warn(response.data.message);
           }
         });
     }

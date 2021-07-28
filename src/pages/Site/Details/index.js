@@ -296,8 +296,12 @@ const Details = (props) => {
             display: 'inline',
             backgroundColor: '#15b2a2',
             color: 'white',
-            width: '15vw',
+            height: '4vh',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '12vw',
             border: 0,
+            padding: 0,
           }}
           value={t('Contact Us')}
           onClick={(e) => {
@@ -308,9 +312,14 @@ const Details = (props) => {
         <input
           className="newResButton "
           style={{
+            padding: 0,
+
             display: 'inline',
             backgroundColor: 'white',
-            width: '15vw',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '4vh',
+            width: '12vw',
           }}
           value={t('Make New Reservation')}
           onClick={(e) => {
