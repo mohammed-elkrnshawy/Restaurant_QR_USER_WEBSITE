@@ -14,9 +14,11 @@ const Index = ({ changeMainComponent }) => {
   const [currentComponent, setCurrentComponent] = useState('home');
   const [id, setId] = useState(0);
   const [lang, setLang] = useState('');
+  const [name, setName] = useState('');
 
   useEffect(() => {
     setLang(localStorage.getItem('i18nextLng'));
+    setName(localStorage.getItem('name'));
   }, []);
 
   const theComponent = () => {
@@ -37,7 +39,12 @@ const Index = ({ changeMainComponent }) => {
       case 'contact':
         return <ContactUs changeComponent={setCurrentComponent} />;
       case 'editProfile':
-        return <EditProfile changeComponent={setCurrentComponent} />;
+        return (
+          <EditProfile
+            changeComponent={setCurrentComponent}
+            setName={setName}
+          />
+        );
 
       default:
         return <Home changeComponent={setCurrentComponent} />;
@@ -50,6 +57,7 @@ const Index = ({ changeMainComponent }) => {
         changeComponent={setCurrentComponent}
         currentComponent={currentComponent}
         setLang={setLang}
+        name={name}
       />
       {theComponent()}
     </>

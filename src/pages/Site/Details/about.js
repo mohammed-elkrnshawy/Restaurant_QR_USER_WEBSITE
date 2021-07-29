@@ -60,8 +60,8 @@ export default function About({ description, location }) {
           ''
         )}
       </div>
-      <h4>{t('Description')}</h4>
-      <h4>{description}</h4>
+      <h4 style={{ marginBottom: 0 }}>{t('Description')}</h4>
+      <h4 style={{ marginTop: 0 }}>{description}</h4>
     </div>
   );
 }

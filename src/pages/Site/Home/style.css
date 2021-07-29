@@ -2,8 +2,8 @@
   display: flex;
   flex-wrap: wrap;
   min-height: 80vh;
-  padding-left: 18vw;
-  padding-right: 20vw;
+  padding-left: 13vw;
+  padding-right: 13vw;
   padding-top: 3vw;
   align-content: flex-start;
 }
@@ -19,6 +19,15 @@
 
 .ant-card-body {
   padding: 0 !important;
+}
+
+.ant-card-meta-title {
+  margin-bottom: 0 !important;
+  font-size: small !important;
+}
+
+.ant-rate {
+  font-size: 17 !important;
 }
 
 .homeitemContainer {

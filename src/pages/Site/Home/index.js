@@ -30,7 +30,10 @@ const Index = ({ changeComponent, setId, id }) => {
   const getData = () => {
     axios
       .get('https://restaurant-dashboard.se01.tech/api/restaurants', {
-        // headers: { 'Content-Language': localStorage.getItem('lang') },
+        headers: {
+          'Content-Language':
+            localStorage.getItem('lang').search('ar') >= 0 ? 'ar' : 'en',
+        },
       })
       .then((response) => {
         if (response.data.status == 'true') {
@@ -49,9 +52,12 @@ const Index = ({ changeComponent, setId, id }) => {
         {Resturant.map((i) => (
           <Card
             style={{
-              width: 128,
-              margin: 26,
+              width: 150,
+              margin: 46,
               padding: 0,
+              borderRight: 0,
+              borderLeft: 0,
+
               cursor: 'pointer',
             }}
             onClick={() => {
@@ -94,7 +100,18 @@ const Index = ({ changeComponent, setId, id }) => {
   const loading = () => {
     return (
       <div className="homeContainer">
-        <Card style={{ width: 190, margin: 26, border: 0 }} loading>
+        <Card
+          style={{
+            width: 150,
+            margin: 46,
+            padding: 0,
+            borderRight: 0,
+            borderLeft: 0,
+
+            cursor: 'pointer',
+          }}
+          loading
+        >
           <Meta
             avatar={
               <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />

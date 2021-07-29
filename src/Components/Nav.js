@@ -13,6 +13,7 @@ export const Nav = ({
   currentComponent,
   changeMainComponent,
   setLang,
+  name,
 }) => {
   const { t } = useTranslation();
 
@@ -184,7 +185,7 @@ export const Nav = ({
                 : 'EN'}
             </a>
           </li>
-          <li onClick={() => {}} className="nav-item">
+          {/* <li onClick={() => {}} className="nav-item">
             {localStorage.getItem('token') ? (
               <Dropdown overlay={menu}>
                 <a
@@ -215,9 +216,34 @@ export const Nav = ({
                 </a>
               </li>
             )}
-          </li>
+          </li>*/}
         </ul>
-        <ul class="nav-menu"></ul>
+        {localStorage.getItem('token') ? (
+          <Dropdown overlay={menu}>
+            <a
+              className="ant-dropdown-link"
+              onClick={(e) => e.preventDefault()}
+            >
+              {localStorage.getItem('name') || 'Unregestered user'}
+
+              <DownOutlined />
+            </a>
+          </Dropdown>
+        ) : (
+          <a
+            style={{
+              padding: 15,
+            }}
+            onClick={() => {
+              changeMainComponent('login');
+            }}
+            className={
+              currentComponent == ' contact' ? 'nav-link active' : 'nav-link'
+            }
+          >
+            <i class="fas fa-sign-in-alt"></i> {t('login')}
+          </a>
+        )}
         <div
           class="hamburger"
           onClick={() => {

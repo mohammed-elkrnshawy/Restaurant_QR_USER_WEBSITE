@@ -21,7 +21,15 @@ export default function MediaCard({ onClick, name, image }) {
 
   return (
     <Card
-      style={{ width: 151, height: 188, margin: 6 }}
+      style={{
+        width: 150,
+        margin: 15,
+        padding: 0,
+        borderRight: 0,
+        borderLeft: 0,
+
+        cursor: 'pointer',
+      }}
       onClick={onClick}
       cover={
         <img
@@ -29,7 +37,8 @@ export default function MediaCard({ onClick, name, image }) {
           src={image}
           style={{
             width: '100%',
-            height: 157,
+            height: '128px',
+            objectFit: 'fill',
             alignContent: 'center',
             justifyContent: 'center',
             cursor: 'pointer',

@@ -75,8 +75,11 @@ export default function Rates({ id, overallRate, changeComponent }) {
       }}
     >
       <div className="ratesCountaner">
-        <div style={{ overflowY: 'scroll', height: '100vh', width: '75vw' }}>
-          <div className="reqformContent">
+        <div style={{ overflowY: 'scroll', height: '80vh', width: '75vw' }}>
+          <div
+            className="reqformContent"
+            style={{ overflowY: 'scroll', width: '75vw' }}
+          >
             <h2>{t('Comments & Rates')}</h2>
             <form
               onSubmit={handleSubmit}
@@ -165,12 +168,18 @@ export default function Rates({ id, overallRate, changeComponent }) {
           ) : rates.length > 0 ? (
             rates.map((rate) => (
               <Card
-                style={{ width: 400, margin: 16, display: 'inline-block' }}
+                style={{
+                  width: 400,
+                  margin: 16,
+                  display: 'inline-block',
+                }}
                 title={rate.user}
                 extra={<Rate disabled value={rate.rate} />}
                 loading={loading}
               >
-                <Meta description={rate.comment} />
+                <Meta
+                  description={<p style={{ padding: 16 }}>{rate.comment}</p>}
+                />
               </Card>
             ))
           ) : (

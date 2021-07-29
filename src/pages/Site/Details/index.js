@@ -147,7 +147,10 @@ const Details = (props) => {
       .get(
         `https://restaurant-dashboard.se01.tech/api/restaurants/${props.id}`,
         {
-          // headers: { 'Content-Language': localStorage.getItem('lang') },
+          headers: {
+            'Content-Language':
+              localStorage.getItem('lang').search('ar') >= 0 ? 'ar' : 'en',
+          },
         }
       )
       .then((response) => {
@@ -177,7 +180,12 @@ const Details = (props) => {
     setLoading(true);
 
     axios
-      .get(`https://restaurant-dashboard.se01.tech/api/categories/${localId}`)
+      .get(`https://restaurant-dashboard.se01.tech/api/categories/${localId}`, {
+        headers: {
+          'Content-Language':
+            localStorage.getItem('lang').search('ar') >= 0 ? 'ar' : 'en',
+        },
+      })
       .then((response) => {
         if (response.data.status == 'true') {
           setSubCategory(response.data.data.items);
@@ -192,7 +200,12 @@ const Details = (props) => {
     setLoading(true);
 
     axios
-      .get(`https://restaurant-dashboard.se01.tech/api/products/${localId}`)
+      .get(`https://restaurant-dashboard.se01.tech/api/products/${localId}`, {
+        headers: {
+          'Content-Language':
+            localStorage.getItem('lang').search('ar') >= 0 ? 'ar' : 'en',
+        },
+      })
       .then((response) => {
         if (response.data.status == 'true') {
           setLoading(false);
