@@ -8,11 +8,9 @@ import 'antd/dist/antd.css';
 
 const App = () => {
   useEffect(() => {
-    return () => {
-      i18n.changeLanguage('en');
-      localStorage.setItem('lang', 'en');
-      document.body.dir = i18n.dir();
-    };
+    i18n.changeLanguage('en');
+    localStorage.setItem('lang', 'en');
+    document.body.dir = i18n.dir();
   }, []);
   return <Routes />;
 };

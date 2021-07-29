@@ -32,7 +32,10 @@ const Index = ({ changeComponent, setId, id }) => {
       .get('https://restaurant-dashboard.se01.tech/api/restaurants', {
         headers: {
           'Content-Language':
-            localStorage.getItem('lang').search('ar') >= 0 ? 'ar' : 'en',
+            localStorage.getItem('lang') &&
+            localStorage.getItem('lang').search('ar') >= 0
+              ? 'ar'
+              : 'en',
         },
       })
       .then((response) => {
