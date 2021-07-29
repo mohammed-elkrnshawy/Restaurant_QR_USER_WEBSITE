@@ -45,6 +45,8 @@ const Details = (props) => {
   const [meals, setMeals] = useState([]);
   const [rate, setRate] = useState(0);
 
+  const [type, setType] = useState('');
+
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [description, setDescription] = useState('');
@@ -161,6 +163,7 @@ const Details = (props) => {
           setDescription(response.data.data.description);
           setImage(response.data.data.image);
           setRate(response.data.data.rates);
+          setType(response.data.data.category);
 
           setLocation({
             lat: response.data.data.lat,
@@ -275,7 +278,13 @@ const Details = (props) => {
 
   return (
     <div className="details-container">
-      <div className="details-panar" style={{}}>
+      <div
+        className="details-panar"
+        style={{
+          backgroundImage: `url("/assets/bg.png")`,
+          backgroundSize: 'cover',
+        }}
+      >
         <div className="homeimageCont">
           <div
             className="homeimg"
@@ -284,8 +293,15 @@ const Details = (props) => {
             }}
           ></div>
         </div>
-        <h3>{name}</h3>
-        <p className="hometype">fast food</p>
+        <h3 style={{ color: 'white' }}>{name}</h3>
+        <p
+          className="hometype"
+          style={{
+            color: 'white',
+          }}
+        >
+          {type}
+        </p>
         <div className="homestatus"></div>
 
         <p
@@ -303,6 +319,21 @@ const Details = (props) => {
           {' '}
           {phone}
         </p>
+        <input
+          className="newResButton "
+          style={{
+            visibility: 'hidden',
+            display: 'inline',
+            color: 'white',
+            height: '1vh',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '12vw',
+            border: 0,
+            padding: 0,
+          }}
+          type="button"
+        />
         <input
           className="newResButton "
           style={{

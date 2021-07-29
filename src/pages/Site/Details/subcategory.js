@@ -72,6 +72,7 @@ export default function Category({
         subCategory.map((i) => (
           <Item
             name={i.name}
+            image={i.image}
             onClick={() => {
               changeComponent('meals');
               getMeals(i.id);

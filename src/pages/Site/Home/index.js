@@ -76,6 +76,7 @@ const Index = ({ changeComponent, setId, id }) => {
               title={i.name}
               description={
                 <>
+                  <h6>{i.category || ' _'}</h6>
                   <Rate defaultValue={1} disabled count={1} />
                   <span className="ant-rate-text">{Math.floor(i.rates)}</span>
                 </>
