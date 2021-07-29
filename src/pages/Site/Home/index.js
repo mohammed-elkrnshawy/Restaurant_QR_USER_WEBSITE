@@ -56,7 +56,7 @@ const Index = ({ changeComponent, setId, id }) => {
           <Card
             style={{
               width: 150,
-              margin: 46,
+              margin: 23,
               padding: 0,
               borderRight: 0,
               borderLeft: 0,

@@ -2,8 +2,8 @@
   display: flex;
   flex-wrap: wrap;
   min-height: 80vh;
-  padding-left: 13vw;
-  padding-right: 13vw;
+  padding-left: 18vw;
+  padding-right: 18vw;
   padding-top: 3vw;
   align-content: flex-start;
 }
