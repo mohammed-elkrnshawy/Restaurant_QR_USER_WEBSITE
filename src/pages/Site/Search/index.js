@@ -16,6 +16,8 @@ const { Header, Content, Sider } = Layout;
 const { Meta } = Card;
 
 const Index = ({ changeComponent, setId, id }) => {
+  const { t } = useTranslation();
+
   const [cities, setCities] = useState([]);
   const [categories, setCategories] = useState([]);
 
@@ -53,8 +55,9 @@ const Index = ({ changeComponent, setId, id }) => {
       category != '' && category[0] == 's'
         ? '&sub_category=' + category.slice(1)
         : ''
-    }`;
+    }${search != '' ? '&name=' + search : ''}`;
 
+    setLoading(true);
     axios
       .get(query, {
         headers: {
@@ -74,7 +77,7 @@ const Index = ({ changeComponent, setId, id }) => {
           cogoToast.warn('Something Went Wrong');
         }
       });
-  }, [city, rate, category]);
+  }, [city, rate, category, search]);
 
   useEffect(() => {
     if (id > 0) changeComponent('details');
@@ -326,18 +329,37 @@ const Index = ({ changeComponent, setId, id }) => {
   const renderFilters = (cit, cat) => {
     return (
       <Layout>
-        <Layout>
+        <Layout
+          style={{
+            backgroundColor: 'white',
+          }}
+        >
           <Sider
             width={350}
             style={{
               backgroundColor: 'white',
+              textAlign: 'center',
+              marginTop: 50,
             }}
           >
+            <Input
+              placeholder="Search"
+              style={{ width: '95%' }}
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+            />
+
             <Menu
               mode="inline"
               defaultSelectedKeys={['1']}
               defaultOpenKeys={['sub1']}
-              style={{ height: '100%', borderRight: 0, marginTop: 50 }}
+              style={{
+                height: 'fit-content',
+                borderRight: 0,
+                marginTop: 50,
+                marginBottom: 5,
+              }}
             >
               {' '}
               <SubMenu key="sub1" title="Category">
@@ -448,6 +470,28 @@ const Index = ({ changeComponent, setId, id }) => {
                 </Radio.Group>
               </SubMenu>
             </Menu>
+            <input
+              className="newResButton"
+              style={{
+                padding: 0,
+
+                display: 'inline',
+                backgroundColor: 'white',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '4vh',
+                width: '12vw',
+                fontSize: '90%',
+              }}
+              value={t('Reset ')}
+              onClick={(e) => {
+                setCategory('');
+                setCity('');
+                setRate('');
+                setSearch('');
+              }}
+              type="button"
+            />
           </Sider>
           <Layout style={{ padding: '0 24px 24px', backgroundColor: 'white' }}>
             <Content
