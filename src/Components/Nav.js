@@ -97,6 +97,7 @@ export const Nav = ({
               }}
               style={{
                 padding: 5,
+                color: currentComponent == 'home' ? '#15b2a2' : 'black',
               }}
               className={
                 currentComponent == 'home' ? 'nav-link active' : 'nav-link'
@@ -113,6 +114,10 @@ export const Nav = ({
               }}
               onClick={() => {
                 changeComponent('contact');
+              }}
+              style={{
+                padding: 5,
+                color: currentComponent == 'contact' ? '#15b2a2' : 'black',
               }}
               className={
                 currentComponent == ' contact' ? 'nav-link active' : 'nav-link'
@@ -138,12 +143,13 @@ export const Nav = ({
             <a
               style={{
                 padding: 15,
+                color: currentComponent == 'search' ? '#15b2a2' : 'black',
               }}
               onClick={() => {
-                changeComponent('xx');
+                changeComponent('search');
               }}
               className={
-                currentComponent == ' contact' ? 'nav-link active' : 'nav-link'
+                currentComponent == 'search' ? 'nav-link active' : 'nav-link'
               }
             >
               <i class="fas fa-search"></i>

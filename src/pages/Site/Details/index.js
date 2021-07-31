@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Modal from 'react-modal';
+import { Modal, Button } from 'antd';
 import axios from 'axios';
 import cogoToast from 'cogo-toast';
 import Category from './category';
@@ -374,6 +374,7 @@ const Details = (props) => {
             alignItems: 'center',
             height: '4vh',
             width: '12vw',
+            fontSize: '90%',
           }}
           value={t('Make New Reservation')}
           onClick={(e) => {
@@ -548,31 +549,38 @@ const Details = (props) => {
         </div>
       )}
       <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
+        closable
+        title={
+          <div style={{ width: '100%', textAlign: 'center' }}>
+            <h4 style={{}}>{t('New Reservation')}</h4>
+          </div>
+        }
+        centered
+        width="43%"
+        visible={modalIsOpen}
+        onCancel={() => setIsOpen(false)}
+        footer={false}
       >
         <div className="reqformContent">
-          <h5>{t('Make A New Reservation')}</h5>
-          <p>{t('Please fill in the information to complete your request')}</p>
+          <h5 style={{ width: 'fit-content' }}>
+            {t('Make A New Reservation')}
+          </h5>
+          <p style={{ width: 'fit-content' }}>
+            {t('Please fill in the information to complete your request')}
+          </p>
           <form onSubmit={handleSubmit}>
-            <input type="text" name="name" placeholder={t('Name')} />
+            <input
+              type="text"
+              name="name"
+              placeholder={t('Name')}
+              style={{ width: '100%' }}
+            />
             <input
               type="text"
               name="mobileNum"
               placeholder={t('Mobile Number')}
             />
             <input type="text" name="people" placeholder={t('People')} />
-            <input
-              type="text"
-              hidden
-              disabled
-              style={{
-                border: '#eee',
-
-                visibility: 'hidden',
-              }}
-            />
 
             <input
               type="date"
@@ -586,6 +594,7 @@ const Details = (props) => {
               placeholder="Time"
               className="date"
             />
+
             <input
               type="text"
               name="note"
@@ -607,15 +616,24 @@ const Details = (props) => {
         </div>
       </Modal>
       <Modal
-        isOpen={modalIsOpenContactUs}
-        onRequestClose={() => setIsOpenContactUs(false)}
-        style={customStyles2}
+        title={
+          <div style={{ width: '100%', textAlign: 'center' }}>
+            <h4 style={{}}>{t('Contact Us')}</h4>
+          </div>
+        }
+        centered
+        width="53%"
+        visible={modalIsOpenContactUs}
+        onCancel={() => setIsOpenContactUs(false)}
+        footer={false}
       >
         <div className="contactusContent">
-          <form onSubmit={handleSubmitContact}>
-            <h3>{t('Leave Us A Message')}</h3>
-            <p>{t('Please fill in the information to complete request')}</p>
+          <h3 style={{ width: 'fit-content' }}>{t('Leave Us A Message')}</h3>
 
+          <p style={{ width: 'fit-content' }}>
+            {t('Please fill in the information to complete request')}
+          </p>
+          <form onSubmit={handleSubmitContact}>
             <input type="text" required name="name" placeholder={t('Name')} />
             <input
               type="text"

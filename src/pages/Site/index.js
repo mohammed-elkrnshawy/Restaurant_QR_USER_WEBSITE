@@ -33,7 +33,9 @@ const Index = ({ changeMainComponent }) => {
         );
 
       case 'search':
-        return <Search changeComponent={setCurrentComponent} />;
+        return (
+          <Search changeComponent={setCurrentComponent} setId={setId} id={id} />
+        );
       case 'myReservation':
         return <MyReservations changeComponent={setCurrentComponent} />;
       case 'contact':

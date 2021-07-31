@@ -16,7 +16,27 @@
   align-content: center;
   justify-content: center;
 }
+.ant-radio-checked .ant-radio-inner {
+  background-color: green;
+  color: green;
+  border-radius: 20%;
+  border-color: green !important;
+}
 
+.ant-radio .ant-radio-inner {
+  color: green;
+  border-radius: 20%;
+  border-color: green !important;
+}
+.ant-menu-title-content {
+  color: #000;
+}
+.ant-radio-checked::after {
+  background-color: green !important;
+}
+.ant-radio-inner::after {
+  background-color: green !important;
+}
 .ant-card-body {
   padding: 0 !important;
 }

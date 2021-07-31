@@ -75,7 +75,7 @@ export default function Rates({ id, overallRate, changeComponent }) {
       }}
     >
       <div className="ratesCountaner">
-        <div style={{ overflowY: 'scroll', height: '80vh', width: '75vw' }}>
+        <div style={{ height: '80vh', width: '75vw' }}>
           <div
             className="reqformContent"
             style={{ overflowY: 'scroll', width: '75vw' }}

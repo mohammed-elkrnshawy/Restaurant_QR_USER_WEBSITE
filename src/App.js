@@ -8,10 +8,16 @@ import 'antd/dist/antd.css';
 
 const App = () => {
   useEffect(() => {
-    i18n.changeLanguage('en');
-    localStorage.setItem('lang', 'en');
-    document.body.dir = i18n.dir();
+    localStorage.getItem('i18nextLng') &&
+    localStorage.getItem('i18nextLng').search('en') > -1
+      ? changeLang('en')
+      : changeLang('ar');
   }, []);
+  function changeLang(lang) {
+    i18n.changeLanguage(lang);
+    localStorage.setItem('lang', lang);
+    document.body.dir = i18n.dir();
+  }
   return <Routes />;
 };
 

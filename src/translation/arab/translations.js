@@ -48,4 +48,5 @@ export const TRANSLATIONS_AR = {
   'Contact Us': 'تواصل معنا',
   'Make New Reservation': 'حجز جديد',
   login: 'تسجيل دخول',
+  'New Reservation': 'حجز جديد',
 };
