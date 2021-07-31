@@ -9,16 +9,13 @@ import { Rate, Card, Avatar, Input, Row, Col, Radio } from 'antd';
 import axios from 'axios';
 import cogoToast from 'cogo-toast';
 import { useTranslation } from 'react-i18next';
-import './style.css';
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 const { Meta } = Card;
 
-const Index = ({ changeComponent, setId, id }) => {
-  const { t } = useTranslation();
-
+const Layout = ({ changeComponent, setId, id }) => {
   const [cities, setCities] = useState([]);
   const [categories, setCategories] = useState([]);
 
@@ -34,53 +31,7 @@ const Index = ({ changeComponent, setId, id }) => {
     setId(-1);
     getData();
     getCategories();
-    getCities();
   }, []);
-
-  useEffect(() => {
-    console.log(city, rate, category);
-
-    // if (e.target.value[0] == 's') {
-    //   setCategory(e.target.value.slice(1));
-    // } else if (e.target.value[0] == 'c') {
-    //   setCategory(e.target.value.slice(1));
-    // }
-
-    let query = `https://restaurant-dashboard.se01.tech/api/restaurants?${
-      city != '' ? 'city_id=' + city : ''
-    }${rate != '' ? '&rate=' + rate : ''}${
-      category != '' && category[0] == 'c'
-        ? '&main_category=' + category.slice(1)
-        : ''
-    }
-    ${
-      // category != '' && category[0] == 's'
-      //   ? '&sub_category=' + category.slice(1)
-      ''
-    }
-    ${search != '' ? '&name=' + search : ''}`;
-
-    setLoading(true);
-    axios
-      .get(query, {
-        headers: {
-          'Content-Language':
-            localStorage.getItem('lang') &&
-            localStorage.getItem('lang').search('ar') >= 0
-              ? 'ar'
-              : 'en',
-        },
-      })
-      .then((response) => {
-        if (response.data.status == 'true') {
-          setResturant([...response.data.data.items]);
-          console.log(Resturant);
-          setLoading(false);
-        } else {
-          cogoToast.warn('Something Went Wrong');
-        }
-      });
-  }, [city, rate, category, search]);
 
   useEffect(() => {
     if (id > 0) changeComponent('details');
@@ -313,106 +264,63 @@ const Index = ({ changeComponent, setId, id }) => {
     );
   };
 
-  function onCatChange(e) {
-    // if (e.target.value[0] == 's') {
-    //   setCategory(e.target.value.slice(1));
-    // } else if (e.target.value[0] == 'c') {
-    //   setCategory(e.target.value.slice(1));
-    // }
-
-    setCategory(e.target.value);
-  }
-  function onCityChange(e) {
-    setCity(e.target.value);
-  }
-  function onRateChange(e) {
-    setRate(e.target.value);
+  function onChange(checkedValues) {
+    console.log('checked = ', checkedValues);
   }
 
   const renderFilters = (cit, cat) => {
     return (
       <Layout>
-        <Layout
-          style={{
-            backgroundColor: 'white',
-          }}
-        >
+        <Layout>
           <Sider
-            width={400}
+            width={350}
             style={{
               backgroundColor: 'white',
-              textAlign: 'center',
-              marginTop: 100,
             }}
           >
-            <Input
-              placeholder="Search"
-              style={{ width: '95%' }}
-              onChange={(e) => {
-                setSearch(e.target.value);
-              }}
-            />
-
             <Menu
               mode="inline"
               defaultSelectedKeys={['1']}
               defaultOpenKeys={['sub1']}
-              style={{
-                height: 'fit-content',
-                borderRight: 0,
-                marginTop: 50,
-                marginBottom: 5,
-              }}
+              style={{ height: '100%', borderRight: 0, marginTop: 100 }}
             >
               {' '}
-              <SubMenu key="sub1" title="Category">
-                <Radio.Group style={{ width: '100%' }} onChange={onCatChange}>
+              <SubMenu key="sub1" icon={<UserOutlined />} title="Category">
+                <Radio.Group style={{ width: '100%' }} onChange={onChange}>
                   {cat.map((i) => (
                     <Row
                       style={{
                         alignItems: 'start',
+                        paddingLeft: 55,
                         justifyContent: 'start',
-                        paddingInline: 24,
                       }}
-                      key={`c${i.id}`}
-                      id={`c${i.id}`}
+                      key={i.id}
+                      id={i.id}
                     >
-                      <Radio
-                        value={`c${i.id}`}
-                        key={`c${i.id}`}
-                        id={`c${i.id}`}
-                        name={i.name}
-                        style={{ marginTop: 9, marginBottom: 9 }}
+                      <SubMenu
+                        key={`sub${i.id}`}
+                        title={i.name}
+                        style={{
+                          alignContent: 'start',
+                        }}
                       >
-                        {i.name}
-                        {/* <SubMenu
-                          key={`c${i.id}`}
-                          title={i.name}
-                          style={{
-                            alignContent: 'start',
-                          }}
-                        >
+                        <Radio value={i.id} key={i.id} id={i.id}>
                           {i.subCategories.map((x) => {
-                            return (
-                              <Row
-                                style={{
-                                  margin: 4,
-                                }}
-                              >
-                                <Col span={24}>
-                                  <Radio
-                                    value={`s${x.id}`}
-                                    id={`s${x.id}`}
-                                    key={`s${x.id}`}
-                                  >
-                                    {x.name}
-                                  </Radio>
-                                </Col>
-                              </Row>
-                            );
+                            <Row
+                              style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                              }}
+                            >
+                              <Col span={13}>
+                                <Radio value={x.id} id={x.id} key={x.id}>
+                                  {x.name}
+                                </Radio>
+                              </Col>
+                            </Row>;
                           })}
-                        </SubMenu> */}
-                      </Radio>
+                        </Radio>
+                      </SubMenu>
                     </Row>
                   ))}
                 </Radio.Group>
@@ -424,36 +332,29 @@ const Index = ({ changeComponent, setId, id }) => {
                   alignContent: 'center',
                 }}
               >
-                <Radio.Group style={{ width: '100%' }} onChange={onCityChange}>
+                <Radio.Group style={{ width: '100%' }} onChange={onChange}>
                   <Row
                     style={{
-                      paddingInline: 24,
+                      alignItems: 'center',
+                      justifyContent: 'center',
                     }}
                   >
                     {cit.map((city) => (
-                      <Col span={13} style={{ margin: 4 }}>
+                      <Col span={13}>
                         <Radio value={city.id}>{city.name}</Radio>
                       </Col>
                     ))}
                   </Row>
                 </Radio.Group>
               </SubMenu>
-              <SubMenu
-                key="sub3"
-                title="Rate"
-                style={{ backgroundColor: 'white' }}
-              >
-                <Radio.Group style={{ width: '100%' }} onChange={onRateChange}>
+              <SubMenu key="sub3" title="Rate">
+                <Radio.Group style={{ width: '100%' }} onChange={onChange}>
                   <Row
                     style={{
-                      paddingInline: 24,
+                      alignItems: 'center',
+                      justifyContent: 'center',
                     }}
                   >
-                    <Col span={13}>
-                      <Radio value="0">
-                        <Rate disabled value={0} />
-                      </Radio>
-                    </Col>
                     <Col span={13}>
                       <Radio value="1">
                         <Rate disabled value={1} />
@@ -483,29 +384,6 @@ const Index = ({ changeComponent, setId, id }) => {
                 </Radio.Group>
               </SubMenu>
             </Menu>
-            <input
-              className="newResButton"
-              style={{
-                padding: 0,
-
-                display: 'inline',
-                backgroundColor: 'white',
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '4vh',
-                width: '90%',
-                marginBlockStart: 30,
-                fontSize: '90%',
-              }}
-              value={t('Reset ')}
-              onClick={(e) => {
-                setCategory('');
-                setCity('');
-                setRate('');
-                setSearch('');
-              }}
-              type="button"
-            />
           </Sider>
           <Layout style={{ padding: '0 24px 24px', backgroundColor: 'white' }}>
             <Content
@@ -523,7 +401,7 @@ const Index = ({ changeComponent, setId, id }) => {
       </Layout>
     );
   };
-  return renderFilters(cities, categories);
+  return renderFilters(cit, cat);
 };
 
-export default Index;
+export default Layout;

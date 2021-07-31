@@ -42,6 +42,10 @@ export default function Rates({ id, overallRate, changeComponent }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (localStorage.getItem('token') < 9) {
+      return cogoToast.info(t('Login first'));
+    }
+
     let values = {
       restaurant_id: id,
       comment: comment,
@@ -50,6 +54,7 @@ export default function Rates({ id, overallRate, changeComponent }) {
 
     console.log(values);
 
+    // cogoToast.loading('loading');
     axios
       .post('https://restaurant-dashboard.se01.tech/api/add_comment', values, {
         headers: {
@@ -75,7 +80,7 @@ export default function Rates({ id, overallRate, changeComponent }) {
       }}
     >
       <div className="ratesCountaner">
-        <div style={{ height: '80vh', width: '75vw' }}>
+        <div style={{ overflowY: 'scroll', height: '80vh', width: '75vw' }}>
           <div
             className="reqformContent"
             style={{ overflowY: 'scroll', width: '75vw' }}
@@ -169,8 +174,9 @@ export default function Rates({ id, overallRate, changeComponent }) {
             rates.map((rate) => (
               <Card
                 style={{
-                  width: 400,
-                  margin: 16,
+                  width: 800,
+                  marginTop: 16,
+                  marginInlineEnd: 32,
                   display: 'inline-block',
                 }}
                 title={rate.user}
@@ -178,7 +184,17 @@ export default function Rates({ id, overallRate, changeComponent }) {
                 loading={loading}
               >
                 <Meta
-                  description={<p style={{ padding: 16 }}>{rate.comment}</p>}
+                  description={
+                    <p
+                      style={{
+                        paddingTop: 0,
+                        paddingRight: 26,
+                        paddingLeft: 26,
+                      }}
+                    >
+                      {rate.comment}
+                    </p>
+                  }
                 />
               </Card>
             ))

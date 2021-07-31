@@ -27,9 +27,10 @@ const Item = ({ onClick, name, image, price, description }) => {
               top: 0,
               right: 0,
               color: '#15B2A2',
+              fontSize: 12,
             }}
           >
-            ${price}
+            {price + '.SAR'}
           </p>
         </div>
       </div>

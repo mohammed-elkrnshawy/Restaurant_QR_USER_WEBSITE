@@ -20,16 +20,21 @@
   background-color: #dafffb;
 }
 
+.ant-card-head {
+  border-bottom: 0px !important;
+}
+
 .details-content-en {
   padding-right: 10px;
   justify-self: center;
   position: absolute;
   right: 0 !important;
-  height: 100vh;
+  height: 90vh;
   width: 75vw;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+  padding-bottom: 0px !important;
 }
 
 .details-content-ar {
@@ -37,6 +42,7 @@
   justify-self: center;
   position: absolute;
   left: 0 !important;
+  height: 90vh;
 
   width: 75vw;
   display: flex;

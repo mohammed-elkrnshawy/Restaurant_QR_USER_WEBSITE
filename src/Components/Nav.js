@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import i18n from '../translation/i18n';
 import { Menu, Dropdown } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
+import { DownCircleFilled } from '@ant-design/icons';
 
 import './style.css';
 
@@ -83,8 +83,8 @@ export const Nav = ({
   const jsfunc = () => {};
 
   return (
-    <header class="header">
-      <nav class="navbar">
+    <header className="header">
+      <nav className="navbar">
         <a href="#" class="nav-logo">
           <img src="/assets/logo.svg"></img>
         </a>
@@ -139,7 +139,7 @@ export const Nav = ({
             </a>
           </li>
 
-          <li class="nav-item">
+          {/* <li class="nav-item">
             <a
               style={{
                 padding: 15,
@@ -154,7 +154,7 @@ export const Nav = ({
             >
               <i class="fas fa-search"></i>
             </a>
-          </li>
+          </li> */}
 
           <li class="nav-item">
             <a
@@ -228,11 +228,21 @@ export const Nav = ({
           <Dropdown overlay={menu}>
             <a
               className="ant-dropdown-link"
+              style={{
+                textDecoration: 'none',
+                color: 'black',
+              }}
               onClick={(e) => e.preventDefault()}
             >
               {localStorage.getItem('name') || 'Unregestered user'}
-
-              <DownOutlined />
+              <DownCircleFilled
+                style={{
+                  paddingInline: 10,
+                  textDecoration: 'none',
+                  color: 'red',
+                  fontSize: 16,
+                }}
+              />
             </a>
           </Dropdown>
         ) : (

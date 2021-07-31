@@ -35,9 +35,19 @@ export default function About({ description, location }) {
   }, []);
   return (
     <div className="categories">
-      <div className="discrip" style={{ height: address ? 390 : 10 }}>
-        <h4>{t('Location')}</h4>
-        {address || 'No Location For This Resturant'}
+      <div className="discrip" style={{ height: address ? 380 : 10 }}>
+        <h4
+          style={{
+            fontSize: 16,
+            fontWeight: 'bolder',
+          }}
+        >
+          {t('Location')}
+        </h4>
+        <h4 style={{ marginTop: 0 }}>
+          {' '}
+          {address || 'No Location For This Resturant'}
+        </h4>
 
         {address ? (
           <GoogleMapReact
@@ -60,7 +70,17 @@ export default function About({ description, location }) {
           ''
         )}
       </div>
-      <h4 style={{ marginBottom: 0 }}>{t('Description')}</h4>
+      <h4
+        style={{
+          marginBottom: 16,
+          fontSize: 16,
+
+          fontWeight: 'bolder',
+          marginBlockStart: 46,
+        }}
+      >
+        {t('Description')}
+      </h4>
       <h4 style={{ marginTop: 0 }}>{description}</h4>
     </div>
   );

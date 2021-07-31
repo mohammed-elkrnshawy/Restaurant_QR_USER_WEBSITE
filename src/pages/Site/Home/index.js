@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import StarRatingComponent from 'react-star-rating-component';
-import './style.css';
+// import './style.css';
 import axios from 'axios';
 import cogoToast from 'cogo-toast';
 import { useTranslation } from 'react-i18next';

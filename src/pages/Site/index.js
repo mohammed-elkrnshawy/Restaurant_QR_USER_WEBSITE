@@ -25,17 +25,13 @@ const Index = ({ changeMainComponent }) => {
     switch (currentComponent) {
       case 'home':
         return (
-          <Home changeComponent={setCurrentComponent} setId={setId} id={id} />
+          <Search changeComponent={setCurrentComponent} setId={setId} id={id} />
         );
       case 'details':
         return (
           <Details changeComponent={setCurrentComponent} id={id} lang={lang} />
         );
 
-      case 'search':
-        return (
-          <Search changeComponent={setCurrentComponent} setId={setId} id={id} />
-        );
       case 'myReservation':
         return <MyReservations changeComponent={setCurrentComponent} />;
       case 'contact':

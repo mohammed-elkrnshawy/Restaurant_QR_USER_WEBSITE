@@ -114,12 +114,14 @@ a {
   align-items: center;
   padding: 1rem 1.5rem;
   width: 85vw;
+  position: sticky;
 }
 .header {
   width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: sticky;
 }
 
 .hamburger {
