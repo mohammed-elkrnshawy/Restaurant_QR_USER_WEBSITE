@@ -118,6 +118,7 @@ a {
 }
 .header {
   width: 100vw;
+  height: 10vh;
   display: flex;
   align-items: center;
   justify-content: center;

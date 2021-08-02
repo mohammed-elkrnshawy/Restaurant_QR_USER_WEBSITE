@@ -27,8 +27,7 @@
 .details-content {
   padding-right: 10px;
   justify-self: center;
-  height: 90vh;
-  width: 75vw;
+  width: 70vw;
   margin-inline-start: 400px !important;
   flex-wrap: wrap;
   flex-direction: column;

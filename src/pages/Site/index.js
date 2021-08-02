@@ -9,6 +9,7 @@ import MyReservations from './MyReservations';
 import ContactUs from './ContactUs';
 import EditProfile from './EditProfile';
 import { Nav } from '../../Components/Nav';
+import './style.css';
 
 const Index = ({ changeMainComponent }) => {
   const [currentComponent, setCurrentComponent] = useState('home');
@@ -49,7 +50,7 @@ const Index = ({ changeMainComponent }) => {
     }
   };
   return (
-    <>
+    <div className="indexcontainer">
       <Nav
         changeMainComponent={changeMainComponent}
         changeComponent={setCurrentComponent}
@@ -57,8 +58,8 @@ const Index = ({ changeMainComponent }) => {
         setLang={setLang}
         name={name}
       />
-      {theComponent()}
-    </>
+      <div className="subcontainer">{theComponent()}</div>
+    </div>
   );
 };
 

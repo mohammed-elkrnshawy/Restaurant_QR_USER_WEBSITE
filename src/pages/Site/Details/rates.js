@@ -80,10 +80,10 @@ export default function Rates({ id, overallRate, changeComponent }) {
       }}
     >
       <div className="ratesCountaner">
-        <div style={{ overflowY: 'scroll', height: '80vh', width: '75vw' }}>
+        <div style={{ overflowY: 'scroll', height: '80vh', width: 'inherit' }}>
           <div
             className="reqformContent"
-            style={{ overflowY: 'scroll', width: '75vw' }}
+            style={{ overflowY: 'scroll', width: 'inherit' }}
           >
             <h2>{t('Comments & Rates')}</h2>
             <form

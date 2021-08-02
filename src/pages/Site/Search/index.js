@@ -333,6 +333,7 @@ const Index = ({ changeComponent, setId, id }) => {
         <Layout
           style={{
             backgroundColor: 'white',
+            height: '90vh',
           }}
         >
           <Sider
@@ -342,6 +343,7 @@ const Index = ({ changeComponent, setId, id }) => {
               textAlign: 'center',
               marginTop: 100,
               overflowY: 'scroll',
+              overflowX: 'hidden',
             }}
           >
             <Input

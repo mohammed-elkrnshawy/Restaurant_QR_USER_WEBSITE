@@ -1,0 +1,11 @@
+.indexcontainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.subcontainer {
+  width: 100vw;
+  height: 80vh;
+}
