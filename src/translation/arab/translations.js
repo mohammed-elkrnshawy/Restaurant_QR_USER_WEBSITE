@@ -50,4 +50,8 @@ export const TRANSLATIONS_AR = {
   login: 'تسجيل دخول',
   'New Reservation': 'حجز جديد',
   'Login first': 'سجل دخول اولا',
+  menu: 'قائمة المأكولات',
+  about: 'عن المطعم',
+  rates: 'التقيمات',
+  Cities: 'المدن',
 };

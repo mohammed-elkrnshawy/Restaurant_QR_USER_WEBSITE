@@ -24,24 +24,25 @@
   border-bottom: 0px !important;
 }
 
-.details-content-en {
+.details-content {
   padding-right: 10px;
   justify-self: center;
-  position: absolute;
-  right: 0 !important;
   height: 90vh;
   width: 75vw;
-  display: flex;
+  margin-inline-start: 400px !important;
   flex-wrap: wrap;
   flex-direction: column;
-  padding-bottom: 0px !important;
+}
+.ant-tabs-tab {
+  margin: 0 32px 0 32px !important;
+}
+.ant-tabs-tab-active {
+  color: #15b2a2;
 }
 
 .details-content-ar {
   padding-right: 10px;
   justify-self: center;
-  position: absolute;
-  left: 0 !important;
   height: 90vh;
 
   width: 75vw;

@@ -49,9 +49,7 @@ const Index = ({ changeComponent, setId, id }) => {
     let query = `https://restaurant-dashboard.se01.tech/api/restaurants?${
       city != '' ? 'city_id=' + city : ''
     }${rate != '' ? '&rate=' + rate : ''}${
-      category != '' && category[0] == 'c'
-        ? '&main_category=' + category.slice(1)
-        : ''
+      category != '' ? '&main_category=' + category : ''
     }
     ${
       // category != '' && category[0] == 's'
@@ -117,7 +115,7 @@ const Index = ({ changeComponent, setId, id }) => {
 
   const getCategories = () => {
     axios
-      .get('https://restaurant-dashboard.se01.tech/api/categories', {
+      .get('https://restaurant-dashboard.se01.tech/api/restaurantCategories', {
         headers: {
           'Content-Language':
             localStorage.getItem('lang') &&
@@ -128,8 +126,8 @@ const Index = ({ changeComponent, setId, id }) => {
       })
       .then((response) => {
         if (response.data.status == 'true') {
-          setCategories([...response.data.data.items]);
-          console.log(response.data.data.items);
+          setCategories([...response.data.data]);
+          console.log(response.data.data);
           setLoading(false);
         } else {
           cogoToast.warn('Something Went Wrong');
@@ -338,11 +336,12 @@ const Index = ({ changeComponent, setId, id }) => {
           }}
         >
           <Sider
-            width={400}
+            width={350}
             style={{
               backgroundColor: 'white',
               textAlign: 'center',
               marginTop: 100,
+              overflowY: 'scroll',
             }}
           >
             <Input
@@ -365,7 +364,12 @@ const Index = ({ changeComponent, setId, id }) => {
               }}
             >
               {' '}
-              <SubMenu key="sub1" title="Category">
+              <SubMenu
+                key="sub1"
+                title={
+                  <h4 style={{ width: 'fit-content' }}>{t('Categories')}</h4>
+                }
+              >
                 <Radio.Group style={{ width: '100%' }} onChange={onCatChange}>
                   {cat.map((i) => (
                     <Row
@@ -385,33 +389,6 @@ const Index = ({ changeComponent, setId, id }) => {
                         style={{ marginTop: 9, marginBottom: 9 }}
                       >
                         {i.name}
-                        {/* <SubMenu
-                          key={`c${i.id}`}
-                          title={i.name}
-                          style={{
-                            alignContent: 'start',
-                          }}
-                        >
-                          {i.subCategories.map((x) => {
-                            return (
-                              <Row
-                                style={{
-                                  margin: 4,
-                                }}
-                              >
-                                <Col span={24}>
-                                  <Radio
-                                    value={`s${x.id}`}
-                                    id={`s${x.id}`}
-                                    key={`s${x.id}`}
-                                  >
-                                    {x.name}
-                                  </Radio>
-                                </Col>
-                              </Row>
-                            );
-                          })}
-                        </SubMenu> */}
                       </Radio>
                     </Row>
                   ))}
@@ -419,71 +396,123 @@ const Index = ({ changeComponent, setId, id }) => {
               </SubMenu>
               <SubMenu
                 key="sub2"
-                title="City"
+                title={<h4 style={{ width: 'fit-content' }}>{t('Cities')}</h4>}
                 style={{
                   alignContent: 'center',
                 }}
               >
                 <Radio.Group style={{ width: '100%' }} onChange={onCityChange}>
-                  <Row
-                    style={{
-                      paddingInline: 24,
-                    }}
-                  >
-                    {cit.map((city) => (
-                      <Col span={13} style={{ margin: 4 }}>
-                        <Radio value={city.id}>{city.name}</Radio>
-                      </Col>
-                    ))}
-                  </Row>
+                  {cit.map((city) => (
+                    <Row
+                      style={{
+                        alignItems: 'start',
+                        justifyContent: 'start',
+                        paddingInline: 24,
+                      }}
+                    >
+                      <Radio
+                        value={city.id}
+                        style={{ marginTop: 9, marginBottom: 9 }}
+                      >
+                        {city.name}
+                      </Radio>
+                    </Row>
+                  ))}
                 </Radio.Group>
               </SubMenu>
               <SubMenu
                 key="sub3"
-                title="Rate"
+                title={<h4 style={{ width: 'fit-content' }}>{t('Rates')}</h4>}
                 style={{ backgroundColor: 'white' }}
               >
                 <Radio.Group style={{ width: '100%' }} onChange={onRateChange}>
                   <Row
                     style={{
+                      alignItems: 'start',
+                      justifyContent: 'start',
                       paddingInline: 24,
                     }}
                   >
-                    <Col span={13}>
-                      <Radio value="0">
-                        <Rate disabled value={0} />
-                      </Radio>
-                    </Col>
-                    <Col span={13}>
-                      <Radio value="1">
-                        <Rate disabled value={1} />
-                      </Radio>
-                    </Col>
-                    <Col span={13}>
-                      <Radio value="2">
-                        <Rate disabled value={2} />
-                      </Radio>
-                    </Col>
-                    <Col span={13}>
-                      <Radio value="3">
-                        <Rate disabled value={3} />
-                      </Radio>
-                    </Col>
-                    <Col span={13}>
-                      <Radio value="4">
-                        <Rate disabled value={4} />
-                      </Radio>
-                    </Col>
-                    <Col span={13}>
-                      <Radio value="5">
-                        <Rate disabled value={5} />
-                      </Radio>
-                    </Col>
+                    <Radio value="0">
+                      <Rate disabled value={0} />
+                    </Radio>
+                  </Row>
+
+                  <Row
+                    style={{
+                      alignItems: 'start',
+                      justifyContent: 'start',
+                      paddingInline: 24,
+                    }}
+                  >
+                    <Radio value="1">
+                      <Rate disabled value={1} />
+                    </Radio>
+                  </Row>
+
+                  <Row
+                    style={{
+                      alignItems: 'start',
+                      justifyContent: 'start',
+                      paddingInline: 24,
+                    }}
+                  >
+                    <Radio value="2">
+                      <Rate disabled value={2} />
+                    </Radio>
+                  </Row>
+
+                  <Row
+                    style={{
+                      alignItems: 'start',
+                      justifyContent: 'start',
+                      width: '100%',
+                      paddingInline: 24,
+                    }}
+                  >
+                    <Radio
+                      value="3"
+                      style={{
+                        width: '100%',
+                      }}
+                    >
+                      <Rate
+                        style={{
+                          width: '100%',
+                        }}
+                        disabled
+                        value={3}
+                      />
+                    </Radio>
+                  </Row>
+
+                  <Row
+                    style={{
+                      alignItems: 'start',
+                      justifyContent: 'start',
+                      paddingInline: 24,
+                    }}
+                  >
+                    <Radio value="4">
+                      <Rate disabled value={4} />
+                    </Radio>
+                  </Row>
+
+                  <Row
+                    style={{
+                      alignItems: 'start',
+                      justifyContent: 'start',
+                      paddingInline: 24,
+                    }}
+                  >
+                    <Radio value="5">
+                      <Rate disabled value={5} />
+                    </Radio>
                   </Row>
                 </Radio.Group>
               </SubMenu>
             </Menu>
-            <input
+            {/* <input
               className="newResButton"
               style={{
                 padding: 0,
@@ -505,7 +534,7 @@ const Index = ({ changeComponent, setId, id }) => {
                 setSearch('');
               }}
               type="button"
-            />
+            /> */}
           </Sider>
           <Layout style={{ padding: '0 24px 24px', backgroundColor: 'white' }}>
             <Content

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Button } from 'antd';
+import { Modal, Button, Tabs } from 'antd';
 import axios from 'axios';
 import cogoToast from 'cogo-toast';
 import Category from './category';
@@ -12,29 +12,7 @@ import './style.css';
 import Rates from './rates';
 import { useTranslation } from 'react-i18next';
 
-const customStyles = {
-  content: {
-    alignSelf: 'center',
-    justifySelf: 'center',
-    right: 'auto',
-    bottom: 'auto',
-    padding: 20,
-    boxBorder: 'gray',
-    inset: '20% auto auto 30%',
-  },
-};
-
-const customStyles2 = {
-  content: {
-    alignSelf: 'center',
-    justifySelf: 'center',
-    right: 'auto',
-    bottom: 'auto',
-    padding: 20,
-    boxBorder: 'gray',
-    inset: '30% auto auto 20%',
-  },
-};
+const { TabPane } = Tabs;
 
 const Details = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -230,6 +208,42 @@ const Details = (props) => {
       });
   };
 
+  const tabs = () => {
+    return (
+      <Tabs
+        defaultActiveKey="1"
+        onChange={callback}
+        active
+        tabBarStyle={{
+          color: 'GrayText',
+        }}
+      >
+        <TabPane tab={t('menu')} key="1">
+          {theComponent()}
+        </TabPane>
+        <TabPane tab={t('about')} key="2">
+          <About
+            changeComponent={setCurrentComponent}
+            description={description}
+            categories={categories}
+            location={location}
+            getSubCategory={getSubCategory}
+          />
+        </TabPane>
+        <TabPane tab={t('rates')} key="3">
+          <Rates
+            id={props.id}
+            overallRate={rate}
+            changeComponent={setCurrentComponent}
+          />
+        </TabPane>
+      </Tabs>
+    );
+  };
+  function callback(key) {
+    console.log(key);
+  }
+
   const theComponent = () => {
     switch (currentComponent) {
       case 'category':
@@ -240,25 +254,6 @@ const Details = (props) => {
             setId={setId}
             getSubCategory={getSubCategory}
             loading={loading}
-          />
-        );
-
-      case 'about':
-        return (
-          <About
-            changeComponent={setCurrentComponent}
-            description={description}
-            categories={categories}
-            location={location}
-            getSubCategory={getSubCategory}
-          />
-        );
-      case 'rates':
-        return (
-          <Rates
-            id={props.id}
-            overallRate={rate}
-            changeComponent={setCurrentComponent}
           />
         );
 
@@ -385,171 +380,9 @@ const Details = (props) => {
           type="button"
         />
       </div>
-      {props.lang == 'ar' ? (
-        <div className="details-content-ar">
-          <div className="details-header">
-            <div
-              className="sub-nav"
-              style={
-                selected == 1
-                  ? {
-                      borderBottom: '2px solid #15b2a2',
-                    }
-                  : {}
-              }
-            >
-              <p
-                className={selected == 1 ? 'selected' : 'notSelected'}
-                onClick={(e) => {
-                  setCurrentComponent('category');
-                  setSelected(1);
-                }}
-              >
-                التصنيفات
-              </p>
-            </div>
-            <div
-              className="sub-nav"
-              style={
-                selected == 2
-                  ? {
-                      borderBottom: '2px solid #15b2a2',
-                    }
-                  : {}
-              }
-            >
-              <p
-                className={selected == 2 ? 'selected' : 'notSelected'}
-                onClick={(e) => {
-                  setCurrentComponent('about');
-                  setSelected(2);
-                }}
-              >
-                عن المطعم
-              </p>
-            </div>
-            <div
-              className="sub-nav"
-              style={
-                selected == 3
-                  ? {
-                      borderBottom: '2px solid #15b2a2',
-                    }
-                  : {}
-              }
-            >
-              <p
-                className={selected == 3 ? 'selected' : 'notSelected'}
-                onClick={(e) => {
-                  setCurrentComponent('rates');
-                  setSelected(3);
-                }}
-              >
-                التقيمات
-              </p>
-            </div>
 
-            <div className="sub-nav-space">
-              <p className="whiteSpace">__</p>
-            </div>
+      <div className="details-content">{tabs()}</div>
 
-            <input
-              className="newResButton "
-              style={{
-                display: 'inline',
-                backgroundColor: 'white',
-                width: '30vw',
-                border: 0,
-              }}
-              value=""
-              type="button"
-            />
-          </div>
-          {theComponent()}
-        </div>
-      ) : (
-        <div className="details-content-en">
-          <div className="details-header">
-            <div
-              className="sub-nav"
-              style={
-                selected == 1
-                  ? {
-                      borderBottom: '2px solid #15b2a2',
-                    }
-                  : {}
-              }
-            >
-              <p
-                className={selected == 1 ? 'selected' : 'notSelected'}
-                onClick={(e) => {
-                  setCurrentComponent('category');
-                  setSelected(1);
-                }}
-              >
-                Categories
-              </p>
-            </div>
-            <div
-              className="sub-nav"
-              style={
-                selected == 2
-                  ? {
-                      borderBottom: '2px solid #15b2a2',
-                    }
-                  : {}
-              }
-            >
-              <p
-                className={selected == 2 ? 'selected' : 'notSelected'}
-                onClick={(e) => {
-                  setCurrentComponent('about');
-                  setSelected(2);
-                }}
-              >
-                About
-              </p>
-            </div>
-            <div
-              className="sub-nav"
-              style={
-                selected == 3
-                  ? {
-                      borderBottom: '2px solid #15b2a2',
-                    }
-                  : {}
-              }
-            >
-              <p
-                className={selected == 3 ? 'selected' : 'notSelected'}
-                onClick={(e) => {
-                  setCurrentComponent('rates');
-                  setSelected(3);
-                }}
-              >
-                Rates
-              </p>
-            </div>
-
-            <div className="sub-nav-space">
-              <p className="whiteSpace">__</p>
-            </div>
-
-            <input
-              className="newResButton "
-              style={{
-                display: 'inline',
-                backgroundColor: 'white',
-                width: '30vw',
-                border: 0,
-              }}
-              value=""
-              type="button"
-            />
-          </div>
-          {theComponent()}
-        </div>
-      )}
       <Modal
         closable
         title={
