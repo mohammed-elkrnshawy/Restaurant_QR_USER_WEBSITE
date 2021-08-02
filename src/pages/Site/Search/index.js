@@ -378,13 +378,13 @@ const Index = ({ changeComponent, setId, id }) => {
                         justifyContent: 'start',
                         paddingInline: 24,
                       }}
-                      key={`c${i.id}`}
-                      id={`c${i.id}`}
+                      key={`${i.id}`}
+                      id={`${i.id}`}
                     >
                       <Radio
-                        value={`c${i.id}`}
-                        key={`c${i.id}`}
-                        id={`c${i.id}`}
+                        value={`${i.id}`}
+                        key={`${i.id}`}
+                        id={`${i.id}`}
                         name={i.name}
                         style={{ marginTop: 9, marginBottom: 9 }}
                       >
