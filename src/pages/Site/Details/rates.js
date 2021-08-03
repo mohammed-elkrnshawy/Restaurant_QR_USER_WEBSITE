@@ -90,7 +90,11 @@ export default function Rates({ id, overallRate, changeComponent }) {
         >
           <div
             className="reqformContent"
-            style={{ overflowY: 'scroll', width: 'inherit' }}
+            style={{
+              overflowY: 'hidden',
+              overflowX: 'hidden',
+              width: 'inherit',
+            }}
           >
             <h2>{t('Comments & Rates')}</h2>
             <form
