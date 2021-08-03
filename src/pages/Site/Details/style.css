@@ -4,6 +4,14 @@
   flex-direction: row;
 }
 
+.dialogCont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 .details-panar {
   width: 22vw;
   display: flex;
@@ -28,7 +36,7 @@
   padding-right: 10px;
   justify-self: center;
   width: 70vw;
-  margin-inline-start: 400px !important;
+  margin-inline-start: 25vw !important;
   flex-wrap: wrap;
   flex-direction: column;
 }
@@ -164,17 +172,50 @@
   box-shadow: 0 0 10px #15b2a285;
 }
 
-@media screen and (max-width: 1270px) {
-  .details-panar {
-    visibility: hidden;
+@media screen and (max-width: 768px) {
+  .details-container {
+    display: flex;
+    min-height: 80vh;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .details-content {
+    margin-inline-start: 20px !important;
+    height: 70vh;
+    position: relative;
+    width: 100%;
+    padding: 2px !important;
+    margin: 1% !important;
   }
 
-  .details-content {
-    padding-right: 10px;
+  .dialogCont > input {
+    width: 100% !important;
+    display: inline !important
+    ;
+  }
+  .dialogCont {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+  }
+
+  .details-panar {
     width: 100vw;
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    position: relative;
+
+    height: 20vh;
+
+    background-size: contain;
+
+    background-color: #dafffb;
   }
 
   .MuiCardActionArea-root {

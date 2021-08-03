@@ -297,8 +297,8 @@ const Details = (props) => {
               backgroundImage: `url("${image}")`,
             }}
           ></div>
+          <h3 style={{ color: 'white' }}>{name}</h3>
         </div>
-        <h3 style={{ color: 'white' }}>{name}</h3>
         <p
           className="hometype"
           style={{
@@ -307,8 +307,6 @@ const Details = (props) => {
         >
           {type}
         </p>
-        <div className="homestatus"></div>
-
         <p
           className=""
           style={{
@@ -324,61 +322,65 @@ const Details = (props) => {
           {' '}
           {phone}
         </p>
-        <input
-          className="newResButton "
-          style={{
-            visibility: 'hidden',
-            display: 'inline',
-            color: 'white',
-            height: '5vh',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '12vw',
-            border: 0,
-            padding: 0,
-          }}
-          type="button"
-        />
-        <input
-          className="newResButton "
-          style={{
-            display: 'inline',
-            backgroundColor: '#15b2a2',
-            color: 'white',
-            height: '5vh',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '14vw',
-            border: 0,
-            padding: 0,
-          }}
-          value={t('Contact Us')}
-          onClick={(e) => {
-            setIsOpenContactUs(true);
-          }}
-          type="button"
-        />
-        <input
-          className="newResButton "
-          style={{
-            padding: 0,
+        <div className="homestatus"></div>
 
-            display: 'inline',
-            backgroundColor: 'white',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '5vh',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '14vw',
-            fontSize: '90%',
-          }}
-          value={t('Make New Reservation')}
-          onClick={(e) => {
-            openModal();
-          }}
-          type="button"
-        />
+        <div className="dialogCont">
+          <input
+            className="newResButton "
+            style={{
+              visibility: 'hidden',
+              display: 'inline',
+              color: 'white',
+              height: '5vh',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: '12vw',
+              border: 0,
+              padding: 0,
+            }}
+            type="button"
+          />
+          <input
+            className="newResButton "
+            style={{
+              display: 'inline',
+              backgroundColor: '#15b2a2',
+              color: 'white',
+              height: '5vh',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: '14vw',
+              border: 0,
+              padding: 0,
+            }}
+            value={t('Contact Us')}
+            onClick={(e) => {
+              setIsOpenContactUs(true);
+            }}
+            type="button"
+          />
+          <input
+            className="newResButton "
+            style={{
+              padding: 0,
+
+              display: 'inline',
+              backgroundColor: 'white',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '5vh',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: '14vw',
+              fontSize: '90%',
+            }}
+            value={t('Make New Reservation')}
+            onClick={(e) => {
+              openModal();
+            }}
+            type="button"
+          />
+        </div>
       </div>
 
       <div className="details-content">{tabs()}</div>

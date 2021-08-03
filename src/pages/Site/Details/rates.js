@@ -80,7 +80,14 @@ export default function Rates({ id, overallRate, changeComponent }) {
       }}
     >
       <div className="ratesCountaner">
-        <div style={{ overflowY: 'scroll', height: '80vh', width: 'inherit' }}>
+        <div
+          style={{
+            overflowY: 'scroll',
+            overflowX: 'hidden',
+            height: '80vh',
+            width: '100%',
+          }}
+        >
           <div
             className="reqformContent"
             style={{ overflowY: 'scroll', width: 'inherit' }}
@@ -90,6 +97,7 @@ export default function Rates({ id, overallRate, changeComponent }) {
               onSubmit={handleSubmit}
               style={{
                 justifyContent: 'inherit',
+                width: '100%',
               }}
             >
               <h4
@@ -110,6 +118,8 @@ export default function Rates({ id, overallRate, changeComponent }) {
                 style={{
                   marginLeft: 0,
                   marginRight: 0,
+                  justifyContent: 'inherit',
+                  width: '100%',
                 }}
                 className="note"
               />
@@ -117,8 +127,10 @@ export default function Rates({ id, overallRate, changeComponent }) {
               <input
                 className="joinwaitingbtn "
                 style={{
-                  width: 300,
+                  width: '100%',
                   margin: 0,
+                  maxWidth: 400,
+
                   marginTop: 20,
                 }}
                 value={t('Submit Comment')}
@@ -174,7 +186,7 @@ export default function Rates({ id, overallRate, changeComponent }) {
             rates.map((rate) => (
               <Card
                 style={{
-                  width: 800,
+                  width: '100%',
                   marginTop: 16,
                   marginInlineEnd: 32,
                   display: 'inline-block',
