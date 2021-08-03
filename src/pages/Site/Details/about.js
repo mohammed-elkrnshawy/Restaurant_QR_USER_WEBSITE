@@ -47,7 +47,7 @@ export default function About({ description, location }) {
         {t('Description')}
       </h4>
       <h4 style={{ marginTop: 0 }}>{description}</h4>
-      <div className="discrip" style={{ height: address ? '200vh' : '10vh' }}>
+      <div className="discrip" style={{ height: address ? '40vh' : '10vh' }}>
         <h4
           style={{
             fontSize: 16,
@@ -71,6 +71,7 @@ export default function About({ description, location }) {
               lng: location.lng,
             }}
             defaultZoom={defaultProps.zoom}
+            options={{ scaleControlOptions: true }}
           >
             <AnyReactComponent
               lat={location.lat}

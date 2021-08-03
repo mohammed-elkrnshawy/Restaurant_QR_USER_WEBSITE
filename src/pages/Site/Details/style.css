@@ -44,9 +44,24 @@
   margin: 0 32px 0 32px !important;
 }
 .ant-tabs-tab-active {
-  color: #15b2a2;
+  color: #15b2a2 !important;
+  border: #15b2a2 !important;
+  font-size: larger;
+}
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #15b2a2 !important;
+  text-shadow: 0 0 0.25px #15b2a2 !important;
 }
 
+.ant-tabs-tab-btn:hover {
+  color: #15b2a2 !important;
+  text-shadow: 0 0 0.25px #15b2a2 !important;
+}
+.ant-tabs-ink-bar {
+  position: absolute;
+  background: #15b2a2 !important;
+  pointer-events: none;
+}
 .details-content-ar {
   padding-right: 10px;
   justify-self: center;
@@ -103,7 +118,7 @@
   max-height: 80vh;
   overflow: scroll;
   overflow-x: hidden;
-  overflow-y: hidden;
+  overflow-y: scroll;
 }
 
 .categories::-webkit-scrollbar {

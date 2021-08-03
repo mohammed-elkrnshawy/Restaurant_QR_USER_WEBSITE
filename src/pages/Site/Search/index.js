@@ -251,62 +251,6 @@ const Index = ({ changeComponent, setId, id }) => {
             }
           />
         </Card>
-        <Card style={{ width: 190, margin: 26, border: 0 }} loading>
-          <Meta
-            avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            }
-          />
-        </Card>
-        <Card style={{ width: 190, margin: 26, border: 0 }} loading>
-          <Meta
-            avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            }
-          />
-        </Card>{' '}
-        <Card style={{ width: 190, margin: 26, border: 0 }} loading>
-          <Meta
-            avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            }
-          />
-        </Card>
-        <Card style={{ width: 190, margin: 26, border: 0 }} loading>
-          <Meta
-            avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            }
-          />
-        </Card>
-        <Card style={{ width: 190, margin: 26, border: 0 }} loading>
-          <Meta
-            avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            }
-          />
-        </Card>{' '}
-        <Card style={{ width: 190, margin: 26, border: 0 }} loading>
-          <Meta
-            avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            }
-          />
-        </Card>
-        <Card style={{ width: 190, margin: 26, border: 0 }} loading>
-          <Meta
-            avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            }
-          />
-        </Card>
-        <Card style={{ width: 190, margin: 26, border: 0 }} loading>
-          <Meta
-            avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            }
-          />
-        </Card>
       </div>
     );
   };
@@ -337,7 +281,7 @@ const Index = ({ changeComponent, setId, id }) => {
           }}
         >
           <Sider
-            width={350}
+            width={250}
             style={{
               backgroundColor: 'white',
               textAlign: 'center',
