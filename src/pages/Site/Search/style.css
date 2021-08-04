@@ -2,11 +2,35 @@
   display: flex;
   flex-wrap: wrap;
   min-height: 80vh;
-  padding-left: 18vw;
-  padding-right: 18vw;
-  padding-top: 3vw;
   align-content: flex-start;
+  flex-direction: row;
 }
+
+.home-panar {
+  width: 25vw;
+  min-width: 300px;
+  max-width: 500px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  margin-top: 10vh;
+  top: 0;
+  height: 75vh;
+  max-height: 75vh;
+  overflow-y: scroll;
+}
+
+.home-content {
+  padding-right: 10px;
+  justify-self: center;
+  width: 70vw;
+  margin-inline-start: 25vw !important;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
 .homeContainerLoading {
   display: flex;
   flex-wrap: wrap;

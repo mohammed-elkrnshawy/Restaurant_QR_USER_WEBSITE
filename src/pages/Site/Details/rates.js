@@ -91,8 +91,6 @@ export default function Rates({ id, overallRate, changeComponent }) {
           <div
             className="reqformContent"
             style={{
-              overflowY: 'hidden',
-              overflowX: 'hidden',
               width: 'inherit',
             }}
           >
