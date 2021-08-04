@@ -21,7 +21,8 @@
   top: 0;
   height: 75vh;
   max-height: 75vh;
-  overflow: hidden;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 .home-content {
