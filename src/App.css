@@ -3,7 +3,13 @@
   direction: ltr;
 }
 html {
-  overflow: hidden;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
 }
 
 .App-logo {
