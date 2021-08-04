@@ -10,6 +10,8 @@
   width: 25vw;
   min-width: 300px;
   max-width: 500px;
+  padding-inline-start: 1vw;
+  padding-inline-end: 2vw;
 
   display: flex;
   flex-direction: column;

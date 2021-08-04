@@ -183,6 +183,7 @@ export const Nav = ({
 
                 setLang(localStorage.getItem('i18nextLng'));
                 const element = document.getElementById('body');
+                window.location.reload();
               }}
             >
               {localStorage.getItem('lang') &&
