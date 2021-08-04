@@ -10,6 +10,15 @@ import ContactUs from './ContactUs';
 import EditProfile from './EditProfile';
 import { Nav } from '../../Components/Nav';
 import './style.css';
+import { Layout } from 'antd';
+import {
+  FacebookFilled,
+  InstagramFilled,
+  TwitterCircleFilled,
+  WhatsAppOutlined,
+} from '@ant-design/icons';
+
+const { Header, Content, Footer } = Layout;
 
 const Index = ({ changeMainComponent }) => {
   const [currentComponent, setCurrentComponent] = useState('home');
@@ -50,16 +59,28 @@ const Index = ({ changeMainComponent }) => {
     }
   };
   return (
-    <div className="indexcontainer">
-      <Nav
-        changeMainComponent={changeMainComponent}
-        changeComponent={setCurrentComponent}
-        currentComponent={currentComponent}
-        setLang={setLang}
-        name={name}
-      />
-      <div className="subcontainer">{theComponent()}</div>
-    </div>
+    <>
+      <div className="indexcontainer">
+        <Nav
+          changeMainComponent={changeMainComponent}
+          changeComponent={setCurrentComponent}
+          currentComponent={currentComponent}
+          setLang={setLang}
+          name={name}
+        />
+        <div className="subcontainer">{theComponent()}</div>
+      </div>
+      <Footer style={{ textAlign: 'center' }}>
+        <FacebookFilled style={{ fontSize: 30, marginInline: 5 }} />
+        <WhatsAppOutlined style={{ fontSize: 30, marginInline: 5 }} />
+        <InstagramFilled style={{ fontSize: 30, marginInline: 5 }} />
+        <TwitterCircleFilled
+          style={{ fontSize: 30, marginInline: 5, marginBlock: 20 }}
+        />
+
+        <h4>Resturants ©2021 Created by -------</h4>
+      </Footer>
+    </>
   );
 };
 

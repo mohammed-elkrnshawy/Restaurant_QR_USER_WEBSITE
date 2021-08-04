@@ -20,34 +20,46 @@ export const Nav = ({
   const menu = (
     <Menu>
       <Menu.Item>
-        <a
-          onClick={() => {
-            changeComponent('editProfile');
-          }}
-          style={{
-            padding: 10,
-          }}
-          className={
-            currentComponent == 'editProfile' ? 'nav-link active' : 'nav-link'
-          }
-        >
-          {t('Edit Profile')}
-        </a>
+        <div className="nav-menu-item">
+          <div className="icon-wrapper" style={{}}>
+            <a
+              onClick={() => {
+                changeComponent('editProfile');
+              }}
+              style={{
+                padding: 10,
+              }}
+              className={
+                currentComponent == 'editProfile'
+                  ? 'nav-link active'
+                  : 'nav-link'
+              }
+            >
+              {t('Edit Profile')}
+            </a>{' '}
+          </div>
+        </div>
       </Menu.Item>
       <Menu.Item>
-        <a
-          onClick={() => {
-            changeComponent('myReservation');
-          }}
-          style={{
-            padding: 10,
-          }}
-          className={
-            currentComponent == 'myReservation' ? 'nav-link active' : 'nav-link'
-          }
-        >
-          {t('My Reservation')}
-        </a>
+        <div className="nav-menu-item">
+          <div className="icon-wrapper" style={{}}>
+            <a
+              onClick={() => {
+                changeComponent('myReservation');
+              }}
+              style={{
+                padding: 10,
+              }}
+              className={
+                currentComponent == 'myReservation'
+                  ? 'nav-link active'
+                  : 'nav-link'
+              }
+            >
+              {t('My Reservation')}
+            </a>
+          </div>
+        </div>
       </Menu.Item>
 
       <Menu.Item

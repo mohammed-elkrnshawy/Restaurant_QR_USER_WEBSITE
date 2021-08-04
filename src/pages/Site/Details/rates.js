@@ -82,8 +82,6 @@ export default function Rates({ id, overallRate, changeComponent }) {
       <div className="ratesCountaner">
         <div
           style={{
-            overflowY: 'scroll',
-            overflowX: 'hidden',
             height: '80vh',
             width: '100%',
           }}
