@@ -26,6 +26,7 @@ export const SignUp = ({ changeMainComponent }) => {
         email: e.target[1].value,
         phone: e.target[2].value,
         password: e.target[3].value,
+        device: 'web',
       };
 
       axios

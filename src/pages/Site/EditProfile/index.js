@@ -28,7 +28,7 @@ const Index = ({ setName }) => {
           localStorage.setItem('name', response.data.data.name);
           localStorage.setItem('email', response.data.data.email);
           localStorage.setItem('phone', response.data.data.phone);
-          cogoToast.warn('Edited Successfuly');
+          cogoToast.success('Edited Successfuly');
         } else {
           cogoToast.warn('Phone Or Password Is Wrong');
         }
@@ -96,7 +96,6 @@ const Index = ({ setName }) => {
             value="Change Password"
             onClick={(e) => {
               e.preventDefault();
-              history.push('/home');
             }}
           />
         </form>

@@ -66,13 +66,15 @@ const Details = (props) => {
     } else {
       let values = {
         restaurant_id: props.id,
-        name: e.target[0].value,
-        phone: e.target[1].value,
-        count: e.target[2].value,
-        date: e.target[4].value,
-        time: e.target[5].value,
-        notes: e.target[6].value,
+        name: e.target.name.value,
+        phone: e.target.phone.value,
+        count: e.target.count.value,
+        date: e.target.date.value,
+        time: e.target.time.value,
+        notes: e.target.note.value,
       };
+
+      console.log(values);
 
       axios
         .post(
@@ -323,64 +325,67 @@ const Details = (props) => {
           {phone}
         </p>
         <div className="homestatus"></div>
+        {localStorage.getItem('token') ? (
+          <div className="dialogCont">
+            <input
+              className="newResButton "
+              style={{
+                visibility: 'hidden',
+                display: 'inline',
+                color: 'white',
+                height: '5vh',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '12vw',
+                border: 0,
+                padding: 0,
+              }}
+              type="button"
+            />
+            <input
+              className="newResButton "
+              style={{
+                display: 'inline',
+                backgroundColor: '#15b2a2',
+                color: 'white',
+                height: '5vh',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '14vw',
+                border: 0,
+                padding: 0,
+              }}
+              value={t('Contact Us')}
+              onClick={(e) => {
+                setIsOpenContactUs(true);
+              }}
+              type="button"
+            />
+            <input
+              className="newResButton "
+              style={{
+                padding: 0,
 
-        <div className="dialogCont">
-          <input
-            className="newResButton "
-            style={{
-              visibility: 'hidden',
-              display: 'inline',
-              color: 'white',
-              height: '5vh',
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: '12vw',
-              border: 0,
-              padding: 0,
-            }}
-            type="button"
-          />
-          <input
-            className="newResButton "
-            style={{
-              display: 'inline',
-              backgroundColor: '#15b2a2',
-              color: 'white',
-              height: '5vh',
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: '14vw',
-              border: 0,
-              padding: 0,
-            }}
-            value={t('Contact Us')}
-            onClick={(e) => {
-              setIsOpenContactUs(true);
-            }}
-            type="button"
-          />
-          <input
-            className="newResButton "
-            style={{
-              padding: 0,
-
-              display: 'inline',
-              backgroundColor: 'white',
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: '5vh',
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: '14vw',
-              fontSize: '90%',
-            }}
-            value={t('Make New Reservation')}
-            onClick={(e) => {
-              openModal();
-            }}
-            type="button"
-          />
-        </div>
+                display: 'inline',
+                backgroundColor: 'white',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '5vh',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '14vw',
+                fontSize: '90%',
+              }}
+              value={t('Make New Reservation')}
+              onClick={(e) => {
+                openModal();
+              }}
+              type="button"
+            />
+          </div>
+        ) : (
+          ''
+        )}
       </div>
 
       <div className="details-content">{tabs()}</div>
@@ -412,12 +417,10 @@ const Details = (props) => {
               placeholder={t('Name')}
               style={{ width: '100%' }}
             />
-            <input
-              type="text"
-              name="mobileNum"
-              placeholder={t('Mobile Number')}
-            />
-            <input type="text" name="people" placeholder={t('People')} />
+
+            <input type="text" name="phone" placeholder={t('Mobile Number')} />
+
+            <input type="text" name="count" placeholder={t('People')} />
 
             <input
               type="date"
