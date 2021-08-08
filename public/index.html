@@ -46,9 +46,11 @@
         navs.forEach((nav) => nav.classList.toggle('Navbar__ToggleShow'));
       }
 
-      document
-        .querySelector('.Navbar__Link-toggle')
-        .addEventListener('click', classToggle);
+      if (!window.location.pathname.includes('auth')) {
+        document
+          .querySelector('.Navbar__Link-toggle')
+          .addEventListener('click', classToggle);
+      }
     </script>
 
     <!--
