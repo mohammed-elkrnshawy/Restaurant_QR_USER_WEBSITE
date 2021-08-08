@@ -73,20 +73,6 @@ export const Nav = ({ changeComponent, currentComponent, setLang, name }) => {
   );
 
   // const history = useHistory();
-  useEffect(() => {
-    console.log(currentComponent);
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-
-    hamburger.addEventListener('click', mobileMenu);
-
-    function mobileMenu() {
-      hamburger.classList.toggle('active');
-      navMenu.classList.toggle('active');
-    }
-  }, []);
-
-  const jsfunc = () => {};
 
   return (
     <header className="header">
@@ -195,38 +181,6 @@ export const Nav = ({ changeComponent, currentComponent, setLang, name }) => {
                 : 'EN'}
             </a>
           </li>
-          {/* <li onClick={() => {}} className="nav-item">
-            {localStorage.getItem('token') ? (
-              <Dropdown overlay={menu}>
-                <a
-                  className="ant-dropdown-link"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  {localStorage.getItem('name') || 'Unregestered user'}
-
-                  <DownOutlined />
-                </a>
-              </Dropdown>
-            ) : (
-              <li class="nav-item">
-                <a
-                  style={{
-                    padding: 15,
-                  }}
-                  onClick={() => {
-                    changeMainComponent('login');
-                  }}
-                  className={
-                    currentComponent == ' contact'
-                      ? 'nav-link active'
-                      : 'nav-link'
-                  }
-                >
-                  <i class="fas fa-sign-in-alt"></i> {t('login')}
-                </a>
-              </li>
-            )}
-          </li>*/}
         </ul>
         {localStorage.getItem('token') ? (
           <Dropdown overlay={menu}>
@@ -261,16 +215,6 @@ export const Nav = ({ changeComponent, currentComponent, setLang, name }) => {
             <i class="fas fa-sign-in-alt"></i> {t('login')}
           </a>
         )}
-        <div
-          class="hamburger"
-          onClick={() => {
-            jsfunc();
-          }}
-        >
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
       </nav>
     </header>
   );
