@@ -188,14 +188,14 @@ export const Nav = ({ changeComponent, currentComponent, setLang, name }) => {
             </a>
           </Dropdown>
         ) : (
-          <a
+          <Link
             style={{
               padding: 15,
             }}
-            href={`http://${window.location.host}/login`}
+            to={`login`}
           >
             <i class="fas fa-sign-in-alt"></i> {t('login')}
-          </a>
+          </Link>
         )}
       </nav>
     </header>
