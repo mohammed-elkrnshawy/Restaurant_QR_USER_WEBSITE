@@ -257,9 +257,6 @@ export const Nav = ({ changeComponent, currentComponent, setLang, name }) => {
             onClick={() => {
               window.location.assign('/auth/login');
             }}
-            className={
-              currentComponent == ' contact' ? 'nav-link active' : 'nav-link'
-            }
           >
             <i class="fas fa-sign-in-alt"></i> {t('login')}
           </a>

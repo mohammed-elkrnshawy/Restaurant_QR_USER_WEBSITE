@@ -40,7 +40,6 @@ const Index = ({ changeMainComponent }) => {
         <Route path="/home/edit-profile/" exact component={EditProfile} />
         <Route path="/home/contact-us/" exact component={ContactUs} />
         <Route path="/home/my-reservations" exact component={MyReservations} />
-        <Route path="/auth/login" component={Pages.Login} />
 
         <Redirect to="/home" />
       </Switch>
