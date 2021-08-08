@@ -181,7 +181,7 @@ const Index = ({ changeComponent, setId, id }) => {
             }}
             onClick={() => {
               // setId(i.id);
-              history.push(`/resturant-details/?id=${i.id}`);
+              history.push(`home/resturant-details/?id=${i.id}`);
             }}
             cover={
               <img
