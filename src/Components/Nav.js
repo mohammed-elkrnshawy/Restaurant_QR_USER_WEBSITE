@@ -76,7 +76,10 @@ export const Nav = ({ changeComponent, currentComponent, setLang, name }) => {
   // const history = useHistory();
 
   return (
-    <header className="header">
+    <header
+      hidden={window.location.pathname.indexOf('login') > 0 ? true : false}
+      className="header"
+    >
       <nav className="navbar">
         <a href="#" class="nav-logo">
           <img src="/assets/logo.svg"></img>
