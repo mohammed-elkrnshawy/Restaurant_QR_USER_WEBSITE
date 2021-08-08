@@ -28,10 +28,6 @@ const Index = ({ changeMainComponent }) => {
   const [lang, setLang] = useState('');
   const [name, setName] = useState('');
 
-  useEffect(() => {
-    console.log(window.location.pathname);
-  }, [window.location.pathname]);
-
   const theComponent = () => {
     return (
       <Switch>
@@ -48,17 +44,13 @@ const Index = ({ changeMainComponent }) => {
   return (
     <BrowserRouter>
       <div className="indexcontainer">
-        {window.location.pathname.indexOf('auth') < 0 ? (
-          <Nav
-            changeMainComponent={changeMainComponent}
-            changeComponent={setCurrentComponent}
-            currentComponent={currentComponent}
-            setLang={setLang}
-            name={name}
-          />
-        ) : (
-          ''
-        )}
+        <Nav
+          changeMainComponent={changeMainComponent}
+          changeComponent={setCurrentComponent}
+          currentComponent={currentComponent}
+          setLang={setLang}
+          name={name}
+        />
 
         <div className="subcontainer">{theComponent()}</div>
       </div>

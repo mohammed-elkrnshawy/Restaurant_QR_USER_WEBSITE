@@ -75,12 +75,7 @@ const Login = ({}) => {
 
           <p className="signup">
             {t("Don't have an account?")}{' '}
-            <a
-              href="#"
-              onClick={() => {
-                window.location.assign('/auth/signup');
-              }}
-            >
+            <a href={`http://${window.location.host}/auth/signup`}>
               {t('Sign Up')}
             </a>
           </p>

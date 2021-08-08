@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory, Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import i18n from '../translation/i18n';
 import { Menu, Dropdown } from 'antd';
@@ -10,6 +10,7 @@ import './style.css';
 
 export const Nav = ({ changeComponent, currentComponent, setLang, name }) => {
   const { t } = useTranslation();
+  let location = useLocation();
   let history = useHistory();
   const menu = (
     <Menu>
@@ -129,23 +130,6 @@ export const Nav = ({ changeComponent, currentComponent, setLang, name }) => {
             </a>
           </li>
 
-          {/* <li class="nav-item">
-            <a
-              style={{
-                padding: 15,
-                color: currentComponent == 'search' ? '#15b2a2' : 'black',
-              }}
-              onClick={() => {
-                changeComponent('search');
-              }}
-              className={
-                currentComponent == 'search' ? 'nav-link active' : 'nav-link'
-              }
-            >
-              <i class="fas fa-search"></i>
-            </a>
-          </li> */}
-
           <li class="nav-item">
             <a
               href="#"
@@ -208,9 +192,7 @@ export const Nav = ({ changeComponent, currentComponent, setLang, name }) => {
             style={{
               padding: 15,
             }}
-            onClick={() => {
-              window.location.assign('/auth/login');
-            }}
+            href={`http://${window.location.host}/auth/login`}
           >
             <i class="fas fa-sign-in-alt"></i> {t('login')}
           </a>
