@@ -75,9 +75,7 @@ const Login = ({}) => {
 
           <p className="signup">
             {t("Don't have an account?")}{' '}
-            <a href={`http://${window.location.host}/auth/signup`}>
-              {t('Sign Up')}
-            </a>
+            <a href={`http://${window.location.host}/signup`}>{t('Sign Up')}</a>
           </p>
         </form>
       </div>

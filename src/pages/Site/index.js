@@ -36,6 +36,7 @@ const Index = ({ changeMainComponent }) => {
         <Route path="/home/edit-profile/" exact component={EditProfile} />
         <Route path="/home/contact-us/" exact component={ContactUs} />
         <Route path="/home/my-reservations" exact component={MyReservations} />
+        <Route path="/login" exact component={MyReservations} />
 
         <Redirect to="/home" />
       </Switch>
@@ -44,13 +45,7 @@ const Index = ({ changeMainComponent }) => {
   return (
     <BrowserRouter>
       <div className="indexcontainer">
-        <Nav
-          changeMainComponent={changeMainComponent}
-          changeComponent={setCurrentComponent}
-          currentComponent={currentComponent}
-          setLang={setLang}
-          name={name}
-        />
+        <Nav />
 
         <div className="subcontainer">{theComponent()}</div>
       </div>

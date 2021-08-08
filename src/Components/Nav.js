@@ -192,7 +192,7 @@ export const Nav = ({ changeComponent, currentComponent, setLang, name }) => {
             style={{
               padding: 15,
             }}
-            href={`http://${window.location.host}/auth/login`}
+            href={`http://${window.location.host}/login`}
           >
             <i class="fas fa-sign-in-alt"></i> {t('login')}
           </a>

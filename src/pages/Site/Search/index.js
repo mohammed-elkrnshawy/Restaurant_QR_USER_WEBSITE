@@ -2,11 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { Layout, Menu, Breadcrumb } from 'antd';
-import {
-  UserOutlined,
-  LaptopOutlined,
-  NotificationOutlined,
-} from '@ant-design/icons';
+
 import { Rate, Card, Avatar, Input, Row, Col, Radio } from 'antd';
 import axios from 'axios';
 import cogoToast from 'cogo-toast';
