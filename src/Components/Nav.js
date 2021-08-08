@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import i18n from '../translation/i18n';
 import { Menu, Dropdown } from 'antd';
@@ -8,15 +8,9 @@ import { DownCircleFilled } from '@ant-design/icons';
 
 import './style.css';
 
-export const Nav = ({
-  changeComponent,
-  currentComponent,
-  changeMainComponent,
-  setLang,
-  name,
-}) => {
+export const Nav = ({ changeComponent, currentComponent, setLang, name }) => {
   const { t } = useTranslation();
-
+  let history = useHistory();
   const menu = (
     <Menu>
       <Menu.Item>
@@ -24,7 +18,7 @@ export const Nav = ({
           <div className="icon-wrapper" style={{}}>
             <a
               onClick={() => {
-                changeComponent('editProfile');
+                history.push('/home/edit-profile');
               }}
               style={{
                 padding: 10,
@@ -45,7 +39,7 @@ export const Nav = ({
           <div className="icon-wrapper" style={{}}>
             <a
               onClick={() => {
-                changeComponent('myReservation');
+                history.push('/home/my-reservations');
               }}
               style={{
                 padding: 10,
@@ -67,7 +61,7 @@ export const Nav = ({
         onClick={() => {
           localStorage.removeItem('token');
           window.location.reload();
-          changeMainComponent('home');
+          history.push('/home');
         }}
         style={{
           padding: 10,
@@ -78,7 +72,7 @@ export const Nav = ({
     </Menu>
   );
 
-  const history = useHistory();
+  // const history = useHistory();
   useEffect(() => {
     console.log(currentComponent);
     const hamburger = document.querySelector('.hamburger');
@@ -105,7 +99,7 @@ export const Nav = ({
             <a
               href="#"
               onClick={() => {
-                changeComponent('home');
+                history.push('/home');
               }}
               style={{
                 padding: 5,
@@ -120,13 +114,11 @@ export const Nav = ({
           </li>
 
           <li class="nav-item">
-            <a
+            <Link
               style={{
                 padding: 15,
               }}
-              onClick={() => {
-                changeComponent('contact');
-              }}
+              to="/home/contact-us"
               style={{
                 padding: 5,
                 color: currentComponent == 'contact' ? '#15b2a2' : 'black',
@@ -136,7 +128,7 @@ export const Nav = ({
               }
             >
               {t('Contact Us')}
-            </a>
+            </Link>
           </li>
 
           <li class="nav-item">
@@ -194,7 +186,6 @@ export const Nav = ({
                 document.body.dir = i18n.dir();
 
                 setLang(localStorage.getItem('i18nextLng'));
-                const element = document.getElementById('body');
                 window.location.reload();
               }}
             >
@@ -264,7 +255,7 @@ export const Nav = ({
               padding: 15,
             }}
             onClick={() => {
-              changeMainComponent('login');
+              window.location.assign('/auth/login');
             }}
             className={
               currentComponent == ' contact' ? 'nav-link active' : 'nav-link'

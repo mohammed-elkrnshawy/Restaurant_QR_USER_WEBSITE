@@ -4,10 +4,11 @@
   min-height: 80vh;
   align-content: flex-start;
   flex-direction: row;
+  width: 100%;
 }
 
 .home-panar {
-  width: 25vw;
+  width: 25%;
   min-width: 300px;
   max-width: 500px;
   padding-inline-start: 1vw;
@@ -24,10 +25,8 @@
 }
 
 .home-content {
-  padding-right: 10px;
   justify-self: center;
-  width: 70vw;
-  margin-inline-start: 25vw !important;
+  width: 70%;
   flex-wrap: wrap;
   flex-direction: column;
 }
@@ -103,6 +102,15 @@
 
     padding-top: 3vw;
     align-content: flex-start;
+    flex-direction: column;
+  }
+
+  .home-content {
+    padding-right: 10px;
+    justify-self: center;
+    width: 70vw;
+    margin-inline-start: 25vw !important;
+    flex-wrap: wrap;
     flex-direction: column;
   }
   .homeitemContainer {

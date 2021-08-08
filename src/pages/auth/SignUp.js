@@ -41,7 +41,7 @@ export const SignUp = ({ changeMainComponent }) => {
             localStorage.setItem('token', response.data.data.token);
             localStorage.setItem('name', response.data.data.name);
 
-            changeMainComponent('home');
+            history.push('/home');
           } else {
             cogoToast.warn(response.data.message);
           }
@@ -108,7 +108,7 @@ export const SignUp = ({ changeMainComponent }) => {
             <a
               href="#"
               onClick={() => {
-                changeMainComponent('login');
+                history.push('login');
               }}
             >
               {t('Log In')}

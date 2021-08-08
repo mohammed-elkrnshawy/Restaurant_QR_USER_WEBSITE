@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect, BrowserRouter } from 'react-router-dom';
 
 import Home from './Home';
 import Details from './Details';
+
+import Pages from '../index';
 
 import Search from './Search';
 import MyReservations from './MyReservations';
@@ -22,54 +24,46 @@ const { Header, Content, Footer } = Layout;
 
 const Index = ({ changeMainComponent }) => {
   const [currentComponent, setCurrentComponent] = useState('home');
-  const [id, setId] = useState(0);
+  const [path, setPath] = useState('');
   const [lang, setLang] = useState('');
   const [name, setName] = useState('');
 
   useEffect(() => {
-    setLang(localStorage.getItem('i18nextLng'));
-    setName(localStorage.getItem('name'));
-  }, []);
+    console.log(window.location.pathname);
+  }, [window.location.pathname]);
 
   const theComponent = () => {
-    switch (currentComponent) {
-      case 'home':
-        return (
-          <Search changeComponent={setCurrentComponent} setId={setId} id={id} />
-        );
-      case 'details':
-        return (
-          <Details changeComponent={setCurrentComponent} id={id} lang={lang} />
-        );
+    return (
+      <Switch>
+        <Route path="/home" exact component={Search} />
+        <Route path="/home/resturant-details/" exact component={Details} />
+        <Route path="/home/edit-profile/" exact component={EditProfile} />
+        <Route path="/home/contact-us/" exact component={ContactUs} />
+        <Route path="/home/my-reservations" exact component={MyReservations} />
+        <Route path="/auth/login" component={Pages.Login} />
 
-      case 'myReservation':
-        return <MyReservations changeComponent={setCurrentComponent} />;
-      case 'contact':
-        return <ContactUs changeComponent={setCurrentComponent} />;
-      case 'editProfile':
-        return (
-          <EditProfile
-            changeComponent={setCurrentComponent}
-            setName={setName}
-          />
-        );
-
-      default:
-        return <Home changeComponent={setCurrentComponent} />;
-    }
+        <Redirect to="/home" />
+      </Switch>
+    );
   };
   return (
-    <>
+    <BrowserRouter>
       <div className="indexcontainer">
-        <Nav
-          changeMainComponent={changeMainComponent}
-          changeComponent={setCurrentComponent}
-          currentComponent={currentComponent}
-          setLang={setLang}
-          name={name}
-        />
+        {window.location.pathname.indexOf('auth') < 0 ? (
+          <Nav
+            changeMainComponent={changeMainComponent}
+            changeComponent={setCurrentComponent}
+            currentComponent={currentComponent}
+            setLang={setLang}
+            name={name}
+          />
+        ) : (
+          ''
+        )}
+
         <div className="subcontainer">{theComponent()}</div>
       </div>
+
       <Footer style={{ textAlign: 'center' }}>
         <FacebookFilled style={{ fontSize: 30, marginInline: 5 }} />
         <WhatsAppOutlined style={{ fontSize: 30, marginInline: 5 }} />
@@ -80,7 +74,7 @@ const Index = ({ changeMainComponent }) => {
 
         <h4>Resturants ©2021 Created by -------</h4>
       </Footer>
-    </>
+    </BrowserRouter>
   );
 };
 

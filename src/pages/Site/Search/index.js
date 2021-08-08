@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+
 import { Layout, Menu, Breadcrumb } from 'antd';
 import {
   UserOutlined,
@@ -17,6 +19,7 @@ const { Header, Content, Sider } = Layout;
 const { Meta } = Card;
 
 const Index = ({ changeComponent, setId, id }) => {
+  const history = useHistory();
   const { t } = useTranslation();
 
   const [cities, setCities] = useState([]);
@@ -31,7 +34,7 @@ const Index = ({ changeComponent, setId, id }) => {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    setId(-1);
+    // setId(-1);
     getData();
     getCategories();
     getCities();
@@ -81,12 +84,12 @@ const Index = ({ changeComponent, setId, id }) => {
   }, [city, rate, category, search]);
 
   useEffect(() => {
-    if (id > 0) changeComponent('details');
+    // if (id > 0) changeComponent('details');
   }, [id]);
 
   useEffect(() => {
     setLoading(true);
-    setId(-1);
+    // setId(-1);
     getData();
   }, [localStorage.getItem('lang')]);
 
@@ -177,7 +180,8 @@ const Index = ({ changeComponent, setId, id }) => {
               cursor: 'pointer',
             }}
             onClick={() => {
-              setId(i.id);
+              // setId(i.id);
+              history.push(`/resturant-details/?id=${i.id}`);
             }}
             cover={
               <img
@@ -471,18 +475,7 @@ const Index = ({ changeComponent, setId, id }) => {
               type="button"
             /> */}
         </div>
-        <Layout style={{ padding: '0 24px 24px', backgroundColor: 'white' }}>
-          <Content
-            style={{
-              padding: 24,
-              margin: 0,
-              height: 'inhert',
-              backgroundColor: 'white',
-            }}
-          >
-            {isLoading ? loading() : content()}
-          </Content>
-        </Layout>
+        <div className="home-content">{isLoading ? loading() : content()}</div>
       </div>
     );
   };

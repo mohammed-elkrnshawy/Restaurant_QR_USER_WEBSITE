@@ -45,11 +45,12 @@ const Details = (props) => {
   }
 
   useEffect(() => {
-    setId(props.id);
-    getData();
-  }, [props.id]);
-  useEffect(() => {
-    if (props.id <= 0) props.changeComponent('home');
+    const search = window.location.search;
+    const params = new URLSearchParams(search);
+    const paramId = params.get('id');
+
+    setId(paramId);
+    getData(paramId);
   }, []);
 
   const handleSubmit = (e) => {
@@ -65,7 +66,7 @@ const Details = (props) => {
       cogoToast.warn('Please Fill All Info');
     } else {
       let values = {
-        restaurant_id: props.id,
+        restaurant_id: id,
         name: e.target.name.value,
         phone: e.target.phone.value,
         count: e.target.count.value,
@@ -101,7 +102,7 @@ const Details = (props) => {
     e.preventDefault();
 
     let values = {
-      restaurant_id: props.id,
+      restaurant_id: id,
       name: e.target[0].value,
       phone: e.target[1].value,
       message: e.target[2].value,
@@ -123,11 +124,11 @@ const Details = (props) => {
       });
   };
 
-  const getData = () => {
+  const getData = (paramId) => {
     setLoading(true);
     axios
       .get(
-        `https://restaurant-dashboard.se01.tech/api/restaurants/${props.id}`,
+        `https://restaurant-dashboard.se01.tech/api/restaurants/${paramId}`,
         {
           headers: {
             'Content-Language':
@@ -242,6 +243,7 @@ const Details = (props) => {
       </Tabs>
     );
   };
+
   function callback(key) {
     console.log(key);
   }
