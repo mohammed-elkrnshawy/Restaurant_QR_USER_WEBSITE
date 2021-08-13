@@ -195,7 +195,7 @@ export const Nav = ({ changeComponent, currentComponent, setLang, name }) => {
             style={{
               padding: 15,
             }}
-            to={`login`}
+            to={`/login`}
           >
             <i class="fas fa-sign-in-alt"></i> {t('login')}
           </Link>

@@ -13,22 +13,29 @@ import {
 } from '@ant-design/icons';
 const { Meta } = Card;
 
-export default function Rates({ id, overallRate, changeComponent }) {
+export default function Rates({ overallRate, changeComponent }) {
   const [rates, setRates] = useState([]);
   const [stars, setStars] = useState(0);
   const [comment, setComment] = useState('');
   const [loading, setLoading] = useState(true);
+  const [id, setId] = useState(true);
+
   const { t } = useTranslation();
 
   const [modalIsOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    getComments();
+    const search = window.location.search;
+    const params = new URLSearchParams(search);
+    const paramId = params.get('id');
+
+    setId(paramId);
+    getComments(paramId);
   }, []);
 
-  const getComments = () => {
+  const getComments = (param) => {
     axios
-      .get(`https://restaurant-dashboard.se01.tech/api/comments/${id}`, {
+      .get(`https://restaurant-dashboard.se01.tech/api/comments/${param}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -64,7 +71,7 @@ export default function Rates({ id, overallRate, changeComponent }) {
       .then(function (response) {
         if (response.data.status == 'true') {
           setIsOpen(false);
-          getComments();
+          getComments(id);
           cogoToast.success('request submitted');
         } else {
           cogoToast.warn('someting went wrong');
