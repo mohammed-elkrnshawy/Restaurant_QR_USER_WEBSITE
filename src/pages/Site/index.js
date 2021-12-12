@@ -33,16 +33,15 @@ const Index = ({ changeMainComponent }) => {
   const theComponent = () => {
     return (
       <Switch>
-        <Route path="/home/about" exact component={Landing} />
-
         <Route path="/home" exact component={Search} />
+        <Route path="/home/about" exact component={Landing} />
         <Route path="/home/resturant-details/" exact component={Details} />
         <Route path="/home/edit-profile/" exact component={EditProfile} />
         <Route path="/home/contact-us/" exact component={ContactUs} />
         <Route path="/home/my-reservations" exact component={MyReservations} />
         <Route path="/login" exact component={Pages.Login} />
 
-        <Redirect to="/about" />
+        <Redirect to="/home/about" />
       </Switch>
     );
   };
@@ -56,7 +55,7 @@ const Index = ({ changeMainComponent }) => {
 
       <footer class="footer">
         <div class="footer__addr">
-          <h1 class="footer__logo">Something</h1>
+          <h1 class="footer__logo"></h1>
 
           <h2>Contact</h2>
 

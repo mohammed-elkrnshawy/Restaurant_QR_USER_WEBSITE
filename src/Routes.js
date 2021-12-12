@@ -9,7 +9,7 @@ const Routes = () => {
       <Switch>
         <Route path="/signup" component={Pages.SignUp} />
         <Route path="/home" component={Pages.Home} />
-        <Redirect to="/home" />
+        <Redirect to="/home/about" />
       </Switch>
     </BrowserRouter>
   );
