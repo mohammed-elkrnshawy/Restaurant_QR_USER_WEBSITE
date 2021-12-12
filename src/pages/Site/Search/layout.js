@@ -357,27 +357,27 @@ const Layout = ({ changeComponent, setId, id }) => {
                   >
                     <Col span={13}>
                       <Radio value="1">
-                        <Rate disabled value={1} />
+                        <Rate disabled value={1} count={1} />
                       </Radio>
                     </Col>
                     <Col span={13}>
                       <Radio value="2">
-                        <Rate disabled value={2} />
+                        <Rate disabled value={2} count={1} />
                       </Radio>
                     </Col>
                     <Col span={13}>
                       <Radio value="3">
-                        <Rate disabled value={3} />
+                        <Rate disabled value={3} count={1} />
                       </Radio>
                     </Col>
                     <Col span={13}>
                       <Radio value="4">
-                        <Rate disabled value={4} />
+                        <Rate disabled value={4} count={1} />
                       </Radio>
                     </Col>
                     <Col span={13}>
                       <Radio value="5">
-                        <Rate disabled value={5} />
+                        <Rate disabled value={5} count={1} />
                       </Radio>
                     </Col>
                   </Row>

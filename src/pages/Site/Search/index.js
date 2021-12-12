@@ -375,7 +375,7 @@ const Index = ({ changeComponent, setId, id }) => {
                 }}
               >
                 <Radio value="0">
-                  <Rate disabled value={0} />
+                  0 <Rate disabled value={0} count={1} />
                 </Radio>
               </Row>
               <Row
@@ -386,7 +386,7 @@ const Index = ({ changeComponent, setId, id }) => {
                 }}
               >
                 <Radio value="1">
-                  <Rate disabled value={1} />
+                  1 <Rate disabled value={1} count={1} />
                 </Radio>
               </Row>
               <Row
@@ -397,7 +397,7 @@ const Index = ({ changeComponent, setId, id }) => {
                 }}
               >
                 <Radio value="2">
-                  <Rate disabled value={2} />
+                  2 <Rate disabled value={2} count={1} />
                 </Radio>
               </Row>
               <Row
@@ -414,13 +414,7 @@ const Index = ({ changeComponent, setId, id }) => {
                     width: '100%',
                   }}
                 >
-                  <Rate
-                    style={{
-                      width: '100%',
-                    }}
-                    disabled
-                    value={3}
-                  />
+                  3 <Rate count={1} disabled value={3} />
                 </Radio>
               </Row>
               <Row
@@ -431,7 +425,7 @@ const Index = ({ changeComponent, setId, id }) => {
                 }}
               >
                 <Radio value="4">
-                  <Rate disabled value={4} />
+                  4 <Rate disabled value={4} count={1} />
                 </Radio>
               </Row>
               <Row
@@ -442,7 +436,7 @@ const Index = ({ changeComponent, setId, id }) => {
                 }}
               >
                 <Radio value="5">
-                  <Rate disabled value={5} />
+                  5 <Rate disabled value={5} count={1} />
                 </Radio>
               </Row>{' '}
             </Radio.Group>
