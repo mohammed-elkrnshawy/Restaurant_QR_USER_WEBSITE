@@ -1,16 +1,14 @@
 .contactusContainer {
   display: flex;
-  min-height: 80vh;
+  min-height: 100vh;
   justify-content: center;
-  align-items: center;
 }
 
 .contactusContent {
   width: 50vw;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding-top: 100px;
 }
 
 .contactusContent > form {

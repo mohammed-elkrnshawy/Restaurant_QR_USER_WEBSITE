@@ -81,7 +81,7 @@ export const Nav = ({ changeComponent, currentComponent, setLang, name }) => {
       className="header"
     >
       <nav className="navbar">
-        <a href="#" class="nav-logo">
+        <a href="/home/about" class="nav-logo">
           <img src="/assets/logo.svg"></img>
         </a>
         <ul class="nav-menu">

@@ -48,7 +48,12 @@ const Index = () => {
             placeholder={t('Mobile Number')}
           />
 
-          <textarea name="mesage" required placeholder="Message"></textarea>
+          <textarea
+            name="mesage"
+            required
+            placeholder="Message"
+            style={{ height: 300 }}
+          ></textarea>
 
           <input type="submit" value={t('send')} />
         </form>

@@ -15,7 +15,7 @@ const { Header, Content, Sider } = Layout;
 const { Meta } = Card;
 const contentStyle = {
   fontSize: 30,
-  height: 700,
+  height: '90vh',
   textAlign: 'center',
   justifyContent: 'center',
   backgroundSize: 'cover',
@@ -300,7 +300,7 @@ const Index = ({ changeComponent, setId, id }) => {
                   className="heading-custom"
                   style={{
                     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url("/assets/table.webp")`,
-                    borderRadius: 10,
+                    borderRadius: 3,
                   }}
                 >
                   <div style={{ ...contentStyle }}>
@@ -333,6 +333,111 @@ const Index = ({ changeComponent, setId, id }) => {
                 </div>
               </div>
             </Carousel>
+          </Col>
+        </Row>
+        <Row justify="center" align="top" style={{ marginBottom: 40 }}>
+          <Col span={21}>
+            <div className="StyledComponents__Wrapper-cqRtCQ hHHZYc">
+              <div className="StyledComponents__StyledSection-hQZjYI eKWqAJ">
+                <div className="StyledComponents__LeftSection-dWcQaw kIOcYm">
+                  <div className="StyledBox-bStriS fIPQJf">
+                    <div className="Header-bKPLEa kmXkDs">Mobile App</div>
+                    <p className="DetailsText-bKqcus jlkHWS">
+                      Download HungerStation on your mobile device for a more
+                      convenient and efficient ordering and delivering process.
+                    </p>
+                  </div>
+                  <div className="StyledComponents__ButtonGroup-QnoWm iJkoog">
+                    <a
+                      className="StyledComponents__ButtonWrapper-khRStF bmwoAM"
+                      href="https://app.adjust.com/yxyvdz1_s8eml8e?campaign=other_other_mix_eat_ma_sa_display_website-redirect-link&deeplink=hungerstation%3A%2F%2F&fallback=https%3A%2F%2Fitunes.apple.com%2Fsa%2Fapp%2Fhungerstation%2Fid596011949%3Futm_campaign%3Dother_other_web_eat_ma_sa_display_website-redirect-link%26utm_source%3D%26utm_medium%3Dother"
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      <button
+                        className="StyledButton-gXzblK jxRyTm"
+                        type="button"
+                        color="white"
+                        aria-label="iOS app"
+                        style={{
+                          border: '1px solid black',
+                          backgroundSize: 'contain',
+                          backgroundImage: `url('assets/apple.svg')`,
+                        }}
+                      >
+                        <p className="Text-bUpXnE kGTOrD" fontSize={14} />
+                      </button>
+                    </a>
+                    <a
+                      className="StyledComponents__ButtonWrapper-khRStF bmwoAM"
+                      href="https://app.adjust.com/yxyvdz1_s8eml8e?campaign=other_other_mix_eat_ma_sa_display_website-redirect-link&deeplink=hungerstation%3A%2F%2F&fallback=https%3A%2F%2Fhungerstation.com%3Futm_campaign%3Dother_other_web_eat_ma_sa_display_website-redirect-link%26utm_source%3D%26utm_medium%3Dother"
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      <button
+                        className="StyledButton-gXzblK fDSzFJ"
+                        type="button"
+                        color="black"
+                        style={{ backgroundSize: 'contain' }}
+                        aria-label="Android app"
+                      >
+                        <p className="Text-bUpXnE kGTOrD" fontSize={14} />
+                      </button>
+                    </a>
+                    <a
+                      className="StyledComponents__ButtonWrapper-khRStF bmwoAM"
+                      href="https://appgallery.huawei.com/#/app/C100255477"
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      <button
+                        className="StyledButton-gXzblK cWajde"
+                        type="button"
+                        color="white"
+                        aria-label="Huawei app"
+                        style={{
+                          border: '1px solid black',
+                          backgroundSize: 'contain',
+                        }}
+                      >
+                        <p className="Text-bUpXnE kGTOrD" fontSize={14} />
+                      </button>
+                    </a>
+                    <a
+                      className="StyledComponents__ButtonWrapper-khRStF bmwoAM"
+                      href="https://app.adjust.com/s8eml8e_yxyvdz1?deep_link=hungerstation%3A%2F%2F&campaign=other_campaigns_mix_eat_ma_sa_websitebanner&adgroup=websitebanner&fallback=https%3A%2F%2Fhungerstation.com%2Fsa-ar"
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      <button
+                        className="StyledButton-gXzblK bGCiIr"
+                        type="button"
+                        aria-label="mobile app"
+                      >
+                        Proceed With Our App
+                        <p className="Text-bUpXnE kGTOrD" fontSize={14} />
+                      </button>
+                    </a>
+                  </div>
+                </div>
+                <div className="StyledComponents__RightSection-bMivz jhWIXS">
+                  <div className="StyledComponents__MobileImageContainer-gUYbIu iQMyoA">
+                    <picture>
+                      <source
+                        type="image/webp"
+                        srcSet="/website-assets/8b94f4d1b4dbadeeea93bdb57487c95a.webp"
+                      />
+                      <img
+                        className="StyledComponents__MobileImage-eXpdfB lcKtPb"
+                        src="/website-assets/bc4089b1db073dd57882f2cef07b0ef0.png"
+                        alt="loading..."
+                      />
+                    </picture>
+                    <div className="StyledComponents__MobileBackground-gCMepY eQDYgz" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </Col>
         </Row>
         <Row justify="center" style={{ marginBottom: 40 }}>
