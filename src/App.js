@@ -5,7 +5,9 @@ import { Nav } from './Components/Nav';
 import Routes from './Routes';
 import i18n from './translation/i18n';
 import 'antd/dist/antd.css';
-
+import './css/dist/css/bootstrap.css';
+import './css/select2.css';
+import './css/App.css';
 const App = () => {
   useEffect(() => {
     localStorage.getItem('i18nextLng') &&

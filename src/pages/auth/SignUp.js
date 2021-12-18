@@ -50,7 +50,7 @@ export const SignUp = ({ changeMainComponent }) => {
   };
 
   return (
-    <div className="container">
+    <div className="container_">
       <div
         className="panar"
         style={{

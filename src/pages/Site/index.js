@@ -47,10 +47,10 @@ const Index = ({ changeMainComponent }) => {
   };
   return (
     <BrowserRouter>
-      <div className="indexcontainer">
+      <div className="">
         <Nav setLang={setLang} />
 
-        <div className="subcontainer">{theComponent()}</div>
+        <div className="">{theComponent()}</div>
       </div>
 
       <footer class="footer">

@@ -1,500 +1,381 @@
-import React, { useState, useEffect } from 'react';
-import { Modal, Button, Tabs } from 'antd';
-import axios from 'axios';
-import cogoToast from 'cogo-toast';
-import Category from './category';
-import About from './about';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import {
+  Row,
+  Col,
+  Container,
+  Form,
+  InputGroup,
+  Button,
+  Tab,
+  Nav,
+  Image,
+  Badge,
+} from 'react-bootstrap';
+import ItemsCarousel from '../../../common/ItemsCarousel';
 
-import SubCategory from './subcategory';
-import Meals from './meals';
+import BestSeller from '../../../common/BestSeller';
+import StarRating from '../../../common/StarRating';
+import RatingBar from '../../../common/RatingBar';
+import Review from '../../../common/Review';
+import Icofont from 'react-icofont';
 
-import './style.css';
-import Rates from './rates';
-import { useTranslation } from 'react-i18next';
+const Details = () => {
+  const [users, setUser] = useState([
+    {
+      name: 'Osahan Singh',
+      image: '/img/user/5.png',
+      url: '#',
+    },
+    {
+      name: 'Gurdeep Osahan',
+      image: '/img/user/2.png',
+      url: '#',
+    },
+    {
+      name: 'Askbootstrap',
+      image: '/img/user/3.png',
+      url: '#',
+    },
+    {
+      name: 'Osahan Singh',
+      image: '/img/user/4.png',
+      url: '#',
+    },
+  ]);
+  const [showAddressModal, setShow] = useState(false);
 
-const { TabPane } = Tabs;
-
-const Details = (props) => {
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [modalIsOpenContactUs, setIsOpenContactUs] = useState(false);
-
-  const [categories, setCategories] = useState([]);
-  const [subCategory, setSubCategory] = useState([]);
-  const [meals, setMeals] = useState([]);
-  const [rate, setRate] = useState(0);
-
-  const [type, setType] = useState('');
-
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [description, setDescription] = useState('');
-  const [image, setImage] = useState('');
-  const [location, setLocation] = useState({ lat: '', lng: '' });
-  const [loading, setLoading] = useState(true);
-
-  const [currentComponent, setCurrentComponent] = useState('category');
-  const [selected, setSelected] = useState(1);
-  const [id, setId] = useState(-1);
-  const { t } = useTranslation();
-
-  function openModal() {
-    setIsOpen(true);
-  }
-  function closeModal() {
-    setIsOpen(false);
-  }
-
-  useEffect(() => {
-    const search = window.location.search;
-    const params = new URLSearchParams(search);
-    const paramId = params.get('id');
-
-    setId(paramId);
-    getData(paramId);
-  }, []);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (
-      !e.target[0].value ||
-      !e.target[1].value ||
-      !e.target[2].value ||
-      !e.target[4].value ||
-      !e.target[5].value ||
-      !e.target[6].value
-    ) {
-      cogoToast.warn('Please Fill All Info');
-    } else {
-      let values = {
-        restaurant_id: id,
-        name: e.target.name.value,
-        phone: e.target.phone.value,
-        count: e.target.count.value,
-        date: e.target.date.value,
-        time: e.target.time.value,
-        notes: e.target.note.value,
-      };
-
-      console.log(values);
-
-      axios
-        .post(
-          'https://restaurant-dashboard.se01.tech/api/reservation',
-          values,
-          {
-            headers: {
-              authorization: `Bearer ${localStorage.getItem('token')}`,
-            },
-          }
-        )
-        .then(function (response) {
-          if (response.data.status == 'true') {
-            setIsOpen(false);
-            cogoToast.success('request submitted');
-          } else {
-            cogoToast.warn('someting went wrong');
-          }
-        });
-    }
+  const hideAddressModal = () => setShow(false);
+  const getQty = ({ id, quantity }) => {
+    //console.log(id);
+    //console.log(quantity);
   };
-
-  const handleSubmitContact = (e) => {
-    e.preventDefault();
-
-    let values = {
-      restaurant_id: id,
-      name: e.target[0].value,
-      phone: e.target[1].value,
-      message: e.target[2].value,
-    };
-
-    axios
-      .post('https://restaurant-dashboard.se01.tech/api/contact', values, {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      })
-      .then(function (response) {
-        if (response.data.status == 'true') {
-          cogoToast.success('request submitted');
-          setIsOpenContactUs(false);
-        } else {
-          cogoToast.warn('someting went wrong');
-        }
-      });
-  };
-
-  const getData = (paramId) => {
-    setLoading(true);
-    axios
-      .get(
-        `https://restaurant-dashboard.se01.tech/api/restaurants/${paramId}`,
-        {
-          headers: {
-            'Content-Language':
-              localStorage.getItem('lang') &&
-              localStorage.getItem('lang').search('ar') >= 0
-                ? 'ar'
-                : 'en',
-          },
-        }
-      )
-      .then((response) => {
-        if (response.data.status == 'true') {
-          setCategories(response.data.data.categories);
-          setName(response.data.data.name);
-          setPhone(response.data.data.phone);
-          setDescription(response.data.data.description);
-          setImage(response.data.data.image);
-          setRate(response.data.data.rates);
-          setType(response.data.data.category);
-
-          setLocation({
-            lat: response.data.data.lat,
-            lng: response.data.data.lng,
-          });
-          setLoading(false);
-        } else {
-          cogoToast.warn('Something Went Wrong');
-        }
-      })
-      .catch(() => {
-        console.log('');
-      });
-  };
-
-  const getSubCategory = (localId) => {
-    setLoading(true);
-
-    axios
-      .get(`https://restaurant-dashboard.se01.tech/api/categories/${localId}`, {
-        headers: {
-          'Content-Language':
-            localStorage.getItem('lang') &&
-            localStorage.getItem('lang').search('ar') >= 0
-              ? 'ar'
-              : 'en',
-        },
-      })
-      .then((response) => {
-        if (response.data.status == 'true') {
-          setSubCategory(response.data.data.items);
-          setLoading(false);
-        } else {
-          cogoToast.warn('Something Went Wrong');
-        }
-      });
-  };
-
-  const getMeals = (localId) => {
-    setLoading(true);
-
-    axios
-      .get(`https://restaurant-dashboard.se01.tech/api/products/${localId}`, {
-        headers: {
-          'Content-Language':
-            localStorage.getItem('lang') &&
-            localStorage.getItem('lang') &&
-            localStorage.getItem('lang').search('ar') >= 0
-              ? 'ar'
-              : 'en',
-        },
-      })
-      .then((response) => {
-        if (response.data.status == 'true') {
-          setLoading(false);
-
-          setMeals(response.data.data.items);
-        } else {
-          cogoToast.warn('Something Went Wrong');
-        }
-      });
-  };
-
-  const tabs = () => {
-    return (
-      <Tabs
-        defaultActiveKey="1"
-        onChange={callback}
-        active
-        tabBarStyle={{
-          color: 'GrayText',
-        }}
-      >
-        <TabPane tab={t('menu')} key="1">
-          {theComponent()}
-        </TabPane>
-        <TabPane tab={t('about')} key="2">
-          <About
-            changeComponent={setCurrentComponent}
-            description={description}
-            categories={categories}
-            location={location}
-            getSubCategory={getSubCategory}
-          />
-        </TabPane>
-        <TabPane tab={t('rates')} key="3">
-          <Rates
-            id={props.id}
-            overallRate={rate}
-            changeComponent={setCurrentComponent}
-          />
-        </TabPane>
-      </Tabs>
-    );
-  };
-
-  function callback(key) {
-    console.log(key);
-  }
-
-  const theComponent = () => {
-    switch (currentComponent) {
-      case 'category':
-        return (
-          <Category
-            changeComponent={setCurrentComponent}
-            categories={categories}
-            setId={setId}
-            getSubCategory={getSubCategory}
-            loading={loading}
-          />
-        );
-
-      case 'subCategory':
-        return (
-          <SubCategory
-            changeComponent={setCurrentComponent}
-            subCategory={subCategory}
-            getMeals={getMeals}
-            loading={loading}
-          />
-        );
-      case 'meals':
-        return <Meals meals={meals} changeComponent={setCurrentComponent} />;
-
-      default:
-        return (
-          <Category
-            changeComponent={setCurrentComponent}
-            categories={categories}
-            setId={setId}
-            getSubCategory={getSubCategory}
-          />
-        );
-    }
+  const getStarValue = ({ value }) => {
+    console.log(value);
+    //console.log(quantity);
   };
 
   return (
-    <div className="details-container">
-      <div
-        className="details-panar"
-        style={{
-          backgroundImage: `url("/assets/bg.png")`,
-          backgroundSize: 'cover',
-        }}
-      >
-        <div className="homeimageCont">
-          <div
-            className="homeimg"
-            style={{
-              backgroundImage: `url("${image}")`,
-            }}
-          ></div>
-          <h3 style={{ color: 'white' }}>{name}</h3>
+    <>
+      <section className="restaurant-detailed-banner">
+        <div className="text-center">
+          <Image fluid className="cover" src="/img/mall-dedicated-banner.png" />
         </div>
-        <p
-          className="hometype"
-          style={{
-            color: 'white',
-          }}
-        >
-          {type}
-        </p>
-        <p
-          className=""
-          style={{
-            fontSize: 15,
-            backgroundColor: 'white',
-            borderRadius: 20,
-            padding: 5,
-            margin: 5,
-            paddingLeft: 15,
-            paddingRight: 15,
-          }}
-        >
-          {' '}
-          {phone}
-        </p>
-        <div className="homestatus"></div>
-        {localStorage.getItem('token') ? (
-          <div className="dialogCont">
-            <input
-              className="newResButton "
-              style={{
-                visibility: 'hidden',
-                display: 'inline',
-                color: 'white',
-                height: '5vh',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '12vw',
-                border: 0,
-                padding: 0,
-              }}
-              type="button"
-            />
-            <input
-              className="newResButton "
-              style={{
-                display: 'inline',
-                backgroundColor: '#15b2a2',
-                color: 'white',
-                height: '5vh',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '14vw',
-                border: 0,
-                padding: 0,
-              }}
-              value={t('Contact Us')}
-              onClick={(e) => {
-                setIsOpenContactUs(true);
-              }}
-              type="button"
-            />
-            <input
-              className="newResButton "
-              style={{
-                padding: 0,
-
-                display: 'inline',
-                backgroundColor: 'white',
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '5vh',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '14vw',
-                fontSize: '90%',
-              }}
-              value={t('Make New Reservation')}
-              onClick={(e) => {
-                openModal();
-              }}
-              type="button"
-            />
-          </div>
-        ) : (
-          ''
-        )}
-      </div>
-
-      <div className="details-content">{tabs()}</div>
-
-      <Modal
-        closable
-        title={
-          <div style={{ width: '100%', textAlign: 'center' }}>
-            <h4 style={{}}>{t('New Reservation')}</h4>
-          </div>
-        }
-        centered
-        width="43%"
-        visible={modalIsOpen}
-        onCancel={() => setIsOpen(false)}
-        footer={false}
-      >
-        <div className="reqformContent">
-          <h5 style={{ width: 'fit-content' }}>
-            {t('Make A New Reservation')}
-          </h5>
-          <p style={{ width: 'fit-content' }}>
-            {t('Please fill in the information to complete your request')}
-          </p>
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="name"
-              placeholder={t('Name')}
-              style={{ width: '100%' }}
-            />
-
-            <input type="text" name="phone" placeholder={t('Mobile Number')} />
-
-            <input type="text" name="count" placeholder={t('People')} />
-
-            <input
-              type="date"
-              name="date"
-              placeholder="Date"
-              className="date"
-            />
-            <input
-              type="time"
-              name="time"
-              placeholder="Time"
-              className="date"
-            />
-
-            <input
-              type="text"
-              name="note"
-              placeholder={t('Note')}
-              className="note"
-            />
-
-            <input
-              className="joinwaitingbtn "
-              style={{
-                width: 300,
-                margin: 0,
-                marginTop: 20,
-              }}
-              value={t('Submit Request')}
-              type="submit"
-            />
-          </form>
+        <div className="restaurant-detailed-header">
+          <Container>
+            <Row className="d-flex align-items-end">
+              <Col md={8}>
+                <div className="restaurant-detailed-header-left">
+                  <Image
+                    fluid
+                    className="mr-3 float-left"
+                    alt="osahan"
+                    src="/img/1.jpg"
+                  />
+                  <h2 className="text-white">Spice Hut Indian Restaurant</h2>
+                </div>
+              </Col>
+            </Row>
+          </Container>
         </div>
-      </Modal>
-      <Modal
-        title={
-          <div style={{ width: '100%', textAlign: 'center' }}>
-            <h4 style={{}}>{t('Contact Us')}</h4>
-          </div>
-        }
-        centered
-        width="53%"
-        visible={modalIsOpenContactUs}
-        onCancel={() => setIsOpenContactUs(false)}
-        footer={false}
-      >
-        <div className="contactusContent">
-          <h3 style={{ width: 'fit-content' }}>{t('Leave Us A Message')}</h3>
+      </section>
 
-          <p style={{ width: 'fit-content' }}>
-            {t('Please fill in the information to complete request')}
-          </p>
-          <form onSubmit={handleSubmitContact}>
-            <input type="text" required name="name" placeholder={t('Name')} />
-            <input
-              type="text"
-              required
-              name="mobileNum"
-              placeholder={t('Mobile Number')}
-            />
+      <Tab.Container defaultActiveKey="first">
+        <section className="offer-dedicated-nav bg-white border-top-0 shadow-sm">
+          <Container>
+            <Row>
+              <Col md={12}>
+                <Nav id="pills-tab">
+                  <Nav.Item>
+                    <Nav.Link eventKey="first">Order Online</Nav.Link>
+                  </Nav.Item>
 
-            <textarea
-              name="mesage"
-              required
-              placeholder={t('Message')}
-            ></textarea>
+                  <Nav.Item>
+                    <Nav.Link eventKey="third">Restaurant Info</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="fourth">Book A Table</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="fifth">Ratings & Reviews</Nav.Link>
+                  </Nav.Item>
+                </Nav>
+              </Col>
+            </Row>
+          </Container>
+        </section>
+        <section className="offer-dedicated-body pt-2 pb-2 mt-4 mb-4">
+          <Container>
+            <Row>
+              <Col md={8}>
+                <div className="offer-dedicated-body-left">
+                  <Tab.Content className="h-100">
+                    <Tab.Pane eventKey="first">
+                      <h5 className="mb-4">Recommended</h5>
+                    </Tab.Pane>
 
-            <input type="submit" value="Send" />
-          </form>
-        </div>
-      </Modal>
-    </div>
+                    <Tab.Pane eventKey="third">
+                      <div
+                        id="restaurant-info"
+                        className="bg-white rounded shadow-sm p-4 mb-4"
+                      >
+                        <div className="address-map float-right ml-5">
+                          <div className="mapouter">
+                            <div className="gmap_canvas">
+                              <iframe
+                                title="addressMap"
+                                width="300"
+                                height="170"
+                                id="gmap_canvas"
+                                src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=9&ie=UTF8&iwloc=&output=embed"
+                                frameBorder="0"
+                                scrolling="no"
+                                marginHeight="0"
+                                marginWidth="0"
+                              ></iframe>
+                            </div>
+                          </div>
+                        </div>
+                        <h5 className="mb-4">Restaurant Info</h5>
+                        <p className="mb-3">
+                          Jagjit Nagar, Near Railway Crossing,
+                          <br /> Near Model Town, Ludhiana, PUNJAB
+                        </p>
+                        <p className="mb-2 text-black">
+                          <Icofont icon="phone-circle text-primary mr-2" /> +91
+                          01234-56789, +91 01234-56789
+                        </p>
+                        <p className="mb-2 text-black">
+                          <Icofont icon="email text-primary mr-2" />{' '}
+                          iamosahan@gmail.com, osahaneat@gmail.com
+                        </p>
+                        <p className="mb-2 text-black">
+                          <Icofont icon="clock-time text-primary mr-2" /> Today
+                          11am – 5pm, 6pm – 11pm
+                          <Badge variant="success" className="ml-1">
+                            {' '}
+                            OPEN NOW{' '}
+                          </Badge>
+                        </p>
+                        <hr className="clearfix" />
+                        <p className="text-black mb-0">
+                          You can also check the 3D view by using our menue map
+                          clicking here &nbsp;&nbsp;&nbsp;{' '}
+                          <Link className="text-info font-weight-bold" to="#">
+                            Venue Map
+                          </Link>
+                        </p>
+                        <hr className="clearfix" />
+                        <h5 className="mt-4 mb-4">More Info</h5>
+                        <p className="mb-3">
+                          Dal Makhani, Panneer Butter Masala, Kadhai Paneer,
+                          Raita, Veg Thali, Laccha Paratha, Butter Naan
+                        </p>
+                        <div className="border-btn-main mb-4">
+                          <Link className="border-btn text-success mr-2" to="#">
+                            <Icofont icon="check-circled" /> Breakfast
+                          </Link>
+                          <Link className="border-btn text-danger mr-2" to="#">
+                            <Icofont icon="close-circled" /> No Alcohol
+                            Available
+                          </Link>
+                          <Link className="border-btn text-success mr-2" to="#">
+                            <Icofont icon="check-circled" /> Vegetarian Only
+                          </Link>
+                          <Link className="border-btn text-success mr-2" to="#">
+                            <Icofont icon="check-circled" /> Indoor Seating
+                          </Link>
+                          <Link className="border-btn text-success mr-2" to="#">
+                            <Icofont icon="check-circled" /> Breakfast
+                          </Link>
+                          <Link className="border-btn text-danger mr-2" to="#">
+                            <Icofont icon="close-circled" /> No Alcohol
+                            Available
+                          </Link>
+                          <Link className="border-btn text-success mr-2" to="#">
+                            <Icofont icon="check-circled" /> Vegetarian Only
+                          </Link>
+                        </div>
+                      </div>
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="fourth">
+                      <div
+                        id="book-a-table"
+                        className="bg-white rounded shadow-sm p-4 mb-5 rating-review-select-page"
+                      >
+                        <h5 className="mb-4">Book A Table</h5>
+                        <Form>
+                          <Row>
+                            <Col sm={6}>
+                              <Form.Group>
+                                <Form.Label>Full Name</Form.Label>
+                                <Form.Control
+                                  type="text"
+                                  placeholder="Enter Full Name"
+                                />
+                              </Form.Group>
+                            </Col>
+                            <Col sm={6}>
+                              <Form.Group>
+                                <Form.Label>Email Address</Form.Label>
+                                <Form.Control
+                                  type="text"
+                                  placeholder="Enter Email address"
+                                />
+                              </Form.Group>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col sm={6}>
+                              <Form.Group>
+                                <Form.Label>Mobile number</Form.Label>
+                                <Form.Control
+                                  type="text"
+                                  placeholder="Enter Mobile number"
+                                />
+                              </Form.Group>
+                            </Col>
+                            <Col sm={6}>
+                              <Form.Group>
+                                <Form.Label>Date And Time</Form.Label>
+                                <Form.Control
+                                  type="text"
+                                  placeholder="Enter Date And Time"
+                                />
+                              </Form.Group>
+                            </Col>
+                          </Row>
+                          <Form.Group className="text-right">
+                            <Button variant="primary" type="button">
+                              {' '}
+                              Submit{' '}
+                            </Button>
+                          </Form.Group>
+                        </Form>
+                      </div>
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="fifth">
+                      <div
+                        id="ratings-and-reviews"
+                        className="bg-white rounded shadow-sm p-4 mb-4 clearfix restaurant-detailed-star-rating"
+                      >
+                        <div className="star-rating float-right">
+                          <StarRating
+                            fontSize={26}
+                            star={5}
+                            getValue={getStarValue}
+                          />
+                        </div>
+                        <h5 className="mb-0 pt-1">Rate this Place</h5>
+                      </div>
+                      <div className="bg-white rounded shadow-sm p-4 mb-4 clearfix graph-star-rating">
+                        <h5 className="mb-0 mb-4">Ratings and Reviews</h5>
+                        <div className="graph-star-rating-header">
+                          <div className="star-rating">
+                            <StarRating
+                              fontSize={18}
+                              disabled={true}
+                              star={5}
+                              getValue={getStarValue}
+                            />
+                            <b className="text-black ml-2">334</b>
+                          </div>
+                          <p className="text-black mb-4 mt-2">
+                            Rated 3.5 out of 5
+                          </p>
+                        </div>
+                        <div className="graph-star-rating-body">
+                          <RatingBar leftText="5 Star" barValue={56} />
+                          <RatingBar leftText="4 Star" barValue={23} />
+                          <RatingBar leftText="3 Star" barValue={11} />
+                          <RatingBar leftText="2 Star" barValue={6} />
+                          <RatingBar leftText="1 Star" barValue={4} />
+                        </div>
+                        <div className="graph-star-rating-footer text-center mt-3 mb-3">
+                          <Button
+                            type="button"
+                            variant="outline-primary"
+                            size="sm"
+                          >
+                            Rate and Review
+                          </Button>
+                        </div>
+                      </div>
+                      <div className="bg-white rounded shadow-sm p-4 mb-4 restaurant-detailed-ratings-and-reviews">
+                        <Link
+                          to="#"
+                          className="btn btn-outline-primary btn-sm float-right"
+                        >
+                          Top Rated
+                        </Link>
+                        <h5 className="mb-1">All Ratings and Reviews</h5>
+                        <Review
+                          image="/img/user/1.png"
+                          ImageAlt=""
+                          ratingStars={5}
+                          Name="Singh Osahan"
+                          profileLink="#"
+                          reviewDate="Tue, 20 Mar 2020"
+                          reviewText="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classNameical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classNameical literature, discovered the undoubtable source. Lorem Ipsum comes from sections"
+                          likes="856M"
+                          dislikes="158K"
+                          otherUsers={users}
+                        />
+                        <hr />
+                        <Review
+                          image="/img/user/6.png"
+                          ImageAlt=""
+                          ratingStars={5}
+                          Name="Gurdeep Osahan"
+                          profileLink="#"
+                          reviewDate="Tue, 20 Mar 2020"
+                          reviewText="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
+                          likes="88K"
+                          dislikes="1K"
+                          otherUsers={users}
+                        />
+                        <hr />
+                        <Link
+                          className="text-center w-100 d-block mt-4 font-weight-bold"
+                          to="#"
+                        >
+                          See All Reviews
+                        </Link>
+                      </div>
+                      <div className="bg-white rounded shadow-sm p-4 mb-5 rating-review-select-page">
+                        <h5 className="mb-4">Leave Comment</h5>
+                        <p className="mb-2">Rate the Place</p>
+                        <div className="mb-4">
+                          <div className="star-rating">
+                            <StarRating
+                              fontSize={26}
+                              star={5}
+                              getValue={getStarValue}
+                            />
+                          </div>
+                        </div>
+                        <Form>
+                          <Form.Group>
+                            <Form.Label>Your Comment</Form.Label>
+                            <Form.Control as="textarea" />
+                          </Form.Group>
+                          <Form.Group>
+                            <Button variant="primary" size="sm" type="button">
+                              {' '}
+                              Submit Comment{' '}
+                            </Button>
+                          </Form.Group>
+                        </Form>
+                      </div>
+                    </Tab.Pane>
+                  </Tab.Content>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </section>
+      </Tab.Container>
+    </>
   );
 };
 
