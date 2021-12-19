@@ -12,7 +12,7 @@ import Landing from './LandingPage';
 import MyReservations from './MyReservations';
 import ContactUs from './ContactUs';
 import EditProfile from './EditProfile';
-import { Nav } from '../../Components/Nav';
+import Nav from '../../common/Header';
 import './style.css';
 import { Layout } from 'antd';
 import {
@@ -46,7 +46,7 @@ const Index = ({ changeMainComponent }) => {
     );
   };
   return (
-    <BrowserRouter>
+    <>
       <div className="">
         <Nav setLang={setLang} />
 
@@ -146,7 +146,7 @@ const Index = ({ changeMainComponent }) => {
           </div>
         </div>
       </footer>
-    </BrowserRouter>
+    </>
   );
 };
 

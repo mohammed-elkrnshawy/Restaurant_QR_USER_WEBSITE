@@ -4,6 +4,21 @@ import axios from 'axios';
 import cogoToast from 'cogo-toast';
 import './style.css';
 import { useTranslation } from 'react-i18next';
+import {
+  Row,
+  Col,
+  Container,
+  Form,
+  InputGroup,
+  Button,
+  Tab,
+  Nav,
+  Image,
+  Badge,
+} from 'react-bootstrap';
+import RatingBar from '../../../common/RatingBar';
+import Review from '../../../common/Review';
+import StarRating from '../../../common/StarRating';
 
 const Index = () => {
   const history = useHistory();
@@ -17,48 +32,62 @@ const Index = () => {
       phone: e.target[1].value,
       message: e.target[2].value,
     };
+    console.log(values);
 
-    axios
-      .post('https://restaurant-dashboard.se01.tech/api/contact', values, {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      })
-      .then(function (response) {
-        if (response.data.status == 'true') {
-          cogoToast.success('request submitted');
-        } else {
-          cogoToast.warn('someting went wrong');
-        }
-      });
+    // axios
+    //   .post('https://restaurant-dashboard.se01.tech/api/contact', values, {
+    //     headers: {
+    //       authorization: `Bearer ${localStorage.getItem('token')}`,
+    //     },
+    //   })
+    //   .then(function (response) {
+    //     if (response.data.status == 'true') {
+    //       cogoToast.success('request submitted');
+    //     } else {
+    //       cogoToast.warn('someting went wrong');
+    //     }
+    //   });
   };
 
   return (
-    <div className="contactusContainer">
-      <div className="contactusContent">
-        <form onSubmit={handleSubmit}>
-          <h3>{t('Leave Us A Message')}</h3>
-          <p>{t('Please fill in the information to complete request')}</p>
+    <Container>
+      <div className="bg-white rounded shadow-sm p-4 mb-5 mt-5 rating-review-select-page">
+        <h5 className="mb-4">Leave Comment</h5>
 
-          <input type="text" required name="name" placeholder={t('Name')} />
-          <input
-            type="text"
-            required
-            name="mobileNum"
-            placeholder={t('Mobile Number')}
-          />
-
-          <textarea
-            name="mesage"
-            required
-            placeholder="Message"
-            style={{ height: 300 }}
-          ></textarea>
-
-          <input type="submit" value={t('send')} />
-        </form>
+        <Form onSubmit={handleSubmit}>
+          <Row>
+            <Col md={6}>
+              <Form.Group>
+                <Form.Label>Name</Form.Label>
+                <Form.Control type="text" />
+              </Form.Group>
+            </Col>
+            <Col md={6}>
+              <Form.Group>
+                <Form.Label>Phone</Form.Label>
+                <Form.Control type="text" />
+              </Form.Group>
+            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Col md={12}>
+              <Form.Group>
+                <Form.Label>Your Comment</Form.Label>
+                <Form.Control as="textarea" />
+              </Form.Group>
+            </Col>
+          </Row>
+          <br />
+          <Form.Group>
+            <Button variant="primary" size="sm" type="submit">
+              {' '}
+              Submit{' '}
+            </Button>
+          </Form.Group>
+        </Form>
       </div>
-    </div>
+    </Container>
   );
 };
 
