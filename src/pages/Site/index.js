@@ -35,7 +35,7 @@ const Index = ({ changeMainComponent }) => {
       <Switch>
         <Route path="/home" exact component={Search} />
         <Route path="/home/about" exact component={Landing} />
-        <Route path="/home/resturant-details/" exact component={Details} />
+        <Route path="/home/resturant/" exact component={Details} />
         <Route path="/home/edit-profile/" exact component={EditProfile} />
         <Route path="/home/contact-us/" exact component={ContactUs} />
         <Route path="/home/my-reservations" exact component={MyReservations} />
@@ -50,7 +50,7 @@ const Index = ({ changeMainComponent }) => {
       <div className="">
         <Nav setLang={setLang} />
 
-        <div className="">{theComponent()}</div>
+        <div style={{ minHeight: '100vh' }}>{theComponent()}</div>
       </div>
 
       <footer class="footer">

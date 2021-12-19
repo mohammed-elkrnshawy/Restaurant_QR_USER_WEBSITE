@@ -1,33 +1,103 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import StarRatingComponent from 'react-star-rating-component';
-// import './style.css';
+
+import { Layout, Menu, Breadcrumb } from 'antd';
+import { Link } from 'react-router-dom';
+import {
+  Row,
+  Col,
+  Container,
+  Dropdown,
+  Accordion,
+  Button,
+  Form,
+  Spinner,
+} from 'react-bootstrap';
+import Icofont from 'react-icofont';
+import PageTitle from '../../../common/PageTitle';
+import CardItem from '../../../common/CardItem';
 import axios from 'axios';
 import cogoToast from 'cogo-toast';
 import { useTranslation } from 'react-i18next';
-import { Card, Avatar, Rate } from 'antd';
-
-const { Meta } = Card;
+// import './style.css';
 
 const Index = ({ changeComponent, setId, id }) => {
+  const history = useHistory();
+  const { t } = useTranslation();
+
+  const [cities, setCities] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  const [city, setCity] = useState('');
+  const [rate, setRate] = useState('');
+  const [category, setCategory] = useState('');
+  const [search, setSearch] = useState('');
+
   const [Resturant, setResturant] = useState([]);
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
-    setId(-1);
+    // setId(-1);
     getData();
+    getCategories();
+    getCities();
   }, []);
+
   useEffect(() => {
-    if (id > 0) changeComponent('details');
+    console.log(city, rate, category);
+
+    // if (e.target.value[0] == 's') {
+    //   setCategory(e.target.value.slice(1));
+    // } else if (e.target.value[0] == 'c') {
+    //   setCategory(e.target.value.slice(1));
+    // }
+
+    let query = `https://restaurant-dashboard.se01.tech/api/restaurants?${
+      city != '' ? 'city_id=' + city : ''
+    }${rate != '' ? '&rate=' + rate : ''}${
+      category != '' ? '&main_category=' + category : ''
+    }
+    ${
+      // category != '' && category[0] == 's'
+      //   ? '&sub_category=' + category.slice(1)
+      ''
+    }
+    ${search != '' ? '&name=' + search : ''}`;
+
+    setLoading(true);
+    axios
+      .get(query, {
+        headers: {
+          'Content-Language':
+            localStorage.getItem('lang') &&
+            localStorage.getItem('lang').search('ar') >= 0
+              ? 'ar'
+              : 'en',
+        },
+      })
+      .then((response) => {
+        if (response.data.status == 'true') {
+          setResturant([...response.data.data.items]);
+          console.log(Resturant);
+          setLoading(false);
+        } else {
+          cogoToast.warn('Something Went Wrong');
+        }
+      });
+  }, [city, rate, category, search]);
+
+  useEffect(() => {
+    // if (id > 0) changeComponent('details');
   }, [id]);
 
   useEffect(() => {
     setLoading(true);
-    setId(-1);
+    // setId(-1);
     getData();
   }, [localStorage.getItem('lang')]);
 
   const getData = () => {
+    setLoading(true);
     axios
       .get('https://restaurant-dashboard.se01.tech/api/restaurants', {
         headers: {
@@ -49,161 +119,103 @@ const Index = ({ changeComponent, setId, id }) => {
       });
   };
 
+  const getCategories = () => {
+    axios
+      .get('https://restaurant-dashboard.se01.tech/api/restaurantCategories', {
+        headers: {
+          'Content-Language':
+            localStorage.getItem('lang') &&
+            localStorage.getItem('lang').search('ar') >= 0
+              ? 'ar'
+              : 'en',
+        },
+      })
+      .then((response) => {
+        if (response.data.status == 'true') {
+          setCategories([...response.data.data]);
+          console.log(response.data.data);
+          setLoading(false);
+        } else {
+          cogoToast.warn('Something Went Wrong');
+        }
+      });
+  };
+
+  const getCities = () => {
+    axios
+      .get('https://restaurant-dashboard.se01.tech/api/cities', {
+        headers: {
+          'Content-Language':
+            localStorage.getItem('lang') &&
+            localStorage.getItem('lang').search('ar') >= 0
+              ? 'ar'
+              : 'en',
+        },
+      })
+      .then((response) => {
+        if (response.data.status == 'true') {
+          setCities([...response.data.data.items]);
+          console.log(Resturant);
+          setLoading(false);
+        } else {
+          cogoToast.warn('Something Went Wrong');
+        }
+      });
+  };
+
   const content = () => {
     return (
-      <div className="homeContainer">
-        {Resturant.map((i) => (
-          <Card
-            style={{
-              width: 150,
-              margin: 23,
-              padding: 0,
-              borderRight: 0,
-              borderLeft: 0,
-
-              cursor: 'pointer',
-            }}
-            onClick={() => {
-              setId(i.id);
-            }}
-            cover={
-              <img
-                alt="example"
-                src={i.image}
-                style={{ width: '100%', height: '128px', objectFit: 'fill' }}
-              />
-            }
-          >
-            <Meta
-              style={{ padding: 0, margin: 0 }}
-              title={i.name}
-              description={
-                <>
-                  <h6>{i.category || ' _'}</h6>
-                  <Rate defaultValue={1} disabled count={1} />
-                  <span className="ant-rate-text">{Math.floor(i.rates)}</span>
-                </>
-              }
-            />
-          </Card>
-
-          // <Item
-          //   name={i.name}
-          //   image={i.image}
-          //   rating={i.rates}
-          //   onClick={() => {
-          //     setId(i.id);
-          //     changeComponent('details');
-          //   }}
-          // />
-        ))}
-      </div>
+      <>
+        <section className="section pt-5 pb-5 products-listing">
+          <Container>
+            <Row>
+              <Col md={12}>
+                <Row>
+                  {Resturant.map((r) => (
+                    <Col md={2} sm={6} className="mb-4 pb-2">
+                      <CardItem
+                        title={r.name}
+                        subTitle="North Indian • American • Pure veg"
+                        imageAlt="Product"
+                        image={r.image}
+                        imageClass="img-fluid item-img"
+                        linkUrl={`/home/resturant/?id=${r.id}`}
+                        offerText="65% off | Use Coupon OSAHAN50"
+                        time="15–25 min"
+                        price="$100 FOR TWO"
+                        showPromoted={true}
+                        promotedVariant="dark"
+                        favIcoIconColor="text-danger"
+                        rating="3.1 (300+)"
+                      />
+                    </Col>
+                  ))}
+                </Row>
+              </Col>
+            </Row>
+          </Container>
+        </section>
+      </>
     );
   };
 
-  const loading = () => {
-    return (
-      <div className="homeContainer">
-        <Card
-          style={{
-            width: 150,
-            margin: 46,
-            padding: 0,
-            borderRight: 0,
-            borderLeft: 0,
+  function onCatChange(e) {
+    // if (e.target.value[0] == 's') {
+    //   setCategory(e.target.value.slice(1));
+    // } else if (e.target.value[0] == 'c') {
+    //   setCategory(e.target.value.slice(1));
+    // }
 
-            cursor: 'pointer',
-          }}
-          loading
-        >
-          <Meta
-            avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            }
-          />
-        </Card>
-        <Card style={{ width: 190, margin: 26, border: 0 }} loading>
-          <Meta
-            avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            }
-          />
-        </Card>
-        <Card style={{ width: 190, margin: 26, border: 0 }} loading>
-          <Meta
-            avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            }
-          />
-        </Card>
-        <Card style={{ width: 190, margin: 26, border: 0 }} loading>
-          <Meta
-            avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            }
-          />
-        </Card>
-        <Card style={{ width: 190, margin: 26, border: 0 }} loading>
-          <Meta
-            avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            }
-          />
-        </Card>
-        <Card style={{ width: 190, margin: 26, border: 0 }} loading>
-          <Meta
-            avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            }
-          />
-        </Card>{' '}
-        <Card style={{ width: 190, margin: 26, border: 0 }} loading>
-          <Meta
-            avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            }
-          />
-        </Card>
-        <Card style={{ width: 190, margin: 26, border: 0 }} loading>
-          <Meta
-            avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            }
-          />
-        </Card>
-        <Card style={{ width: 190, margin: 26, border: 0 }} loading>
-          <Meta
-            avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            }
-          />
-        </Card>{' '}
-        <Card style={{ width: 190, margin: 26, border: 0 }} loading>
-          <Meta
-            avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            }
-          />
-        </Card>
-        <Card style={{ width: 190, margin: 26, border: 0 }} loading>
-          <Meta
-            avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            }
-          />
-        </Card>
-        <Card style={{ width: 190, margin: 26, border: 0 }} loading>
-          <Meta
-            avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            }
-          />
-        </Card>
-      </div>
-    );
-  };
+    setCategory(e.target.value);
+  }
+  function onCityChange(e) {
+    setCity(e.target.value);
+  }
+  function onRateChange(e) {
+    setRate(e.target.value);
+  }
 
-  return isLoading ? loading() : content();
+  return content();
 };
 
 export default Index;

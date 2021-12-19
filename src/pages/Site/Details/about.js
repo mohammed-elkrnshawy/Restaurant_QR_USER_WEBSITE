@@ -1,87 +1,43 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import Item from './item';
-import { useTranslation } from 'react-i18next';
-import GoogleMapReact from 'google-map-react';
-const AnyReactComponent = ({ text }) => (
-  <div>
-    <i class="fas fa-map-marker-alt" style={{ width: 150, height: 50 }}></i>
-  </div>
-);
+import React from 'react';
+import Icofont from 'react-icofont';
 
-export default function About({ description, location }) {
-  const [address, setAddress] = useState('');
-  const { t } = useTranslation();
-  const defaultProps = {
-    center: {
-      lat: 59.95,
-      lng: 30.33,
-    },
-    zoom: 11,
-  };
-
-  useEffect(() => {
-    axios
-      .get(
-        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.lat},${location.lng}&key=AIzaSyBKHwO4kHCnokqGtz8gsFRqUFOYC0cKOnA`
-      )
-      .then((result) => {
-        defaultProps.center = {
-          lat: location.lat,
-          lng: location.lng,
-        };
-        setAddress(result.data.results[0].formatted_address);
-      });
-  }, []);
+export default function about({ description, address, phone }) {
   return (
-    <div className="categories">
-      <h4
-        style={{
-          marginBottom: 16,
-          fontSize: 16,
+    <div>
+      <div id="restaurant-info" className="bg-white rounded shadow-sm p-4 mb-4">
+        <div className="address-map float-right ml-5">
+          <div className="mapouter">
+            <div className="gmap_canvas">
+              <iframe
+                title="addressMap"
+                width="300"
+                height="170"
+                id="gmap_canvas"
+                src={`https://maps.google.com/maps?q=${address}&t=&z=9&ie=UTF8&iwloc=&output=embed`}
+                frameBorder="0"
+                scrolling="no"
+                marginHeight="0"
+                marginWidth="0"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+        <h5 className="mb-4">Restaurant Info</h5>
+        <p className="mb-3">{address}</p>
+        <p className="mb-2 text-black">
+          <Icofont icon="phone-circle text-primary mr-2" />
+          {phone}
+        </p>
+        <p className="mb-2 text-black">
+          <Icofont icon="email text-primary mr-2" /> {}
+        </p>
+        <br />
 
-          fontWeight: 'bolder',
-          marginBlockStart: 16,
-        }}
-      >
-        {t('Description')}
-      </h4>
-      <h4 style={{ marginTop: 0 }}>{description}</h4>
-      <div className="discrip" style={{ height: address ? '60vh' : '10vh' }}>
-        <h4
-          style={{
-            fontSize: 16,
-            fontWeight: 'bolder',
-          }}
-        >
-          {t('Location')}
-        </h4>
-        <h4 style={{ marginTop: 0 }}>
-          {' '}
-          {address || 'No Location For This Resturant'}
-        </h4>
+        <hr className="clearfix" />
 
-        {address ? (
-          <GoogleMapReact
-            bootstrapURLKeys={{
-              key: 'AIzaSyBKHwO4kHCnokqGtz8gsFRqUFOYC0cKOnA' /* YOUR KEY HERE */,
-            }}
-            defaultCenter={{
-              lat: location.lat,
-              lng: location.lng,
-            }}
-            defaultZoom={defaultProps.zoom}
-            options={{ scaleControlOptions: true }}
-          >
-            <AnyReactComponent
-              lat={location.lat}
-              lng={location.lng}
-              text="My Marker"
-            />
-          </GoogleMapReact>
-        ) : (
-          ''
-        )}
+        <br />
+        <h5 className="mt-4 mb-4">More Info</h5>
+        <p className="mb-3">{description}</p>
       </div>
     </div>
   );

@@ -52,17 +52,6 @@ class Review extends Component {
             <div className="reviews-members-body">
               <p>{this.props.reviewText}</p>
             </div>
-            <div className="reviews-members-footer">
-              <Link className="total-like" to="#">
-                <Icofont icon="thumbs-up" /> {this.props.likes}
-              </Link>{' '}
-              <Link className="total-like" to="#">
-                <Icofont icon="thumbs-down" /> {this.props.dislikes}
-              </Link>
-              <span className="total-like-user-main ml-2" dir="rtl">
-                {renObjData}
-              </span>
-            </div>
           </div>
         </div>
       </div>

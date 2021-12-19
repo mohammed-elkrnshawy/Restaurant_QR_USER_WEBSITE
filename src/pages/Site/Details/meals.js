@@ -1,35 +1,53 @@
-import React, { useEffect, useState } from 'react';
-import Item from './item_';
-import { useTranslation } from 'react-i18next';
-import { Breadcrumb } from 'antd';
+import React from 'react';
+import { Row, Col, Breadcrumb } from 'react-bootstrap';
+import BestSeller from '../../../common/BestSeller';
 
-export default function Category({ meals, changeComponent }) {
-  const { t } = useTranslation();
+export default function Categories({
+  meals,
+  getSubCategory,
 
+  setComponent,
+}) {
   return (
-    <div className="categories">
-      <Breadcrumb
-        style={{ display: 'inline', width: '100%', marginBottom: 20 }}
-      >
-        <Breadcrumb.Item>
-          <a onClick={() => changeComponent('category')}>{t('Categories')}</a>
+    <>
+      <Breadcrumb className="col-12">
+        <Breadcrumb.Item
+          onClick={() => {
+            setComponent('cat');
+          }}
+        >
+          Categories
         </Breadcrumb.Item>
-        <Breadcrumb.Item>
-          <a onClick={() => changeComponent('subCategory')}>
-            {t('Sub-Category')}
-          </a>
+        <Breadcrumb.Item
+          onClick={() => {
+            setComponent('sub');
+          }}
+        >
+          Sub-Categories
         </Breadcrumb.Item>
-        <Breadcrumb.Item>{t('Meals')}</Breadcrumb.Item>
+        <Breadcrumb.Item active>Meals</Breadcrumb.Item>
       </Breadcrumb>
+      <br />
 
-      {meals.map((i) => (
-        <Item
-          name={i.name}
-          image={i.image}
-          description={i.description}
-          price={i.price}
-        />
+      {meals.map((cat) => (
+        <Col md={3}>
+          <BestSeller
+            id={cat.id}
+            title={cat.name}
+            subTitle={cat.description}
+            imageAlt="Product"
+            image={cat.image}
+            imageClass="img-fluid item-img"
+            price={cat.price}
+            priceUnit="$"
+            isNew={false}
+            showPromoted={false}
+            promotedVariant="dark"
+            favIcoIconColor="text-danger"
+            rating=""
+          />
+        </Col>
       ))}
-    </div>
+    </>
   );
 }

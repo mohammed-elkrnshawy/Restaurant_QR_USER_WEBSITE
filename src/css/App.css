@@ -322,11 +322,11 @@ h6 {
   font-size: 12px;
 }
 .osahan-category-item img {
-  width: 40px !important;
-  height: 40px;
+  width: 120px !important;
+  height: 120px;
   object-fit: cover;
   display: inline-block !important;
-  border-radius: 50px;
+  border-radius: 5px;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
   margin: 2px 0 8px 0;
 }
