@@ -4,7 +4,8 @@ import axios from 'axios';
 import cogoToast from 'cogo-toast';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
+import { Link } from 'react-router-dom';
+import { Row, Col, Container, Form, Button } from 'react-bootstrap';
 export const SignUp = ({ changeMainComponent }) => {
   const { t } = useTranslation();
   const history = useHistory();
@@ -50,73 +51,92 @@ export const SignUp = ({ changeMainComponent }) => {
   };
 
   return (
-    <div className="container_">
-      <div
-        className="panar"
-        style={{
-          backgroundImage: `url("/assets/bg.png")`,
-        }}
-      ></div>
-      <div className="content">
-        <form onSubmit={handleSubmit}>
-          <h3>{t('Welcome To Our Resturent')}</h3>
-          <h5>{t('Sign Up')}</h5>
-          <br />
-          <p>{t('Please fill in the information to login')}</p>
-          <input
-            type="text"
-            name="name"
-            className="loginPass"
-            placeholder={t('Name')}
-            required
-          />
-          <input
-            type="text"
-            name="email"
-            className="loginPass"
-            placeholder={t('E-mail')}
-            required
-          />
+    <Container fluid className="bg-white">
+      <Row>
+        <Col
+          md={4}
+          lg={6}
+          className="d-none d-md-flex bg-image"
+          style={{
+            backgroundImage: `url("/assets/bg.png")`,
+          }}
+        ></Col>
+        <Col md={8} lg={6}>
+          <div className="login d-flex align-items-center py-5">
+            <Container>
+              <Row>
+                <Col md={9} lg={8} className="mx-auto pl-5 pr-5">
+                  <h3 className="login-heading mb-4">New Buddy!</h3>
+                  <Form onSubmit={handleSubmit}>
+                    <div className="form-label-group">
+                      <Form.Control
+                        type="text"
+                        id="name"
+                        placeholder="Name"
+                        name="name"
+                      />
+                      <Form.Label htmlFor="name">Name</Form.Label>
+                    </div>
+                    <div className="form-label-group">
+                      <Form.Control
+                        type="email"
+                        id="inputEmail"
+                        name="email"
+                        placeholder="Email address"
+                      />
+                      <Form.Label htmlFor="inputEmail">Email</Form.Label>
+                    </div>
+                    <div className="form-label-group">
+                      <Form.Control
+                        type="text"
+                        id="phone"
+                        name="mobileNum"
+                        placeholder="Phone"
+                      />
+                      <Form.Label htmlFor="phone">Phone</Form.Label>
+                    </div>
+                    <div className="form-label-group">
+                      <Form.Control
+                        type="password"
+                        id="inputPassword"
+                        name="password"
+                        placeholder="Password"
+                      />
+                      <Form.Label htmlFor="inputPassword">Password</Form.Label>
+                    </div>
+                    <div className="form-label-group">
+                      <Form.Control
+                        type="password"
+                        id="inputPassword2"
+                        name="rpassword"
+                        placeholder="Confirm Password"
+                      />
+                      <Form.Label htmlFor="inputPassword2">
+                        Confirm Password
+                      </Form.Label>
+                    </div>
 
-          <input
-            type="text"
-            name="mobileNum"
-            placeholder={t('Mobile Number')}
-            className="loginPass"
-            required
-          />
-
-          <input
-            type="password"
-            name="password"
-            placeholder={t('Password')}
-            className="loginPass"
-            required
-          />
-          <input
-            type="password"
-            name="rpassword"
-            className="loginPass"
-            placeholder={t('Password')}
-            required
-          />
-
-          <input type="submit" value={t('Sign Up')} />
-
-          <p className="signup">
-            {t('Already have an account?')}{' '}
-            <a
-              href="#"
-              onClick={() => {
-                history.push('login');
-              }}
-            >
-              {t('Log In')}
-            </a>
-          </p>
-        </form>
-      </div>
-    </div>
+                    <Button
+                      to="/login"
+                      type="submit"
+                      className="btn btn-lg  btn-block btn-login text-uppercase font-weight-bold mb-2"
+                    >
+                      Sign Up
+                    </Button>
+                    <div className="text-center pt-3">
+                      Already have an account?{' '}
+                      <Link className="font-weight-bold" to="/login">
+                        Sign In
+                      </Link>
+                    </div>
+                  </Form>
+                </Col>
+              </Row>
+            </Container>
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

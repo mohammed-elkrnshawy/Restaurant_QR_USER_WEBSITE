@@ -2,7 +2,9 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import './style.css';
+import { Link } from 'react-router-dom';
+import { Row, Col, Container, Form, Button } from 'react-bootstrap';
+import FontAwesome from '../../common/FontAwesome';
 import axios from 'axios';
 import cogoToast from 'cogo-toast';
 const Login = ({}) => {
@@ -41,45 +43,66 @@ const Login = ({}) => {
     }
   };
   return (
-    <div className="container_">
-      <div
-        className="panar"
-        style={{
-          backgroundImage: `url("/assets/bg.png")`,
-        }}
-      ></div>
-
-      <div className="content">
-        <form onSubmit={handleSubmit}>
-          <h3>{t('Welcome To Our Resturent')}</h3>
-          <h5>{t('Log In')}</h5>
-          <br />
-          <p>{t('Please fill in the information to login')}</p>
-
-          <input
-            type="text"
-            name="mobileNum"
-            className="loginPass"
-            placeholder={t('Mobile Number')}
-          />
-
-          <input
-            type="password"
-            name="password"
-            placeholder={t('Password')}
-            className="loginPass"
-          />
-          <a>{t('Forget Password?')}</a>
-
-          <input type="submit" value={t('Log In')} />
-
-          <p className="signup">
-            {t("Don't have an account?")}{' '}
-            <a href={`http://${window.location.host}/signup`}>{t('Sign Up')}</a>
-          </p>
-        </form>
-      </div>
-    </div>
+    <Container fluid className="bg-white">
+      <Row>
+        <Col
+          md={4}
+          lg={6}
+          className="d-none d-md-flex bg-image"
+          style={{
+            backgroundImage: `url("/assets/bg.png")`,
+          }}
+        ></Col>
+        <Col md={8} lg={6}>
+          <div className="login d-flex align-items-center py-5">
+            <Container>
+              <Row>
+                <Col md={9} lg={8} className="mx-auto pl-5 pr-5">
+                  <h3 className="login-heading mb-4">Welcome back!</h3>
+                  <Form onSubmit={handleSubmit}>
+                    <div className="form-label-group">
+                      <Form.Control
+                        type="text"
+                        id="inputEmail"
+                        placeholder="Email address"
+                      />
+                      <Form.Label htmlFor="inputEmail">Mobile</Form.Label>
+                    </div>
+                    <div className="form-label-group">
+                      <Form.Control
+                        type="password"
+                        id="inputPassword"
+                        placeholder="Password"
+                      />
+                      <Form.Label htmlFor="inputPassword">Password</Form.Label>
+                    </div>
+                    <Form.Check
+                      className="mb-3"
+                      custom
+                      type="checkbox"
+                      id="custom-checkbox"
+                      label="Remember password"
+                    />
+                    <Button
+                      className="btn btn-lg btn-block btn-login text-white text-uppercase font-weight-bold mb-2"
+                      type="submit"
+                    >
+                      Sign in
+                    </Button>
+                    <div className="text-center pt-3">
+                      Don’t have an account?{' '}
+                      <a className="font-weight-bold" href="/signup">
+                        Sign Up
+                      </a>
+                    </div>
+                  </Form>
+                </Col>
+              </Row>
+            </Container>
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
