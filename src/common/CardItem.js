@@ -25,7 +25,7 @@ class CardItem extends React.Component {
               src={this.props.image}
               className={this.props.imageClass}
               alt={this.props.imageAlt}
-              style={{ height: '15vh', width: '15vw' }}
+              style={{ width: '100%', height: '25vh' }}
             />
           </Link>
         </div>
