@@ -8,7 +8,7 @@ class CardItem extends React.Component {
   render() {
     return (
       <div className="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-        <div className="list-card-image">
+        <div className="list-card-image ">
           {this.props.rating ? (
             <div className="star position-absolute text-white">
               <Badge variant="danger" className="bg-secondary">
@@ -25,7 +25,7 @@ class CardItem extends React.Component {
               src={this.props.image}
               className={this.props.imageClass}
               alt={this.props.imageAlt}
-              style={{ width: '100%', height: '25vh' }}
+              style={{ height: '30vh' }}
             />
           </Link>
         </div>

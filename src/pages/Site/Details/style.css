@@ -1029,6 +1029,7 @@ small {
 }
 .list-card .list-card-image {
   position: relative;
+  height: max-content;
 }
 .list-card .favourite-heart {
   right: 8px;
