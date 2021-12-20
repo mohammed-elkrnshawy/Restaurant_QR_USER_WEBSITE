@@ -48,9 +48,11 @@ const Index = ({ changeMainComponent }) => {
   return (
     <>
       <div className="">
-        <Nav setLang={setLang} />
+        <BrowserRouter>
+          <Nav setLang={setLang} />
 
-        <div style={{ minHeight: '100vh' }}>{theComponent()}</div>
+          <div style={{ minHeight: '100vh' }}>{theComponent()}</div>
+        </BrowserRouter>
       </div>
 
       <footer class="footer">
