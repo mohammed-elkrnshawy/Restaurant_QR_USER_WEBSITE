@@ -32,7 +32,7 @@ class TopSearch extends React.Component {
                     <span className="font-weight-bold text-white">
                       Find Awesome Deals
                     </span>{' '}
-                    in Australia
+                    in KSA
                   </h1>
                   <h5 className="mb-5  font-weight-normal text-white">
                     Lists of top restaurants, cafes, pubs, and bars in
