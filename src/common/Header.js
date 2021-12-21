@@ -84,7 +84,10 @@ class Header extends React.Component {
                   as={NavLink}
                   activeclassname="active"
                   exact
-                  to="https://restaurant-dashboard.se01.tech/restaurants/create"
+                  to={{
+                    pathname:
+                      'https://restaurant-dashboard.se01.tech/restaurants/create',
+                  }}
                   target="_blank"
                 >
                   Join Us
