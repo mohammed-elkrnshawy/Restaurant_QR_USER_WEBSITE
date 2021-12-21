@@ -11,7 +11,7 @@ const Routes = () => {
         <Route path="/login" exact component={Pages.Login} />
 
         <Route path="/home" component={Pages.Home} />
-        <Redirect to="/home/about" />
+        <Redirect to="/home" />
       </Switch>
     </BrowserRouter>
   );

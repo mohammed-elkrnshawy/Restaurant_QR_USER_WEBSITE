@@ -16,7 +16,7 @@ class CategoriesCarousel extends React.Component {
             boxClass="osahan-category-item"
             title="American"
             counting="156"
-            image="img/list/1.png"
+            image="/img/list/1.png"
             imageClass="img-fluid"
             imageAlt="carousel"
             linkUrl="#"
@@ -27,7 +27,7 @@ class CategoriesCarousel extends React.Component {
             boxClass="osahan-category-item"
             title="Pizza"
             counting="120"
-            image="img/list/2.png"
+            image="/img/list/2.png"
             imageClass="img-fluid"
             imageAlt="carousel"
             linkUrl="#"
@@ -38,7 +38,7 @@ class CategoriesCarousel extends React.Component {
             boxClass="osahan-category-item"
             title="Healthy"
             counting="130"
-            image="img/list/3.png"
+            image="/img/list/3.png"
             imageClass="img-fluid"
             imageAlt="carousel"
             linkUrl="#"
@@ -49,7 +49,7 @@ class CategoriesCarousel extends React.Component {
             boxClass="osahan-category-item"
             title="Vegetarian"
             counting="120"
-            image="img/list/4.png"
+            image="/img/list/4.png"
             imageClass="img-fluid"
             imageAlt="carousel"
             linkUrl="#"
@@ -60,7 +60,7 @@ class CategoriesCarousel extends React.Component {
             boxClass="osahan-category-item"
             title="Chinese"
             counting="111"
-            image="img/list/5.png"
+            image="/img/list/5.png"
             imageClass="img-fluid"
             imageAlt="carousel"
             linkUrl="#"
@@ -71,7 +71,7 @@ class CategoriesCarousel extends React.Component {
             boxClass="osahan-category-item"
             title="Hamburgers"
             counting="958"
-            image="img/list/6.png"
+            image="/img/list/6.png"
             imageClass="img-fluid"
             imageAlt="carousel"
             linkUrl="#"
@@ -82,7 +82,7 @@ class CategoriesCarousel extends React.Component {
             boxClass="osahan-category-item"
             title="Dessert"
             counting="56"
-            image="img/list/7.png"
+            image="/img/list/7.png"
             imageClass="img-fluid"
             imageAlt="carousel"
             linkUrl="#"
@@ -93,7 +93,7 @@ class CategoriesCarousel extends React.Component {
             boxClass="osahan-category-item"
             title="Chicken"
             counting="40"
-            image="img/list/8.png"
+            image="/img/list/8.png"
             imageClass="img-fluid"
             imageAlt="carousel"
             linkUrl="#"
@@ -104,7 +104,7 @@ class CategoriesCarousel extends React.Component {
             boxClass="osahan-category-item"
             title="Indian"
             counting="156"
-            image="img/list/9.png"
+            image="/img/list/9.png"
             imageClass="img-fluid"
             imageAlt="carousel"
             linkUrl="#"
@@ -139,8 +139,8 @@ const options = {
   autoplayHoverPause: true,
   nav: true,
   navText: [
-    "<i class='fa fa-chevron-left'></i>",
-    "<i class='fa fa-chevron-right'></i>",
+    "<i class='fas fa-chevron-left'></i>",
+    "<i class='fas fa-chevron-right'></i>",
   ],
 };
 

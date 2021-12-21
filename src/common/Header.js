@@ -53,8 +53,8 @@ class Header extends React.Component {
           className="navbar-light osahan-nav shadow-sm"
         >
           <Container>
-            <Navbar.Brand to="/home/about">
-              <Link to="das">
+            <Navbar.Brand to="/home/">
+              <Link to="/home/">
                 <Image src="/assets/logo.svg" alt="" />
               </Link>
             </Navbar.Brand>
@@ -66,7 +66,7 @@ class Header extends React.Component {
                   as={NavLink}
                   activeclassname="active"
                   exact
-                  to="/home"
+                  to="/home/restaurants"
                 >
                   Resturants
                 </Nav.Link>

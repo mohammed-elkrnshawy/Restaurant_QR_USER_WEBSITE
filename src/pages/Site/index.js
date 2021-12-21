@@ -7,7 +7,6 @@ import Details from './Details';
 import Pages from '../index';
 
 import Search from './Search';
-import Landing from './LandingPage';
 
 import MyReservations from './MyReservations';
 import ContactUs from './ContactUs';
@@ -33,15 +32,15 @@ const Index = ({ changeMainComponent }) => {
   const theComponent = () => {
     return (
       <Switch>
-        <Route path="/home" exact component={Search} />
-        <Route path="/home/about" exact component={Landing} />
+        <Route path="/home" exact component={Home} />
+        <Route path="/home/restaurants" exact component={Search} />
         <Route path="/home/resturant/" exact component={Details} />
         <Route path="/home/edit-profile/" exact component={EditProfile} />
         <Route path="/home/contact-us/" exact component={ContactUs} />
         <Route path="/home/my-reservations" exact component={MyReservations} />
         <Route path="/login" exact component={Pages.Login} />
 
-        <Redirect to="/home/about" />
+        <Redirect to="/home/restaurants" />
       </Switch>
     );
   };
