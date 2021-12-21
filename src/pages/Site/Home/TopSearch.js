@@ -24,9 +24,12 @@ class TopSearch extends React.Component {
           />
         </div>
         <div className="restaurant-detailed-header">
-          <Container>
-            <Row className="d-flex align-items-center text-white">
-              <Col md={12}>
+          <Container style={{ bottom: '200px' }}>
+            <Row
+              className="d-flex align-items-center text-white"
+              style={{ bottom: '200px' }}
+            >
+              <Col md={12} style={{ bottom: '30vh' }}>
                 <div className="homepage-search-title">
                   <h1 className="mb-2 font-weight-normal text-white">
                     <span className="font-weight-bold text-white">
@@ -55,15 +58,33 @@ class TopSearch extends React.Component {
                               { text: 'Delivery', id: 5 },
                             ]}
                             options={{
-                              placeholder: 'Quick Searches',
+                              placeholder: 'Category Search',
                             }}
                           />
                         </div>
                       </Form.Group>
-                      <Form.Group className="col-lg-7 col-md-7 col-sm-12">
+                      <Form.Group className="col-lg-3 col-md-3 col-sm-12">
+                        <div className="location-dropdown">
+                          <Icofont icon="location-arrow" />
+                          <Select2
+                            className="custom-select"
+                            data={[
+                              { text: 'Breakfast', id: 1 },
+                              { text: 'Lunch', id: 2 },
+                              { text: 'Dinner', id: 3 },
+                              { text: 'Cafés', id: 4 },
+                              { text: 'Delivery', id: 5 },
+                            ]}
+                            options={{
+                              placeholder: 'City',
+                            }}
+                          />
+                        </div>
+                      </Form.Group>
+                      <Form.Group className="col-lg-4 col-md-4 col-sm-11">
                         <Form.Control
                           type="text"
-                          placeholder="Enter your delivery location"
+                          placeholder="Search"
                           size="lg"
                         />
                       </Form.Group>
