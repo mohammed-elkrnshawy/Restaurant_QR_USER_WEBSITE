@@ -70,7 +70,7 @@ class Header extends React.Component {
                 >
                   Resturants
                 </Nav.Link>
-                <Nav.Link
+                {/* <Nav.Link
                   eventKey={0}
                   as={NavLink}
                   activeclassname="active"
@@ -78,7 +78,7 @@ class Header extends React.Component {
                   to="/home/contact-us"
                 >
                   Contact Us
-                </Nav.Link>
+                </Nav.Link> */}
                 <Nav.Link
                   eventKey={0}
                   as={NavLink}

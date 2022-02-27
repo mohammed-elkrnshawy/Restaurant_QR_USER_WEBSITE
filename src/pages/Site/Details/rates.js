@@ -59,7 +59,7 @@ export default function Rates({ rates, resturantId, getComments, rate }) {
     <div>
       {rates.length > 0 && resturantId > -1 ? (
         <>
-          <div className="bg-white rounded shadow-sm p-4 mb-4 clearfix graph-star-rating">
+          {/* <div className="bg-white rounded shadow-sm p-4 mb-4 clearfix graph-star-rating">
             <h5 className="mb-0 mb-4">Ratings and Reviews</h5>
             <div className="graph-star-rating-header">
               <p className="text-black mb-4 mt-2">
@@ -73,7 +73,7 @@ export default function Rates({ rates, resturantId, getComments, rate }) {
               <RatingBar leftText="2 Star" barValue={6} />
               <RatingBar leftText="1 Star" barValue={4} />
             </div>
-          </div>
+          </div> */}
           <div className="bg-white rounded shadow-sm p-4 mb-5 rating-review-select-page">
             <h5 className="mb-4">Leave Comment</h5>
             <p className="mb-2">Rate the Place</p>
@@ -87,6 +87,7 @@ export default function Rates({ rates, resturantId, getComments, rate }) {
                 <Form.Label>Your Comment</Form.Label>
                 <Form.Control as="textarea" />
               </Form.Group>
+              <br />
               <Form.Group>
                 <Button variant="primary" size="sm" type="submit">
                   {' '}

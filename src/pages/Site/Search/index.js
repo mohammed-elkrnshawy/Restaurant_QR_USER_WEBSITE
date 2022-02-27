@@ -177,8 +177,8 @@ const Index = ({ changeComponent, setId, id }) => {
               <Col md={12}>
                 <Row>
                   {Resturant.map((r) => (
-                    <Col md={2} sm={6} className="mb-4 pb-2">
-                      <CardItem
+                    <Col md={3} sm={6} className="mb-4 pb-2">
+                      {/* <CardItem
                         title={r.name}
                         subTitle="North Indian • American • Pure veg"
                         imageAlt="Product"
@@ -192,7 +192,24 @@ const Index = ({ changeComponent, setId, id }) => {
                         promotedVariant="dark"
                         favIcoIconColor="text-danger"
                         rating={Math.floor(Number(r.rates))}
-                      />
+                      /> */}
+                      <div className="item">
+                        <CardItem
+                          title={r.name}
+                          subTitle="North Indian • American • Pure veg"
+                          imageAlt="Product"
+                          image={r.image}
+                          imageClass="img-fluid item-img"
+                          linkUrl={`/home/resturant/?id=${r.id}`}
+                          offerText="65% off | Use Coupon OSAHAN50"
+                          time="20–25 min"
+                          price="$250 FOR TWO"
+                          showPromoted={true}
+                          promotedVariant="dark"
+                          favIcoIconColor="text-danger"
+                          rating={Math.floor(Number(r.rates)) || '0'}
+                        />
+                      </div>
                     </Col>
                   ))}
                 </Row>
