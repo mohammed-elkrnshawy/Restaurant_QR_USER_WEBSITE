@@ -1,20 +1,32 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace;
-}
+/*
+Template Name: Osahan Eat - Online Food Ordering Website HTML Template
+Author: Askbootstrap
+Author URI: https://themeforest.net/user/askbootstrap
+Version: 1.0
+*/
+/*
+-- Body
+-- Nav
+-- login/Register
+-- Homepage Search Block
+-- Homepage
+-- Customize Bootstrap
+-- Listing
+-- Detail
+-- Checkout Page
+-- My Account
+-- Track Order Page
+-- Footer
+-- Mobile Media
+*/
+/* Body */
 body {
   background: #f3f7f8;
   font-size: 13px;
   font-weight: 500;
 }
-a,
-button {
+button,
+a {
   outline: none !important;
   color: #13b1a2;
   text-decoration: none !important;
@@ -38,28 +50,29 @@ h3,
 h4,
 h5,
 h6 {
-  color: #000;
+  color: #000000;
 }
+/* Nav */
 .osahan-nav {
-  background: #fff none repeat scroll 0 0 !important;
+  background: #fff none repeat scroll 100% 0 !important;
   padding: 0;
   z-index: 9;
 }
 .osahan-nav .nav-link {
   font-weight: 600;
-  padding: 28px 0 !important;
-  margin: 0 0 0 31px;
+  padding: 28px 0px !important;
+  margin: 0 31px 0 0;
 }
 .dropdown-cart .dropdown-menu {
-  padding-top: 0 !important;
+  padding-top: 0px !important;
 }
 .nav-osahan-pic {
   width: 32px;
   height: 32px;
   border: 3px solid #fff;
-  box-shadow: 0 0 3px #ccc;
+  box-shadow: 0px 0px 3px #ccc;
   position: relative;
-  margin: -8px 5px -6px 0;
+  margin: -8px 0 -6px 5px;
   vertical-align: text-top;
 }
 .dropdown-cart-top {
@@ -72,7 +85,7 @@ h6 {
 .dropdown-cart-top-header .img-fluid {
   border: 1px solid #dcdcdc;
   border-radius: 3px;
-  float: left;
+  float: right;
   height: 59px;
   padding: 3px;
   width: 59px;
@@ -96,22 +109,23 @@ h6 {
   width: 13px;
 }
 .dropdown-cart-top-body .food-item {
-  float: left;
-  margin: 4px 10px 0 0;
-  padding-left: 1px;
+  float: right;
+  margin: 4px 0 0 10px;
+  padding-right: 1px;
 }
+/* login/Register */
 :root {
   --input-padding-x: 1.5rem;
   --input-padding-y: 0.75rem;
 }
-.image,
-.login {
+.login,
+.image {
   min-height: 100vh;
 }
 .bg-image {
-  background-image: url(/img/login-bg.png);
+  /* background-image: url('/img/login-bg.png'); */
   background-size: cover;
-  background-position: 50%;
+  background-position: center;
 }
 .login-heading {
   font-weight: 300;
@@ -129,7 +143,7 @@ h6 {
 .form-label-group > input,
 .form-label-group > label {
   padding: 15px 0;
-  border-radius: 0;
+  border-radius: 0px;
   height: 51px;
   background: transparent !important;
   border: none;
@@ -139,16 +153,17 @@ h6 {
 .form-label-group > label {
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   display: block;
   width: 100%;
   margin-bottom: 0;
+  /* Override default `<label>` margin */
   line-height: 1.5;
   color: #495057;
   cursor: text;
+  /* Match the input under the label */
   border: 1px solid transparent;
   border-radius: 0.25rem;
-  -webkit-transition: all 0.1s ease-in-out;
   transition: all 0.1s ease-in-out;
 }
 .form-label-group input::-webkit-input-placeholder {
@@ -167,51 +182,48 @@ h6 {
   color: transparent;
 }
 .form-label-group input:not(:placeholder-shown) {
-  padding-top: 1.25rem;
-  padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * 0.66667);
-  padding-bottom: 0.25rem;
+  padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
   padding-bottom: calc(var(--input-padding-y) / 3);
 }
 .form-label-group input:not(:placeholder-shown) ~ label {
-  padding-top: 0.25rem;
   padding-top: calc(var(--input-padding-y) / 3);
-  padding-bottom: 0.25rem;
   padding-bottom: calc(var(--input-padding-y) / 3);
   font-size: 12px;
   color: #777;
 }
 .btn-google {
-  color: #fff;
+  color: white;
   background-color: #ea4335;
 }
 .btn-facebook {
-  color: #fff;
+  color: white;
   background-color: #3b5998;
 }
+/* Homepage Search Block */
 .homepage-search-block {
   background-color: #eef0ef;
 }
 .homepage-search-form .form-control {
   font-size: 15px;
   height: 50px;
-  padding-right: 106px;
+  padding-left: 106px;
 }
 .homepage-search-form .form-group {
   position: relative;
 }
 .homepage-search-form .locate-me {
-  background: #ececec none repeat scroll 0 0;
+  background: #ececec none repeat scroll 100% 0;
   color: #666;
   font-size: 12px;
   padding: 7px 10px;
   border-radius: 3px;
   position: absolute;
-  right: 14px;
+  left: 14px;
   top: 9px;
 }
 .homepage-search-form .locate-me:hover {
-  background: #666 none repeat scroll 0 0;
-  color: #fff;
+  background: #666 none repeat scroll 100% 0;
+  color: #ffffff;
 }
 .homepage-search-form .btn {
   font-size: 15px;
@@ -220,7 +232,7 @@ h6 {
   padding: 13px 5px;
 }
 .homepage-search-form .location-dropdown i {
-  left: 18px;
+  right: 18px;
   position: absolute;
   top: 20px;
   z-index: 9;
@@ -234,23 +246,23 @@ h6 {
 .homepage-search-form .select2-selection__rendered {
   font-size: 15px;
   line-height: 47px !important;
-  padding: 0 28px 0 31px !important;
+  padding: 0 31px 0 28px !important;
 }
 .homepage-search-form .select2-selection__arrow {
-  right: 9px !important;
+  left: 9px !important;
   top: 13px !important;
 }
 .select2-dropdown {
-  margin: -2px 0 0;
+  margin: -2px 0 0 0;
   border: 1px solid #ced4da;
   border-radius: 3px;
 }
-.select2-container--default .select2-search--dropdown .select2-search__field,
-.select2-search__field {
+.select2-container--default .select2-search--dropdown .select2-search__field {
   border: 1px solid #ced4da;
 }
 .select2-search__field {
   outline: none !important;
+  border: 1px solid #ced4da;
 }
 .owl-carousel {
   position: relative;
@@ -258,7 +270,7 @@ h6 {
 .owl-theme .owl-nav [class*='owl-'] {
   position: absolute;
   bottom: calc(50% - 20px);
-  background: #fff none repeat scroll 0 0 !important;
+  background: #fff none repeat scroll 100% 0 !important;
   border-radius: 30px !important;
   box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.2);
   color: #000 !important;
@@ -274,15 +286,16 @@ h6 {
 }
 .owl-theme .owl-nav [class*='owl-'] i {
   font-size: 13px !important;
-  font-weight: 400 !important;
+  font-weight: normal !important;
 }
 .owl-theme .owl-nav .owl-prev {
-  margin-left: -16px !important;
-}
-.owl-theme .owl-nav .owl-next {
-  right: 0;
   margin-right: -16px !important;
 }
+.owl-theme .owl-nav .owl-next {
+  left: 0px;
+  margin-left: -16px !important;
+}
+/* Homepage */
 .owl-carousel-four .item {
   padding: 6px 7px;
 }
@@ -300,22 +313,22 @@ h6 {
   border: 1px solid #13b1a2;
 }
 .osahan-category-item h6 {
-  margin: 0;
+  margin: 0px;
   font-size: 13px;
   color: #13b1a2;
 }
 .osahan-category-item p {
-  margin: 0;
+  margin: 0px;
   font-size: 12px;
 }
 .osahan-category-item img {
-  width: 40px !important;
-  height: 40px;
+  width: 120px !important;
+  height: 120px;
   object-fit: cover;
   display: inline-block !important;
-  border-radius: 50px;
+  border-radius: 5px;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
-  margin: 2px 0 8px;
+  margin: 2px 0 8px 0;
 }
 .line {
   background-color: #5e5e5e;
@@ -325,6 +338,7 @@ h6 {
   margin: 0 0 51px;
   width: 50px;
 }
+/* Customize Bootstrap */
 .small,
 small {
   font-size: 85%;
@@ -338,7 +352,7 @@ small {
   .select2-selection--single
   .select2-selection__arrow
   b {
-  left: 96%;
+  right: 96%;
 }
 .select2-container--default .select2-selection--single {
   background-color: #fff;
@@ -349,8 +363,8 @@ small {
   font-size: 14px;
   padding: 12px 16px;
 }
-.badge-success,
-.btn-success {
+.btn-success,
+.badge-success {
   background-color: #3ecf8e !important;
   border-color: #3ecf8e !important;
 }
@@ -359,7 +373,7 @@ small {
   border-color: #3ecf8e !important;
 }
 .btn-outline-success:hover {
-  color: #fff !important;
+  color: #ffffff !important;
   border-color: #3ecf8e !important;
   background-color: #3ecf8e !important;
 }
@@ -369,8 +383,8 @@ small {
 .border-success {
   border-color: #3ecf8e !important;
 }
-.badge-danger,
-.btn-danger {
+.btn-danger,
+.badge-danger {
   background-color: #f32129 !important;
   border-color: #f32129 !important;
 }
@@ -379,7 +393,7 @@ small {
   border-color: #f32129 !important;
 }
 .btn-outline-danger:hover {
-  color: #fff !important;
+  color: #ffffff !important;
   border-color: #f32129 !important;
   background-color: #f32129 !important;
 }
@@ -389,8 +403,8 @@ small {
 .border-danger {
   border-color: #f32129 !important;
 }
-.badge-danger,
-.btn-primary {
+.btn-primary,
+.badge-danger {
   background-color: #13b1a2 !important;
   border-color: #13b1a2 !important;
 }
@@ -402,7 +416,7 @@ small {
 .btn-outline-primary:not(:disabled):not(.disabled).active,
 .btn-outline-primary:not(:disabled):not(.disabled):active,
 .show > .btn-outline-primary.dropdown-toggle {
-  color: #fff !important;
+  color: #ffffff !important;
   border-color: #13b1a2 !important;
   background-color: #13b1a2 !important;
 }
@@ -414,7 +428,7 @@ small {
 }
 .btn-lg {
   font-size: 15px;
-  font-weight: 700;
+  font-weight: bold;
   padding: 14px 35px;
   letter-spacing: 1px;
 }
@@ -422,12 +436,12 @@ small {
   border: none;
   border-radius: 2px;
 }
-.btn,
-.form-control {
+.btn {
   border-radius: 2px;
 }
 .form-control {
   font-size: 13px;
+  border-radius: 2px;
   min-height: 38px;
 }
 .card {
@@ -436,18 +450,26 @@ small {
 .rounded {
   border-radius: 2px !important;
 }
+.input-group-text {
+  border-radius: 2px;
+}
+.custom-checkbox .custom-control-label::before {
+  border-radius: 2px;
+}
+.nav-pills .nav-link {
+  border-radius: 2px;
+}
 .alert,
 .badge,
-.custom-checkbox .custom-control-label:before,
-.dropdown-menu,
+.dropdown-menu {
+  border-radius: 2px;
+}
 .input-group-sm > .custom-select,
 .input-group-sm > .form-control,
 .input-group-sm > .input-group-append > .btn,
 .input-group-sm > .input-group-append > .input-group-text,
 .input-group-sm > .input-group-prepend > .btn,
-.input-group-sm > .input-group-prepend > .input-group-text,
-.input-group-text,
-.nav-pills .nav-link {
+.input-group-sm > .input-group-prepend > .input-group-text {
   border-radius: 2px;
 }
 .bg-dark {
@@ -474,22 +496,23 @@ small {
   background-color: #13b1a2;
   color: #fff;
 }
+/* Listing */
 .list-cate-page {
-  margin: -5px 0 0;
+  margin: -5px 0px 0px 0px;
 }
 .filters-card-body {
-  padding: 18px 0 0;
+  padding: 18px 0 0 0;
 }
 .filters-search {
   position: relative;
 }
 .filters-search i {
   position: absolute;
-  left: 12px;
+  right: 12px;
   top: 13px;
 }
 .filters-search .form-control {
-  padding-left: 34px;
+  padding-right: 34px;
 }
 .custom-checkbox label.custom-control-label,
 .custom-radio label.custom-control-label {
@@ -502,7 +525,7 @@ small {
   display: block;
 }
 .filters-card-header a i {
-  margin: 2px -2px 0 0;
+  margin: 2px 0 0 -2px;
 }
 .position-absolute {
   z-index: 1;
@@ -511,7 +534,7 @@ iframe.position-absolute {
   z-index: 0;
 }
 .list-card .count-number {
-  margin: 4px 0 0;
+  margin: 4px 0 0 0;
   display: inline-block;
 }
 .list-card a {
@@ -521,28 +544,29 @@ iframe.position-absolute {
   color: #0091bc;
 }
 .list-card .star {
-  right: 8px;
+  left: 8px;
   bottom: 8px;
 }
 .list-card .star .badge {
   font-size: 11px;
-  padding: 5px;
+  padding: 5px 5px;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
 }
 .list-card .member-plan {
-  left: 8px;
+  right: 8px;
   top: 8px;
 }
 .list-card .member-plan .badge {
   font-size: 11px;
-  padding: 5px;
+  padding: 5px 5px;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
 }
 .list-card .list-card-image {
   position: relative;
+  height: max-content;
 }
 .list-card .favourite-heart {
-  right: 8px;
+  left: 8px;
   top: 8px;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
 }
@@ -556,13 +580,14 @@ iframe.position-absolute {
   line-height: 24px;
   border-radius: 50px;
 }
+/* detail */
 .count-number .btn {
   padding: 2px 5px;
   font-size: 12px;
-  border-radius: 0;
+  border-radius: 0px;
 }
 .restaurant-detailed-header-left {
-  text-shadow: 0 0 10px #000;
+  text-shadow: 0px 0px 10px #000;
 }
 .count-number-input {
   width: 24px;
@@ -572,15 +597,28 @@ iframe.position-absolute {
   border: none;
   color: #fff;
   height: 24px;
-  border-radius: 0;
+  border-radius: 0px;
   vertical-align: bottom;
 }
 .generator-bg {
-  background: #13b1a2;
-  background: -webkit-linear-gradient(-45deg, #13b1a2 1%, #fe792b);
-  background: -webkit-linear-gradient(315deg, #13b1a2 1%, #fe792b);
-  background: linear-gradient(135deg, #13b1a2 1%, #fe792b);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#13b1a2",endColorstr="#fe792b",GradientType=1);
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#13b1a2+1,fe792b+100 */
+  background: #13b1a2; /* Old browsers */
+  background: -moz-linear-gradient(
+    45deg,
+    #13b1a2 1%,
+    #fe792b 100%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    45deg,
+    #13b1a2 1%,
+    #fe792b 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    -135deg,
+    #13b1a2 1%,
+    #fe792b 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#13b1a2', endColorstr='#fe792b',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 .restaurant-detailed-banner {
   position: relative;
@@ -591,20 +629,26 @@ iframe.position-absolute {
 }
 .restaurant-detailed-header {
   bottom: 0;
-  left: 0;
+  right: 0;
   padding: 65px 0 17px;
   position: absolute;
-  right: 0;
-  background: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.83));
-  background: -webkit-gradient(
-    linear,
-    left top,
-    left bottom,
-    from(transparent),
-    to(rgba(0, 0, 0, 0.83))
+  left: 0;
+  background: -moz-linear-gradient(
+    top,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.83) 100%
   );
-  background: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, 0.83));
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00000000",endColorstr="#d4000000",GradientType=0);
+  background: -webkit-linear-gradient(
+    top,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.83) 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.83) 100%
+  );
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#d4000000', GradientType=0);
 }
 .homepage-great-deals-carousel .item img {
   border-radius: 2px;
@@ -618,10 +662,10 @@ iframe.position-absolute {
 }
 .red-generator-bg {
   background: #ff3371;
-  background: -webkit-linear-gradient(-45deg, #ff3371 1%, #fe6753);
-  background: -webkit-linear-gradient(315deg, #ff3371 1%, #fe6753);
-  background: linear-gradient(135deg, #ff3371 1%, #fe6753);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff3371",endColorstr="#fe6753",GradientType=1);
+  background: -moz-linear-gradient(45deg, #ff3371 1%, #fe6753 100%);
+  background: -webkit-linear-gradient(45deg, #ff3371 1%, #fe6753 100%);
+  background: linear-gradient(-135deg, #ff3371 1%, #fe6753 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ff3371', endColorstr='#fe6753', GradientType=1);
 }
 .border-btn {
   border: 1px solid #dee0e6;
@@ -630,14 +674,14 @@ iframe.position-absolute {
   font-size: 14px;
   font-weight: 500;
   padding: 8px 15px;
-  margin: 0 0 10px;
+  margin: 0 0 10px 0;
 }
 .restaurant-detailed-ratings .generator-bg {
   border-radius: 4px;
   display: inline-block;
   font-size: 12px;
   height: 20px;
-  margin: 0 4px 0 0;
+  margin: 0 0 0 4px;
   padding: 3px 6px;
 }
 .explore-outlets-search .form-control {
@@ -647,12 +691,12 @@ iframe.position-absolute {
   padding: 5px 20px;
 }
 .explore-outlets-search .btn {
-  color: #777;
+  color: #777777;
   font-size: 15px;
   padding: 13px 17px;
   position: absolute;
   z-index: 9;
-  right: 0;
+  left: 0;
   text-decoration: none;
 }
 .mall-category-item {
@@ -661,7 +705,7 @@ iframe.position-absolute {
   margin: 0 6px;
   overflow: hidden;
   text-align: center;
-  padding: 0 0 7px;
+  padding: 0 0 7px 0;
 }
 .mall-category-item img {
   height: 89px;
@@ -672,12 +716,12 @@ iframe.position-absolute {
   font-size: 14px;
   font-weight: 500;
   margin: 0;
-  padding: 10px 10px 3px;
+  padding: 10px 10px 3px 10px;
 }
 .mall-category-item .btn {
   padding: 2px 8px;
   font-size: 12px;
-  right: 7px;
+  left: 7px;
   top: 7px;
 }
 .mall-category-item small {
@@ -689,7 +733,7 @@ iframe.position-absolute {
 }
 .mall-category-item:hover small {
   background: #f32129;
-  color: #fff;
+  color: #ffffff;
 }
 .address-map {
   border-radius: 2px;
@@ -697,11 +741,11 @@ iframe.position-absolute {
 }
 .new-arrivals-card .card-img .new-arrivals {
   bottom: 11px;
-  left: 12px;
+  right: 12px;
   position: absolute;
 }
 .new-arrivals {
-  background: #000 none repeat scroll 0 0;
+  background: #000 none repeat scroll 100% 0;
   border-radius: 2px;
   color: #fff;
   padding: 1px 13px;
@@ -718,7 +762,7 @@ iframe.position-absolute {
 }
 .total-like-user-main a {
   display: inline-block;
-  margin: 0 -17px 0 0;
+  margin: 0 0 0 -17px;
 }
 .total-like {
   border: 1px solid;
@@ -740,7 +784,7 @@ iframe.position-absolute {
   font-size: 17px;
 }
 .progress {
-  background: #f2f4f8 none repeat scroll 0 0;
+  background: #f2f4f8 none repeat scroll 100% 0;
   border-radius: 0;
   height: 30px;
 }
@@ -759,35 +803,35 @@ iframe.position-absolute {
 }
 .rating-list-right {
   line-height: 29px;
-  text-align: right;
+  text-align: left;
   width: 10%;
 }
 .restaurant-slider-pics {
   bottom: 0;
   font-size: 12px;
-  left: 0;
+  right: 0;
   z-index: 999;
   padding: 0 10px;
 }
 .restaurant-slider-view-all {
   bottom: 15px;
-  right: 15px;
+  left: 15px;
   z-index: 999;
 }
 .offer-dedicated-nav .nav-link.active,
-.offer-dedicated-nav .nav-link:focus,
-.offer-dedicated-nav .nav-link:hover {
+.offer-dedicated-nav .nav-link:hover,
+.offer-dedicated-nav .nav-link:focus {
   border-color: #3868fb;
   color: #3868fb;
 }
 .offer-dedicated-nav .nav-link {
   border-bottom: 2px solid #fff;
-  color: #000;
+  color: #000000;
   padding: 16px 0;
   font-weight: 600;
 }
 .offer-dedicated-nav .nav-item {
-  margin: 0 37px 0 0;
+  margin: 0 0 0 37px;
 }
 .restaurant-detailed-action-btn {
   margin-top: 12px;
@@ -800,14 +844,14 @@ iframe.position-absolute {
   padding: 7px;
 }
 .text-black {
-  color: #000;
+  color: #000000;
 }
 .icon-overlap {
   bottom: -23px;
   font-size: 74px;
   opacity: 0.23;
   position: absolute;
-  right: -32px;
+  left: -32px;
 }
 .menu-list img {
   width: 41px;
@@ -821,6 +865,7 @@ iframe.position-absolute {
   object-fit: cover;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
 }
+/* Checkout Page */
 .addresses-item a.btn.btn-sm {
   min-width: 157px;
 }
@@ -847,7 +892,7 @@ iframe.position-absolute {
   line-height: 29px;
   font-size: 15px;
   border-radius: 50px;
-  margin: 0 7px 0 0;
+  margin: 0 0px 0 7px;
   color: #fff;
 }
 .osahan-payment .nav-link.active {
@@ -867,13 +912,14 @@ iframe.position-absolute {
   color: #6c757d;
 }
 .osahan-card {
-  margin: 0 0 0 7px;
+  margin: 0 7px 0 0;
 }
 .osahan-payment label {
   font-size: 12px;
-  margin: 0 0 3px;
+  margin: 0 0 3px 0;
   font-weight: 600;
 }
+/* My Account */
 .payments-item img.mr-3 {
   width: 47px;
 }
@@ -881,7 +927,7 @@ iframe.position-absolute {
   border-radius: 2px;
   min-width: 121px;
   font-size: 13px;
-  padding: 7px 0;
+  padding: 7px 0 7px 0;
 }
 .osahan-account-page-left .nav-link {
   padding: 18px 20px;
@@ -898,7 +944,7 @@ iframe.position-absolute {
   line-height: 29px;
   font-size: 15px;
   border-radius: 50px;
-  margin: 0 7px 0 0;
+  margin: 0 0px 0 7px;
   color: #fff;
 }
 .osahan-account-page-left .nav-link.active {
@@ -918,9 +964,9 @@ iframe.position-absolute {
   border: 1px dotted #daceb7;
   display: inline-table;
   color: #17a2b8;
-  margin: 0 0 19px;
+  margin: 0 0 19px 0;
   font-size: 15px;
-  padding: 6px 10px 6px 6px;
+  padding: 6px 6px 6px 10px;
   border-radius: 2px;
   background: #fffae6;
   position: relative;
@@ -929,30 +975,32 @@ iframe.position-absolute {
   height: 22px;
   object-fit: cover;
   width: 22px;
-  margin: 0 8px 0 0;
+  margin: 0 0 0 8px;
   border-radius: 2px;
 }
 .card.offer-card h5:after {
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
   border-bottom: 4px solid #daceb7;
+  content: '';
+  right: 30px;
+  position: absolute;
   bottom: 0;
 }
-.card.offer-card h5:after,
 .card.offer-card h5:before {
-  border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  content: '';
-  left: 30px;
-  position: absolute;
-}
-.card.offer-card h5:before {
+  border-left: 4px solid transparent;
   border-top: 4px solid #daceb7;
+  content: '';
+  right: 30px;
+  position: absolute;
   top: 0;
 }
 .card.offer-card .card-btn {
   font-size: 13px;
   color: #13b1a2;
   vertical-align: top !important;
-  border: 0 !important;
+  border: 0px !important;
 }
 .card.offer-card .card-btn:hover {
   color: #0056b3;
@@ -961,7 +1009,7 @@ iframe.position-absolute {
   align-items: center;
 }
 .payments-item .media img {
-  margin: 0 40px 0 11px !important;
+  margin: 0 11px 0 40px !important;
 }
 .reviews-members .media .mr-3 {
   width: 56px;
@@ -976,12 +1024,14 @@ iframe.position-absolute {
   border-radius: 2px;
 }
 .osahan-cart-item p.text-gray.float-right {
-  margin: 3px 0 0;
+  margin: 3px 0 0 0;
   font-size: 12px;
 }
 .osahan-cart-item .food-item {
   vertical-align: bottom;
 }
+/* Track Order Page */
+
 .osahan-track-order-page {
   min-height: 676px;
 }
@@ -994,6 +1044,7 @@ iframe.position-absolute {
   background-color: rgba(225, 48, 8, 0.2);
   border: 1px solid #13b1a2;
 }
+/* Footer */
 .footer {
   background: #edf1f4;
 }
@@ -1024,6 +1075,8 @@ iframe.position-absolute {
 footer {
   background-color: #f0f4f7;
 }
+/* Mobile Media */
+/* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) {
   .m-none {
     display: none;
@@ -1032,24 +1085,24 @@ footer {
     text-align: center;
   }
   .list-cate-page {
-    margin: 22px 0 0;
+    margin: 22px 0 0 0;
   }
   .d-none-m {
     display: none;
   }
   .row.pt-2.pb-2 {
-    padding-bottom: 0 !important;
+    padding-bottom: 0px !important;
+    padding-top: 0px !important;
   }
-  .row.pt-2,
-  .row.pt-2.pb-2 {
-    padding-top: 0 !important;
+  .row.pt-2 {
+    padding-top: 0px !important;
   }
   .offer-card-horizontal .col-md-4.col-4.p-4 {
-    padding: 0 0 0 15px !important;
+    padding: 0 15px 0 0 !important;
   }
   .row.mt-4.pt-2 {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
+    margin-top: 0px !important;
+    padding-top: 0px !important;
   }
   .homepage-add-section {
     padding: 0 13px;
@@ -1061,8 +1114,8 @@ footer {
     font-size: 15px;
   }
   .breadcrumb-osahan {
-    padding-left: 15px;
     padding-right: 15px;
+    padding-left: 15px;
   }
   .reviews-members .media .mr-3 {
     width: 36px;
@@ -1072,7 +1125,7 @@ footer {
     font-size: 12px;
   }
   .restaurant-detailed-action-btn.float-right .btn {
-    margin: 3px 0;
+    margin: 3px 0px;
     font-size: 13px;
   }
   .login .col-md-9.col-lg-8.mx-auto.pl-5.pr-5 {
@@ -1086,20 +1139,20 @@ footer {
     font-size: 16px;
   }
   .homepage-add-section .col-md-3.col-6 {
-    padding: 2px;
+    padding: 2px 2px;
   }
   .homepage-ad .item {
     padding: 0 2px;
   }
   .osahan-nav {
-    padding: 15px;
+    padding: 15px 15px;
   }
   .navbar-toggler {
     padding: 5px 8px;
     border-radius: 2px;
   }
   .osahan-nav .nav-link {
-    margin: 0;
+    margin: 0px;
     text-align: center;
     padding: 14px 0 !important;
     border-bottom: 1px solid #eef0ef;
@@ -1108,7 +1161,7 @@ footer {
     text-align: center;
   }
   .osahan-slider {
-    padding: 18px 0 0 !important;
+    padding: 18px 0px 0 0 !important;
   }
   .pt-5,
   .py-5 {
@@ -1132,7 +1185,7 @@ footer {
   }
   .restaurant-detailed-header-left img {
     float: none !important;
-    margin: 0 0 14px !important;
+    margin: 0 0 14px 0 !important;
   }
   .restaurant-detailed-header-left {
     text-align: center;
@@ -1152,6 +1205,9 @@ footer {
     padding: 12px 0;
     border-bottom: 1px solid #dedede;
   }
+  .offer-dedicated-nav {
+    text-align: center;
+  }
   .offer-dedicated-nav .nav-item {
     flex: auto;
     border-bottom: 1px solid #ccc;
@@ -1163,26 +1219,26 @@ footer {
   }
   .address-map.float-right.ml-5 {
     float: none !important;
-    margin: 0 0 20px !important;
+    margin: 0 0 20px 0 !important;
   }
   .address-map.float-right.ml-5 iframe {
     width: 100%;
   }
   .osahan-track-order-detail p.text-gray.mb-5 {
-    margin: 1px 0 11px !important;
+    margin: 1px 0 11px 0 !important;
   }
   .osahan-account-page-left .nav-tabs {
-    padding-left: 0 !important;
+    padding-right: 0px !important;
   }
   .osahan-account-page-left {
     height: auto !important;
-    margin: 0 0 15px;
+    margin: 0 0 15px 0;
   }
   .order-list .float-right {
     float: none !important;
   }
   .row.mb-4 {
-    margin-bottom: 0 !important;
+    margin-bottom: 0px !important;
   }
   .app {
     margin-bottom: 26px;
@@ -1195,11 +1251,11 @@ footer {
     text-transform: capitalize;
   }
   .osahan-payment .col-sm-4.pr-0 {
-    padding-right: 15px !important;
+    padding-left: 15px !important;
   }
   .osahan-payment .col-sm-8.pl-0 {
-    padding-left: 15px !important;
-    margin: 14px 0 0;
+    padding-right: 15px !important;
+    margin: 14px 0 0 0;
   }
   .p-5.osahan-invoice.bg-white.shadow-sm {
     padding: 15px !important;
@@ -1212,39 +1268,40 @@ footer {
     padding: 20px !important;
   }
   .osahan-account-page-right {
-    padding: 0 !important;
+    padding: 0px !important;
     border: none;
     background: transparent !important;
     box-shadow: none !important;
     margin-top: 15px;
   }
 }
+/* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) and (max-width: 767.98px) {
   .homepage-add-section .col-md-3.col-6 {
-    padding: 2px;
+    padding: 2px 2px;
   }
   .homepage-search-title {
     text-align: center;
   }
   .row.pt-2.pb-2 {
-    padding-bottom: 0 !important;
+    padding-bottom: 0px !important;
+    padding-top: 0px !important;
   }
-  .row.pt-2,
-  .row.pt-2.pb-2 {
-    padding-top: 0 !important;
+  .row.pt-2 {
+    padding-top: 0px !important;
   }
   .d-none-m {
     display: none;
   }
   .list-cate-page {
-    margin: 22px 0 0;
+    margin: 22px 0 0 0;
   }
   .row.mt-4.pt-2 {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
+    margin-top: 0px !important;
+    padding-top: 0px !important;
   }
   .offer-card-horizontal .col-md-4.col-4.p-4 {
-    padding: 0 0 0 15px !important;
+    padding: 0 15px 0 0 !important;
   }
   .homepage-add-section {
     padding: 0 13px;
@@ -1256,14 +1313,14 @@ footer {
     max-width: 100%;
   }
   .osahan-nav {
-    padding: 15px;
+    padding: 15px 15px;
   }
   .navbar-toggler {
     padding: 5px 8px;
     border-radius: 2px;
   }
   .osahan-nav .nav-link {
-    margin: 0;
+    margin: 0px;
     text-align: center;
     padding: 14px 0 !important;
     border-bottom: 1px solid #eef0ef;
@@ -1272,7 +1329,7 @@ footer {
     text-align: center;
   }
   .osahan-slider {
-    padding: 18px 0 0 !important;
+    padding: 18px 0px 0 0 !important;
   }
   .pt-5,
   .py-5 {
@@ -1296,7 +1353,7 @@ footer {
   }
   .restaurant-detailed-header-left img {
     float: none !important;
-    margin: 0 0 14px !important;
+    margin: 0 0 14px 0 !important;
   }
   .restaurant-detailed-header-left {
     text-align: center;
@@ -1316,6 +1373,9 @@ footer {
     padding: 12px 0;
     border-bottom: 1px solid #dedede;
   }
+  .offer-dedicated-nav {
+    text-align: center;
+  }
   .offer-dedicated-nav .nav-item {
     flex: auto;
     border-bottom: 1px solid #ccc;
@@ -1327,33 +1387,33 @@ footer {
   }
   .address-map.float-right.ml-5 {
     float: none !important;
-    margin: 0 0 20px !important;
+    margin: 0 0 20px 0 !important;
   }
   .address-map.float-right.ml-5 iframe {
     width: 100%;
   }
   .osahan-payment .nav-link i {
     display: block;
-    margin: 0 auto 10px;
+    margin: 0 auto 10px auto;
   }
   .osahan-payment .nav-link {
     text-align: center;
   }
   .osahan-track-order-detail p.text-gray.mb-5 {
-    margin: 1px 0 11px !important;
+    margin: 1px 0 11px 0 !important;
   }
   .osahan-account-page-left .nav-tabs {
-    padding-left: 0 !important;
+    padding-right: 0px !important;
   }
   .osahan-account-page-left {
     height: auto !important;
-    margin: 0 0 15px;
+    margin: 0 0 15px 0;
   }
   .order-list .float-right {
     float: none !important;
   }
   .row.mb-4 {
-    margin-bottom: 0 !important;
+    margin-bottom: 0px !important;
   }
   .app {
     margin-bottom: 26px;
@@ -1366,19 +1426,20 @@ footer {
     text-transform: capitalize;
   }
 }
+/* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) and (max-width: 991.98px) {
   .container {
     max-width: 100%;
   }
   .osahan-nav {
-    padding: 15px;
+    padding: 15px 15px;
   }
   .navbar-toggler {
     padding: 5px 8px;
     border-radius: 2px;
   }
   .osahan-nav .nav-link {
-    margin: 0;
+    margin: 0px;
     text-align: center;
     padding: 14px 0 !important;
     border-bottom: 1px solid #eef0ef;
@@ -1387,7 +1448,7 @@ footer {
     text-align: center;
   }
   .osahan-slider {
-    padding: 18px 0 0 !important;
+    padding: 18px 0px 0 0 !important;
   }
   .pt-5,
   .py-5 {
@@ -1408,7 +1469,7 @@ footer {
   }
   .restaurant-detailed-header-left img {
     float: none !important;
-    margin: 0 0 14px !important;
+    margin: 0 0 14px 0 !important;
   }
   .restaurant-detailed-header-left {
     text-align: center;
@@ -1428,6 +1489,9 @@ footer {
     padding: 12px 0;
     border-bottom: 1px solid #dedede;
   }
+  .offer-dedicated-nav {
+    text-align: center;
+  }
   .offer-dedicated-nav .nav-item {
     margin: 0 8px !important;
   }
@@ -1436,33 +1500,33 @@ footer {
   }
   .address-map.float-right.ml-5 {
     float: none !important;
-    margin: 0 0 20px !important;
+    margin: 0 0 20px 0 !important;
   }
   .address-map.float-right.ml-5 iframe {
     width: 100%;
   }
   .osahan-payment .nav-link i {
     display: block;
-    margin: 0 auto 10px;
+    margin: 0 auto 10px auto;
   }
   .osahan-payment .nav-link {
     text-align: center;
   }
   .osahan-track-order-detail p.text-gray.mb-5 {
-    margin: 1px 0 11px !important;
+    margin: 1px 0 11px 0 !important;
   }
   .osahan-account-page-left .nav-tabs {
-    padding-left: 0 !important;
+    padding-right: 0px !important;
   }
   .osahan-account-page-left {
     height: auto !important;
-    margin: 0 0 15px;
+    margin: 0 0 15px 0;
   }
   .order-list .float-right {
     float: none !important;
   }
   .row.mb-4 {
-    margin-bottom: 0 !important;
+    margin-bottom: 0px !important;
   }
   .app {
     margin-bottom: 26px;
@@ -1475,9 +1539,12 @@ footer {
     text-transform: capitalize;
   }
 }
+/* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .container {
     max-width: 100%;
   }
 }
-/*# sourceMappingURL=main.a6ad9c15.chunk.css.map */
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+}

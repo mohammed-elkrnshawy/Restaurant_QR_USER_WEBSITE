@@ -16,12 +16,14 @@ import {
 import RatingBar from '../../../common/RatingBar';
 import Review from '../../../common/Review';
 import StarRating from '../../../common/StarRating';
+import { useTranslation } from 'react-i18next';
 
 import axios from 'axios';
 import cogoToast from 'cogo-toast';
 
 export default function Rates({ rates, resturantId, getComments, rate }) {
   let [starsCout, setStarsCount] = useState(0);
+  const { t } = useTranslation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -75,8 +77,8 @@ export default function Rates({ rates, resturantId, getComments, rate }) {
             </div>
           </div> */}
           <div className="bg-white rounded shadow-sm p-4 mb-5 rating-review-select-page">
-            <h5 className="mb-4">Leave Comment</h5>
-            <p className="mb-2">Rate the Place</p>
+            <h5 className="mb-4">{t('Leave Comment')}</h5>
+            <p className="mb-2">{t('Rate the Place')}</p>
             <div className="mb-4">
               <div className="star-rating">
                 <StarRating fontSize={26} star={5} getValue={getStarValue} />
@@ -84,20 +86,20 @@ export default function Rates({ rates, resturantId, getComments, rate }) {
             </div>
             <Form onSubmit={handleSubmit}>
               <Form.Group>
-                <Form.Label>Your Comment</Form.Label>
+                <Form.Label>{t('Your Comment')}</Form.Label>
                 <Form.Control as="textarea" />
               </Form.Group>
               <br />
               <Form.Group>
                 <Button variant="primary" size="sm" type="submit">
                   {' '}
-                  Submit Comment{' '}
+                  {t('Submit Comment')}{' '}
                 </Button>
               </Form.Group>
             </Form>
           </div>
           <div className="bg-white rounded shadow-sm p-4 mb-4 restaurant-detailed-ratings-and-reviews">
-            <h5 className="mb-1">All Ratings and Reviews</h5>
+            <h5 className="mb-1">{t('All Ratings and Reviews')}</h5>
             {rates.map((r) => (
               <>
                 <Review

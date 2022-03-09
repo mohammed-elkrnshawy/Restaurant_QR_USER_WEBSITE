@@ -66,53 +66,57 @@ export const SignUp = ({ changeMainComponent }) => {
             <Container>
               <Row>
                 <Col md={9} lg={8} className="mx-auto pl-5 pr-5">
-                  <h3 className="login-heading mb-4">New Buddy!</h3>
+                  <h3 className="login-heading mb-4">{t('New Buddy!')}</h3>
                   <Form onSubmit={handleSubmit}>
                     <div className="form-label-group">
                       <Form.Control
                         type="text"
                         id="name"
-                        placeholder="Name"
+                        placeholder={t('Name')}
                         name="name"
                       />
-                      <Form.Label htmlFor="name">Name</Form.Label>
+                      <Form.Label htmlFor="name">{t('Name')}</Form.Label>
                     </div>
                     <div className="form-label-group">
                       <Form.Control
                         type="email"
                         id="inputEmail"
                         name="email"
-                        placeholder="Email address"
+                        placeholder={t('E-mail')}
                       />
-                      <Form.Label htmlFor="inputEmail">Email</Form.Label>
+                      <Form.Label htmlFor="inputEmail">
+                        {t('E-mail')}
+                      </Form.Label>
                     </div>
                     <div className="form-label-group">
                       <Form.Control
                         type="text"
                         id="phone"
                         name="mobileNum"
-                        placeholder="Phone"
+                        placeholder={t('Phone')}
                       />
-                      <Form.Label htmlFor="phone">Phone</Form.Label>
+                      <Form.Label htmlFor="phone">{t('Phone')}</Form.Label>
                     </div>
                     <div className="form-label-group">
                       <Form.Control
                         type="password"
                         id="inputPassword"
                         name="password"
-                        placeholder="Password"
+                        placeholder={t('Password')}
                       />
-                      <Form.Label htmlFor="inputPassword">Password</Form.Label>
+                      <Form.Label htmlFor="inputPassword">
+                        {t('Password')}
+                      </Form.Label>
                     </div>
                     <div className="form-label-group">
                       <Form.Control
                         type="password"
                         id="inputPassword2"
                         name="rpassword"
-                        placeholder="Confirm Password"
+                        placeholder={t('Confirm Password')}
                       />
                       <Form.Label htmlFor="inputPassword2">
-                        Confirm Password
+                        {t('Confirm Password')}
                       </Form.Label>
                     </div>
 
@@ -121,12 +125,12 @@ export const SignUp = ({ changeMainComponent }) => {
                       type="submit"
                       className="btn btn-lg  btn-block btn-login text-uppercase font-weight-bold mb-2"
                     >
-                      Sign Up
+                      {t('Sign Up')}
                     </Button>
                     <div className="text-center pt-3">
-                      Already have an account?{' '}
+                      {t('Already have an account?')}{' '}
                       <Link className="font-weight-bold" to="/login">
-                        Sign In
+                        {t('Log In')}
                       </Link>
                     </div>
                   </Form>

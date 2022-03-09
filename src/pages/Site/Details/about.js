@@ -1,7 +1,11 @@
 import React from 'react';
 import Icofont from 'react-icofont';
 
-export default function about({ description, address, phone }) {
+import { useTranslation } from 'react-i18next';
+
+export default function About({ description, address, phone }) {
+  const { t } = useTranslation();
+
   return (
     <div>
       <div id="restaurant-info" className="bg-white rounded shadow-sm p-4 mb-4">
@@ -22,7 +26,7 @@ export default function about({ description, address, phone }) {
             </div>
           </div>
         </div>
-        <h5 className="mb-4">Restaurant Info</h5>
+        <h5 className="mb-4">{t('Restaurant Info')}</h5>
         <p className="mb-3">{address}</p>
         <p className="mb-2 text-black">
           <Icofont icon="phone-circle text-primary mr-2" />
@@ -36,7 +40,7 @@ export default function about({ description, address, phone }) {
         <hr className="clearfix" />
 
         <br />
-        <h5 className="mt-4 mb-4">More Info</h5>
+        <h5 className="mt-4 mb-4">{t('More Info')}</h5>
         <p className="mb-3">{description}</p>
       </div>
     </div>

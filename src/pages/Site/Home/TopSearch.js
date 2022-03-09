@@ -8,10 +8,15 @@ import ProductBox from './ProductBox';
 import axios from 'axios';
 import cogoToast from 'cogo-toast';
 import CategoriesCarousel from '../../../common/CategoriesCarousel';
+import { useTranslation } from 'react-i18next';
 
 const TopSearch = () => {
+  const { t } = useTranslation();
   const [cities, setCities] = useState([]);
+  const [fav, setFav] = useState([]);
+
   const [categories, setCategories] = useState([]);
+
   const [city, setCity] = useState('');
   const [category, setCategory] = useState('');
   const [search, setSearch] = useState('');
@@ -20,6 +25,7 @@ const TopSearch = () => {
     // setId(-1);
     getCategories();
     getCities();
+    getFav();
   }, []);
   const getCategories = () => {
     axios
@@ -39,6 +45,30 @@ const TopSearch = () => {
             cats.push({ id: c.id, text: c.name })
           );
           setCategories(cats);
+          console.log(response.data.data);
+        } else {
+          cogoToast.warn('Something Went Wrong');
+        }
+      });
+  };
+  const getFav = () => {
+    axios
+      .get('http://restaurant-dashboard.se01.tech/api/getFavoriteRestaurants', {
+        headers: {
+          'Content-Language':
+            localStorage.getItem('lang') &&
+            localStorage.getItem('lang').search('ar') >= 0
+              ? 'ar'
+              : 'en',
+        },
+      })
+      .then((response) => {
+        if (response.data.status == 'true') {
+          let faves = [];
+          response.data.data.forEach((c) =>
+            faves.push({ id: c.id, text: c.name, image: c.image })
+          );
+          setCategories(faves);
           console.log(response.data.data);
         } else {
           cogoToast.warn('Something Went Wrong');
@@ -92,13 +122,14 @@ const TopSearch = () => {
               <div className="homepage-search-title">
                 <h1 className="mb-2 font-weight-normal text-white">
                   <span className="font-weight-bold text-white">
-                    Find Awesome Deals
+                    {t('Find Awesome Deals')}
                   </span>{' '}
-                  in KSA
+                  {t('in KSA')}
                 </h1>
                 <h5 className="mb-5  font-weight-normal text-white">
-                  Lists of top restaurants, cafes, pubs, and bars in Melbourne,
-                  based on trends
+                  {t(
+                    'Lists of top restaurants, cafes, and pubs, based on trends'
+                  )}
                 </h5>
               </div>
               <div className="homepage-search-form">
@@ -110,20 +141,27 @@ const TopSearch = () => {
                         <Select2
                           className="custom-select"
                           data={[...categories]}
+                          value={category}
+                          onChange={(e) => {
+                            setCategory(e.target.value);
+                          }}
                           options={{
-                            placeholder: 'Category Search',
+                            placeholder: t('Category Search'),
                           }}
                         />
                       </div>
                     </Form.Group>
                     <Form.Group className="col-lg-3 col-md-3 col-sm-12">
                       <div className="location-dropdown">
-                        <Icofont icon="location-arrow" />
                         <Select2
                           className="custom-select"
                           data={[...cities]}
+                          value={city}
+                          onChange={(e) => {
+                            setCity(e.target.value);
+                          }}
                           options={{
-                            placeholder: 'City',
+                            placeholder: t('Cities'),
                           }}
                         />
                       </div>
@@ -131,25 +169,29 @@ const TopSearch = () => {
                     <Form.Group className="col-lg-4 col-md-4 col-sm-11">
                       <Form.Control
                         type="text"
-                        placeholder="Search"
+                        placeholder={t('Search')}
                         size="lg"
+                        value={search}
+                        onChange={(e) => {
+                          setSearch(e.target.value);
+                        }}
                       />
                     </Form.Group>
                     <Form.Group className="col-lg-2 col-md-2 col-sm-12">
                       <Link
-                        to="listing"
+                        to={`restaurants?city=${city}&category=${category}&search=${search}`}
                         className="btn btn-primary btn-block btn-lg btn-gradient"
                       >
-                        Search
+                        {t('Search')}
                       </Link>
                     </Form.Group>
                   </div>
                 </Form>
               </div>
               <h6 className="mt-4 text-white font-weight-normal">
-                E.g. Beverages, Pizzas, Chinese, Bakery, Indian...
+                {t('E.g. Beverages, Pizzas, Chinese, Bakery, Indian...')}
               </h6>
-              <CategoriesCarousel categories={categories} />
+              <CategoriesCarousel categories={fav} />
             </Col>
           </Row>
         </Container>

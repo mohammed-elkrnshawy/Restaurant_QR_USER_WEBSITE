@@ -13,6 +13,11 @@ i18n
         translation: TRANSLATIONS_AR,
       },
     },
+    fallbackLng: 'en', // default language
+    keySeparator: false, // we do not use keys in form messages.welcome
+    interpolation: {
+      escapeValue: false, // react already safes from xss
+    },
   });
 
 export default i18n;

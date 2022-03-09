@@ -9,6 +9,8 @@ import {
   Badge,
 } from 'react-bootstrap';
 import DropDownTitle from '../common/DropDownTitle';
+import i18n from '../translation/i18n';
+import { withTranslation } from 'react-i18next';
 
 import Icofont from 'react-icofont';
 
@@ -43,6 +45,7 @@ class Header extends React.Component {
     document.removeEventListener('click', this.handleClick, false);
   }
   render() {
+    const { t } = this.props;
     return (
       <div ref={(node) => (this.node = node)}>
         <Navbar
@@ -53,14 +56,14 @@ class Header extends React.Component {
           className="navbar-light osahan-nav shadow-sm"
         >
           <Container>
-            <Navbar.Brand to="/home/">
+            <Navbar.Brand to="/home/" className="mx-3">
               <Link to="/home/">
                 <Image src="/assets/logo.svg" alt="" />
               </Link>
             </Navbar.Brand>
             <Navbar.Toggle />
             <Navbar.Collapse id="navbarNavDropdown">
-              <Nav activeKey={0} className="ml-auto" onSelect={this.closeMenu}>
+              <Nav activeKey={0} className="m-auto" onSelect={this.closeMenu}>
                 <Nav.Link
                   eventKey={0}
                   as={NavLink}
@@ -68,7 +71,7 @@ class Header extends React.Component {
                   exact
                   to="/home/restaurants"
                 >
-                  Resturants
+                  {t('Resturants')}
                 </Nav.Link>
                 {/* <Nav.Link
                   eventKey={0}
@@ -90,7 +93,7 @@ class Header extends React.Component {
                   }}
                   target="_blank"
                 >
-                  Join Us
+                  {t('Join Us')}
                 </Nav.Link>
                 {localStorage.getItem('token') ? (
                   <Nav.Link
@@ -99,7 +102,7 @@ class Header extends React.Component {
                     activeclassname="active"
                     to="/home/my-reservations"
                   >
-                    My reservations
+                    {t('My Reservations')}
                   </Nav.Link>
                 ) : (
                   ''
@@ -110,7 +113,7 @@ class Header extends React.Component {
                     title={
                       <DropDownTitle
                         className="d-inline-block"
-                        title="My Account"
+                        title={t('My Account')}
                       />
                     }
                   >
@@ -120,7 +123,7 @@ class Header extends React.Component {
                       activeclassname="active"
                       to="/home/edit-profile/"
                     >
-                      <Icofont icon="pepole" /> Profile
+                      <Icofont icon="pepole" /> {t('Edit Profile')}
                     </NavDropdown.Item>
 
                     <NavDropdown.Item
@@ -131,7 +134,7 @@ class Header extends React.Component {
                       }}
                       to="/vkslndj"
                     >
-                      Log Out
+                      {t('Log Out')}
                     </NavDropdown.Item>
                   </NavDropdown>
                 ) : (
@@ -141,9 +144,35 @@ class Header extends React.Component {
                     activeclassname="active"
                     to="/login"
                   >
-                    <a>Log In</a>
+                    <a>{t('Log In')}</a>
                   </Nav.Link>
                 )}
+                <Nav.Link
+                  eventKey={0}
+                  as={NavLink}
+                  activeclassname="active"
+                  exact
+                  onClick={() => {
+                    i18n.changeLanguage(
+                      i18n.language.includes('ar') ? 'en' : 'ar'
+                    );
+                    document.body.dir = i18n.dir();
+                    const style =
+                      document.getElementsByClassName('style-direction');
+                    if (i18n.language.includes('ar')) {
+                      style[0].href = '/css/AppRTL.css';
+                      style[1].href = '/css/bootstrapRTL.css';
+                      style[2].href = '/css/select2RTL.css';
+                    } else {
+                      style[0].href = '/css/App.css';
+                      style[1].href = '/css/bootstrap.css';
+                      style[2].href = '/css/select2.css';
+                    }
+                  }}
+                  to
+                >
+                  {i18n.language.includes('ar') ? 'en' : 'عربي'}
+                </Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>
@@ -153,4 +182,4 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+export default withTranslation()(Header);

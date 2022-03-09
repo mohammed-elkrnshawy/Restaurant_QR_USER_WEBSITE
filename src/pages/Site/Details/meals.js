@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col, Breadcrumb } from 'react-bootstrap';
 import BestSeller from '../../../common/BestSeller';
+import { useTranslation } from 'react-i18next';
 
 export default function Categories({
   meals,
@@ -8,6 +9,8 @@ export default function Categories({
 
   setComponent,
 }) {
+  const { t } = useTranslation();
+
   return (
     <>
       <Breadcrumb className="col-12">
@@ -16,16 +19,16 @@ export default function Categories({
             setComponent('cat');
           }}
         >
-          Categories
+          {t('Categories')}
         </Breadcrumb.Item>
         <Breadcrumb.Item
           onClick={() => {
             setComponent('sub');
           }}
         >
-          Sub-Categories
+          {t('Sub-Categories')}{' '}
         </Breadcrumb.Item>
-        <Breadcrumb.Item active>Meals</Breadcrumb.Item>
+        <Breadcrumb.Item active>{t('Meals')}</Breadcrumb.Item>
       </Breadcrumb>
       <br />
 

@@ -186,7 +186,7 @@ const Index = ({ changeComponent, setId, id }) => {
   return (
     <>
       <TopSearch />
-      <section className="section pt-5 pb-5 bg-white homepage-add-section">
+      {/* <section className="section pt-5 pb-5 bg-white homepage-add-section">
         <Container>
           <Row>
             <Col md={3} xs={6}>
@@ -223,9 +223,9 @@ const Index = ({ changeComponent, setId, id }) => {
             </Col>
           </Row>
         </Container>
-      </section>
+      </section> */}
 
-      <section className="section pt-5 pb-5 products-section">
+      {/* <section className="section pt-5 pb-5 products-section">
         <Container>
           <SectionHeading
             heading="Popular Brands"
@@ -311,8 +311,8 @@ const Index = ({ changeComponent, setId, id }) => {
             </Col>
           </Row>
         </Container>
-      </section>
-      <section className="section pt-5 pb-5 bg-white becomemember-section border-bottom">
+      </section> */}
+      {/* <section className="section pt-5 pb-5 bg-white becomemember-section border-bottom">
         <Container>
           <SectionHeading
             heading="Become a Member"
@@ -326,7 +326,7 @@ const Index = ({ changeComponent, setId, id }) => {
             </Col>
           </Row>
         </Container>
-      </section>
+      </section> */}
     </>
   );
 };

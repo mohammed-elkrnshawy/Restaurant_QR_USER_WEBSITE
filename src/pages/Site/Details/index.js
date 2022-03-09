@@ -196,17 +196,19 @@ const Details = (props) => {
               <Col md={12}>
                 <Nav id="pills-tab">
                   <Nav.Item>
-                    <Nav.Link eventKey="first">Order Online</Nav.Link>
+                    <Nav.Link eventKey="first">{t('Order Online')}</Nav.Link>
                   </Nav.Item>
 
                   <Nav.Item>
-                    <Nav.Link eventKey="third">Restaurant Info</Nav.Link>
+                    <Nav.Link eventKey="third">{t('Restaurant Info')}</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="fourth">Book A Table</Nav.Link>
+                    <Nav.Link eventKey="fourth">{t('Book A Table')}</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="fifth">Ratings & Reviews</Nav.Link>
+                    <Nav.Link eventKey="fifth">
+                      {t('Ratings & Reviews')}
+                    </Nav.Link>
                   </Nav.Item>
                 </Nav>
               </Col>

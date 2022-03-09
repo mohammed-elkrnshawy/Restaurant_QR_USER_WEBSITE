@@ -5,12 +5,15 @@ import axios from 'axios';
 import cogoToast from 'cogo-toast';
 import { Switch, Route } from 'react-router-dom';
 import EditProfileModal from '../../modals/EditProfileModal';
+import { useTranslation } from 'react-i18next';
 
 import { NavLink, Link } from 'react-router-dom';
 import { Row, Col, Container, Image } from 'react-bootstrap';
 import EditPassModal from '../../modals/EditPasswordModal';
 const Index = ({ setName }) => {
   const history = useHistory();
+  const { t } = useTranslation();
+
   const [showEditProfile, setShowEditProfile] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -78,7 +81,8 @@ const Index = ({ setName }) => {
                             onClick={() => setShowEditProfile(true)}
                             className="text-primary mr-3"
                           >
-                            <i className="icofont-ui-edit"></i> Edit Profile
+                            <i className="icofont-ui-edit"></i>{' '}
+                            {t('Edit Profile')}
                           </Link>
                         </p>
                         <br />
@@ -88,7 +92,8 @@ const Index = ({ setName }) => {
                             onClick={() => setShowPassword(true)}
                             className="text-primary mr-3"
                           >
-                            <i className="icofont-ui-edit"></i> Edit Password
+                            <i className="icofont-ui-edit"></i>{' '}
+                            {t('Edit Password')}
                           </Link>
                         </p>
                       </div>

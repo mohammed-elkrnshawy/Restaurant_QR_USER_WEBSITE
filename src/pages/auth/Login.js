@@ -58,41 +58,41 @@ const Login = ({}) => {
             <Container>
               <Row>
                 <Col md={9} lg={8} className="mx-auto pl-5 pr-5">
-                  <h3 className="login-heading mb-4">Welcome back!</h3>
+                  <h3 className="login-heading mb-4">
+                    {t('Welcome To Our Resturent')}
+                  </h3>
                   <Form onSubmit={handleSubmit}>
                     <div className="form-label-group">
                       <Form.Control
                         type="text"
                         id="inputEmail"
-                        placeholder="Email address"
+                        placeholder={t('Mobile Number')}
                       />
-                      <Form.Label htmlFor="inputEmail">Mobile</Form.Label>
+                      <Form.Label htmlFor="inputEmail">
+                        {t('Mobile Number')}
+                      </Form.Label>
                     </div>
                     <div className="form-label-group">
                       <Form.Control
                         type="password"
                         id="inputPassword"
-                        placeholder="Password"
+                        placeholder={t('Password')}
                       />
-                      <Form.Label htmlFor="inputPassword">Password</Form.Label>
+                      <Form.Label htmlFor="inputPassword">
+                        {t('Password')}
+                      </Form.Label>
                     </div>
-                    <Form.Check
-                      className="mb-3"
-                      custom
-                      type="checkbox"
-                      id="custom-checkbox"
-                      label="Remember password"
-                    />
+
                     <Button
                       className="btn btn-lg btn-block btn-login text-white text-uppercase font-weight-bold mb-2"
                       type="submit"
                     >
-                      Sign in
+                      {t('Log In')}
                     </Button>
                     <div className="text-center pt-3">
-                      Don’t have an account?{' '}
+                      {t("Don't have an account?")}{' '}
                       <a className="font-weight-bold" href="/signup">
-                        Sign Up
+                        {t('Sign Up')}
                       </a>
                     </div>
                   </Form>
