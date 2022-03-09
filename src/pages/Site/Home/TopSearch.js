@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { Row, Col, Container, Form, Image } from 'react-bootstrap';
 import Select2 from 'react-select2-wrapper';
 import Icofont from 'react-icofont';
-import OwlCarousel from 'react-owl-carousel3';
-import ProductBox from './ProductBox';
 import axios from 'axios';
 import cogoToast from 'cogo-toast';
 import CategoriesCarousel from '../../../common/CategoriesCarousel';
@@ -25,7 +23,6 @@ const TopSearch = () => {
     // setId(-1);
     getCategories();
     getCities();
-    getFav();
   }, []);
   const getCategories = () => {
     axios
@@ -45,30 +42,6 @@ const TopSearch = () => {
             cats.push({ id: c.id, text: c.name })
           );
           setCategories(cats);
-          console.log(response.data.data);
-        } else {
-          cogoToast.warn('Something Went Wrong');
-        }
-      });
-  };
-  const getFav = () => {
-    axios
-      .get('http://restaurant-dashboard.se01.tech/api/getFavoriteRestaurants', {
-        headers: {
-          'Content-Language':
-            localStorage.getItem('lang') &&
-            localStorage.getItem('lang').search('ar') >= 0
-              ? 'ar'
-              : 'en',
-        },
-      })
-      .then((response) => {
-        if (response.data.status == 'true') {
-          let faves = [];
-          response.data.data.forEach((c) =>
-            faves.push({ id: c.id, text: c.name, image: c.image })
-          );
-          setCategories(faves);
           console.log(response.data.data);
         } else {
           cogoToast.warn('Something Went Wrong');
@@ -198,35 +171,6 @@ const TopSearch = () => {
       </div>
     </section>
   );
-};
-
-const options2 = {
-  responsive: {
-    0: {
-      items: 2,
-    },
-    764: {
-      items: 2,
-    },
-    765: {
-      items: 1,
-    },
-    1200: {
-      items: 1,
-    },
-  },
-  lazyLoad: true,
-  loop: true,
-  autoplay: true,
-  autoplaySpeed: 1000,
-  dots: false,
-  autoplayTimeout: 2000,
-  nav: true,
-  navText: [
-    "<i class='fa fa-chevron-left'></i>",
-    "<i class='fa fa-chevron-right'></i>",
-  ],
-  autoplayHoverPause: true,
 };
 
 export default TopSearch;

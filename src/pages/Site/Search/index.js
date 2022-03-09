@@ -41,6 +41,7 @@ const Index = ({ changeComponent, setId, id }) => {
     axios
       .get(query, {
         headers: {
+          'Access-Control-Allow-Origin': '*',
           'Content-Language':
             localStorage.getItem('lang') &&
             localStorage.getItem('lang').search('ar') >= 0

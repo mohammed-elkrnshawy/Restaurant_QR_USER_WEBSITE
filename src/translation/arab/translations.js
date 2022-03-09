@@ -80,8 +80,9 @@ export const TRANSLATIONS_AR = {
   'Ratings & Reviews': 'التقييمات والمراجعات',
   '': '',
   '': '',
-  '': '',
-  '': '',
+  'Top restaurants, cafes, pubs, and bars in Ludhiana, based on trends':
+    'أفضل المطاعم والمقاهي والحانات في المملكة العربية السعودية حسب اتجاهات الموضة',
+  'Popular Brands': 'ماركات مشهورة',
   'Leave Comment': 'اترك تعليقا',
   'Rate the Place': 'قيم المكان',
   'Your Comment': 'تعليقك',
